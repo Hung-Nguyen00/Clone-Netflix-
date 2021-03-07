@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    outline: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 ::before,
-::after {
+ ::after {
     box-sizing: border-box;
 }
 
@@ -28,4 +29,253 @@ img {
 .row {
     display: flex;
     flex-wrap: wrap;
+}
+
+body {}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    z-index: 100;
+    background-color: rgb(13, 13, 12, 0.1);
+}
+
+header .logo {
+    margin-top: -20px;
+}
+
+header .logo img {
+    max-width: 100px;
+}
+
+header ul {
+    display: flex;
+    margin-left: -100px;
+}
+
+header ul li {
+    margin: 0 10px;
+}
+
+.navigation li a {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.navigation li:not(.active) a:hover {
+    opacity: 0.8;
+}
+
+.search {
+    position: relative;
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search input {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    outline: none;
+    border-radius: 5px;
+    padding: 0 10px 0 45px;
+    transition: all 0.3 ease-out;
+}
+
+.search input.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.search .fa-search.show {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    padding-right: 10px;
+    border-right: 1px solid #fff;
+    color: #fff;
+}
+
+.search .fa-search {
+    padding-right: 120px;
+    align-items: center;
+    margin-top: 10px;
+    color: #fff;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown img {
+    display: inline-block;
+}
+
+.dropdown:hover ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown ul {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3 ease;
+    position: absolute;
+    top: 100%;
+    left: -50px;
+    width: 200px;
+    height: auto;
+    background-color: rgb(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown ul li:first-child {
+    margin-top: 10px;
+}
+
+.dropdown ul li {
+    padding: 0 15px;
+    margin-bottom: 10px;
+}
+
+.img-border-radius {
+    border-radius: 5px;
+}
+
+.dropdown ul li a:hover {
+    text-decoration: underline;
+}
+
+.dropdown ul li a {
+    font-size: 14px;
+    color: white;
+    text-transform: capitalize;
+    font-weight: 300;
+}
+
+.dropdown ul li:last-child {
+    margin-bottom: 0;
+}
+
+
+/* banner-content */
+
+.banner {
+    position: relative;
+    width: 100%;
+    padding: 0 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.banner .banner-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.banner .banner-content {
+    margin-left: -50px;
+    z-index: 1;
+    position: relative;
+    max-width: 550px;
+}
+
+.banner .banner-content-img img {
+    max-width: 430px;
+}
+
+.banner .banner-content h4 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    color: white
+}
+
+.banner .banner-content h4 span:nth-child(1) {
+    background-color: red;
+    padding: 3px 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+    font-weight: 600;
+    max-width: 40px;
+    text-align: center;
+    display: inline-block;
+    line-height: 13px;
+}
+
+.banner .banner-content h4 span:nth-child(1) .top {
+    font-size: 13px;
+    margin-left: 3px;
+}
+
+.banner .banner-content h4 span:nth-child(2) {
+    font-weight: 600;
+    font-size: 22px;
+    display: inline-block;
+}
+
+.banner .banner-content h4 p {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.banner .banner-controller a {
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.banner .banner-controller a i {
+    margin-right: 10px;
+}
+
+.banner .banner-controller a:first-child {
+    padding: 8px 30px;
+    background-color: #fff;
+    color: black;
+    margin-right: 20px;
+}
+
+.banner .banner-controller a:last-child {
+    padding: 8px 35px;
+    background-color: rgb(128, 128, 128, 0.5);
+    color: white;
+}
+
+.banner .banner-controller a:last-child i {
+    border: 2px solid #fff;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    padding: 5px;
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
 }
