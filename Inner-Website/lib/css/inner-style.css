@@ -249,8 +249,11 @@ header ul li {
     text-transform: capitalize;
     font-size: 16px;
     font-weight: 600;
+    letter-spacing: 1px;
     border-radius: 5px;
 }
+
+.banner-content {}
 
 .banner .banner-controller a i {
     margin-right: 10px;
@@ -264,7 +267,7 @@ header ul li {
 }
 
 .banner .banner-controller a:last-child {
-    padding: 8px 35px;
+    padding: 8px 30px;
     background-color: rgb(128, 128, 128, 0.5);
     color: white;
 }
