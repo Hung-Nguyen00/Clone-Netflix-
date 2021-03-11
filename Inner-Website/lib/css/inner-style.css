@@ -6,6 +6,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+:root {
+    -background--main: rgb(20, 20, 20);
+}
+
 ::before,
  ::after {
     box-sizing: border-box;
@@ -31,10 +35,13 @@ img {
     flex-wrap: wrap;
 }
 
-body {}
+body {
+    background-color: rgb(20, 20, 20);
+    overflow-x: hidden;
+}
 
 header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     min-height: 60px;
@@ -42,9 +49,22 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 15px 50px;
     z-index: 100;
-    background-color: rgb(13, 13, 12, 0.1);
+    transition: all 0.3 ease;
+    background-color: rgb(13, 13, 12, 0.2);
+}
+
+body.ignore-overflow-x {
+    overflow: hidden;
+}
+
+header.z-index {
+    background-color: rgb(13, 13, 12);
+}
+
+header header.active {
+    background-color: rgb(13, 13, 12);
 }
 
 header .logo {
@@ -87,8 +107,7 @@ header ul li {
     visibility: hidden;
     opacity: 0;
     top: 0;
-    left: 0;
-    width: 300px;
+    left: 60%;
     height: 100%;
     color: #fff;
     background: transparent;
@@ -96,12 +115,14 @@ header ul li {
     outline: none;
     border-radius: 5px;
     padding: 0 10px 0 45px;
-    transition: all 0.3 ease-out;
+    transition: all 0.5s ease;
 }
 
 .search input.show {
     visibility: visible;
     opacity: 1;
+    left: 0;
+    width: 300px;
 }
 
 .search .fa-search.show {
@@ -112,12 +133,20 @@ header ul li {
     padding-right: 10px;
     border-right: 1px solid #fff;
     color: #fff;
+    transition: all 0.5s ease;
 }
 
-.search .fa-search {
-    padding-right: 120px;
+.search li {
     align-items: center;
     margin-top: 10px;
+}
+
+.search li {
+    padding-right: 10px;
+}
+
+.search li .fa {
+    font-size: 20px;
     color: #fff;
 }
 
@@ -127,6 +156,8 @@ header ul li {
 
 .dropdown img {
     display: inline-block;
+    border-radius: 5px;
+    margin-top: -10px;
 }
 
 .dropdown:hover ul {
@@ -139,7 +170,7 @@ header ul li {
     opacity: 0;
     transition: all 0.3 ease;
     position: absolute;
-    top: 100%;
+    top: 110%;
     left: -50px;
     width: 200px;
     height: auto;
@@ -149,12 +180,13 @@ header ul li {
 }
 
 .dropdown ul li:first-child {
-    margin-top: 10px;
+    padding-top: 10px;
 }
 
 .dropdown ul li {
     padding: 0 15px;
     margin-bottom: 10px;
+    margin-left: -5px;
 }
 
 .img-border-radius {
@@ -170,10 +202,6 @@ header ul li {
     color: white;
     text-transform: capitalize;
     font-weight: 300;
-}
-
-.dropdown ul li:last-child {
-    margin-bottom: 0;
 }
 
 
@@ -197,6 +225,97 @@ header ul li {
     height: 100%;
 }
 
+.trailer-film iframe {
+    visibility: visible;
+    opacity: 0;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.play-film {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.play-film.open {
+    visibility: visible;
+    opacity: 1;
+    z-index: -1;
+}
+
+.play-film iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.play-film .close-movie {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.preloader.fade-out {
+    background-color: rgb(13, 13, 12);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10005;
+    width: 100%;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.play-film:hover .close-movie {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.7s;
+}
+
+.play-film .close-movie:hover .fa-times {
+    font-size: 25px;
+}
+
+.play-film .fa-times {
+    position: fixed;
+    display: inline-block;
+    top: 2%;
+    right: 15%;
+    z-index: 10001;
+    font-size: 24px;
+    color: white;
+}
+
+.play-film i,
+.play-film h4 {
+    margin-right: 10px;
+}
+
+.play-film .back-to-browse {
+    position: fixed;
+    top: 6%;
+    transition: all 0.3s ease;
+    right: 12%;
+    font-weight: 500;
+    z-index: 10001;
+    font-size: 14px;
+    color: white;
+}
+
+.trailer-film iframe.show {
+    visibility: visible;
+    opacity: 1;
+}
+
 .banner .banner-content {
     margin-left: -50px;
     z-index: 1;
@@ -208,12 +327,23 @@ header ul li {
     max-width: 430px;
 }
 
+.banner .banner-content-img img.zoom-out {
+    max-width: 350px;
+    transform: translate(0, 150px);
+    transition: all 0.5s ease;
+}
+
 .banner .banner-content h4 {
     margin-top: 30px;
     margin-bottom: 20px;
     font-weight: 500;
     font-size: 20px;
     color: white
+}
+
+.banner .banner-content .banner-content-text.hide {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .banner .banner-content h4 span:nth-child(1) {
@@ -249,11 +379,10 @@ header ul li {
     text-transform: capitalize;
     font-size: 16px;
     font-weight: 600;
+    z-index: 10008;
     letter-spacing: 1px;
     border-radius: 5px;
 }
-
-.banner-content {}
 
 .banner .banner-controller a i {
     margin-right: 10px;
@@ -264,6 +393,10 @@ header ul li {
     background-color: #fff;
     color: black;
     margin-right: 20px;
+}
+
+.banner .banner-controller a:first-child:hover {
+    opacity: 0.7;
 }
 
 .banner .banner-controller a:last-child {
@@ -281,4 +414,133 @@ header ul li {
     align-items: center;
     text-align: center;
     font-size: 13px;
+}
+
+
+/* slider of popular on Netflix */
+
+.popular-slider {
+    margin-top: -75px;
+    position: relative;
+    width: 100%;
+}
+
+.popular-slider h2 {
+    margin-left: 50px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.popular-slider-card {
+    display: flex;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-left: 50px;
+}
+
+.popular-slider-card .popular-slider-card-item {
+    margin-right: -5px;
+    flex: 0 0 20%;
+    max-width: 20%;
+    position: relative;
+}
+
+.popular-slider-card .popular-slider-card-item--hover {
+    min-height: 200px;
+    border: 1px solid black;
+    box-shadow: 2px 2px black;
+}
+
+.popular-slider-card .popular-slider-card-item:hover .popular-slider-card-item--hover {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popular-slider-card .popular-slider-card-item img {
+    border-radius: 5px;
+}
+
+.popular-slider-card .popular-slider-card-item--hover {
+    transition: all 0.5s ease;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    display: inline-block;
+    top: -20%;
+    max-width: 400px;
+    left: 0;
+    z-index: 9999;
+    background-color: rgb(20, 20, 20);
+}
+
+.popular-slider-card .item-controller-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.popular-slider-card .item-controller-info ul {
+    display: flex;
+    margin-left: -20px;
+}
+
+.popular-slider-card .item-controller-info ul li {
+    padding: 0 5px;
+}
+
+.popular-slider-card .item-controller-info .item-info a,
+.popular-slider-card .item-controller-info ul li a {
+    border: 1px solid gray;
+    background-color: rgb(44, 42, 42);
+    padding: 10px 15px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    line-height: 40px;
+    color: white;
+}
+
+.popular-slider-card .item-controller-info .item-info a:hover,
+.popular-slider-card .item-controller-info ul li a:hover {
+    border: 1px solid white;
+}
+
+.popular-slider-card .item-controller-info ul li:first-child a {
+    background-color: white;
+    border: none;
+}
+
+.popular-slider-card .item-controller-info ul li:first-child a i {
+    color: black;
+}
+
+.popular-slider-card .item-controller-info ul li a i {
+    color: white;
+    font-size: 16px;
+}
+
+.popular-slider-card .popular-slider-card-item--hover h4 {
+    margin-left: 10px;
+    color: white;
+    font-weight: 400;
+}
+
+.popular-slider-card .popular-slider-card-item--hover .info-movie-detail span:first-child {
+    color: rgb(81, 209, 81);
+    font-weight: 600;
+}
+
+.popular-slider-card .popular-slider-card-item--hover .info-movie-detail span:nth-child(2) {
+    border: 1px solid white;
+    padding: 1px 10px;
+}
+
+.popular-slider-card .popular-slider-card-item--hover h4 span {
+    margin-right: 10px;
+    text-transform: capitalize;
 }
