@@ -109,7 +109,7 @@ button {
     height:70px;
     display: flex;
     justify-content: end;
-    margin: 20px 0;
+    margin: 20px auto;
 }
 
 .email-input-container {
@@ -242,6 +242,7 @@ button {
     margin-top: 7px;
     padding: 60px 400px;
     font-size: 1.4rem;
+    align-items: center;
 }
 
 .FAQ-list {
