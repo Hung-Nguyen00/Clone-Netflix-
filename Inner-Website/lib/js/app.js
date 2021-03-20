@@ -3,28 +3,53 @@
 // event click Input
 
 const search = document.querySelector('.fa-search');
-const stopMovieBanner = document.querySelector('.banner-btn-play')
+const playMovieBanner = document.querySelector('.banner-btn-play')
 const infoMovieBanner = document.querySelector('.banner-btn-info')
+const body = document.querySelector('body');
+
+
+window.addEventListener('scroll', function() {
+        const header = document.querySelector("header");
+        header.classList.toggle('scrollTop', window.scrollY > 0);
+    })
+    // scroll vertically
 
 loadTrailer();
+
 
 function loadTrailer() {
     setTimeout(() => {
         document.querySelector('header').classList.add('z-index');
         document.querySelector('.banner-content-text').classList.add('hide')
         document.querySelector('.banner-content-img img').classList.add('zoom-out')
+        document.querySelector('.banner .banner-img img').classList.add('hide')
         document.querySelector('.trailer-film').querySelector('iframe').classList.add('show')
     }, 4000);
 }
 
-function OffTrailer() {
+// loading trailer in Preview (Info)
+function loadTrailerInfo() {
     setTimeout(() => {
-        document.querySelector('header').classList.remove('z-index');
-        document.querySelector('.banner-content-text').classList.remove('hide')
-        document.querySelector('.banner-content-img img').classList.remove('zoom-out')
-        document.querySelector('.trailer-film').querySelector('iframe').classList.remove('show')
-    }, 1000);
+        document.querySelector('.preview-detail-banner').querySelector('img').classList.add('hide');
+        document.querySelector('.preview-detail-banner').querySelector('iframe').classList.add('show')
+
+    }, 4000);
 }
+
+// stopping trailer in Preview (Info)
+function stopTrailerInfo() {
+    document.querySelector('.preview-detail-banner').querySelector('img').classList.remove('hide');
+    document.querySelector('.preview-detail-banner').querySelector('iframe').classList.remove('show')
+}
+// stop iframe youtube trailer banner
+function OffTrailer() {
+    document.querySelector('header').classList.remove('z-index');
+    document.querySelector('.banner-content-text').classList.remove('hide');
+    document.querySelector('.banner-content-img img').classList.remove('zoom-out');
+    document.querySelector('.trailer-film').querySelector('iframe').classList.remove('show');
+    document.querySelector('.banner .banner-img img').classList.remove('hide');
+}
+
 // ------------------- animation search
 search.addEventListener('click', () => {
     search.classList.toggle('show')
@@ -36,12 +61,17 @@ search.addEventListener('click', () => {
 })
 
 //------------------- play movie start
-stopMovieBanner.addEventListener('click', () => {
+const playFilm = document.querySelector('.play-film');
+playMovieBanner.addEventListener('click', () => {
+    OffTrailer();
     // loading fade-out (empty background)
-    stopPlayingTrailer();
-    document.querySelector('.play-film').classList.toggle('open');
-    document.querySelector('body').classList.add('ignore-overflow-x');
+    playFilm.classList.toggle('open');
     document.querySelector('.preloader').classList.add('fade-out');
+    if (playFilm.querySelector('iframe').classList.contains('hide')) {
+        playFilm.querySelector('iframe').classList.remove('hide')
+    }
+    body.classList.add('ignore-overflow-x');
+
     setTimeout(() => {
         document.querySelector('.preloader').style.display = 'none';
     }, 600)
@@ -49,66 +79,82 @@ stopMovieBanner.addEventListener('click', () => {
 
 //------------------ back to browse
 document.querySelector('.close-movie').addEventListener('click', () => {
-        document.querySelector('.play-film').classList.remove('open');
-        document.querySelector('body').classList.remove('ignore-overflow-x');
-        load();
+        playFilm.classList.remove('open');
+        const iframe = playFilm.querySelector('iframe')
+
+        // stop iframe Youtube video when it don't auto
+        if (iframe !== null) {
+            var iframeSrc = iframe.src;
+            iframe.src = iframeSrc;
+        }
+        // remove Scroll-X
+        body.classList.remove('ignore-overflow-y');
+        loadTrailer();
     })
     //------------------- play movie end-------
 
 
 // --------------show more info start
-const btnMoreInfo = document.querySelector(".banner-btn-info");
-const preview = document.querySelector(".preview");
+const btnMoreInfo = document.querySelector(".banner-btn-info"),
+    preview = document.querySelector(".preview");
 
 btnMoreInfo.addEventListener('click', () => {
     //  stop trailer
+    const trailerInfo = document.querySelector('.preview-detail-trailer')
+    const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
     OffTrailer();
+    loadTrailerInfo();
+
     preview.classList.add('open');
     document.body.classList.add('ignore-overflow-x');
-    const trailerInfo = document.querySelector('.preview-detail-trailer')
-    const linkIframe = trailerInfo.querySelector('iframe');
-    if (linkIframe.src.search('?autoplay=1') === -1) {
-        linkIframe.src = linkIframe.src.replace('?', '?autoplay=1')
-    }
 })
 
 //----- close Preview
 preview.addEventListener('click', (e) => {
         if (e.target.classList.contains('preview')) {
             preview.classList.remove('open');
-            document.querySelector('body').classList.remove('ignore-overflow-x');
+            body.classList.remove('ignore-overflow-x');
             // stop trailer banner
-            load();
+            loadTrailer();
             // stop trailer info
             stopTrailerInfo();
         }
     })
-    // -------------------show info end
-
-// Display trailer of banner
+    // -------------------show info End--------
 
 // ---------------------Slider start----------------------
+
+// take all categories into an array and then set up slide 
 const slides = document.querySelectorAll('.popular-slider')
 
+// use forEach to set every slide
 slides.forEach((slide) => {
-        const sliderPopular = slide.querySelector('.popular-slider-card'), // take all card-item to an array
-            slidesItems = slide.querySelectorAll('.popular-slider-card-item'),
-            // set width for item parent
-            slideItem = slide.querySelector('.popular-slider-card-item'),
+        // take width for each slide
+        const sliderPopular = slide.querySelector('.popular-slider-card'),
             slideWidth = sliderPopular.offsetWidth,
+
+            // take all card-item to an array
+            slideItems = slide.querySelectorAll('.popular-slider-card-item'),
+
+            // use to count item in a slide and take it's width
+            slideItem = slide.querySelector('.popular-slider-card-item'),
             // button prev
-            prevBtn = slide.querySelector('.popular-slider-nav .prev'), // button next
-            nextBtn = slide.querySelector('.popular-slider-nav .next');
+            prevBtn = slide.querySelector('.popular-slider-nav .prev-btn'), // button next
+            nextBtn = slide.querySelector('.popular-slider-nav .next-btn');
 
 
         //  Count number of slide for every click.
-        let countSlide = Math.ceil((slidesItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth));
+        let countSlide = Math.ceil((slideItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth));
         // set index = 0;
         let slideIndex = 0;
         // click for next button
         sliderPopular.style.width = slideWidth * countSlide + 'px';
-        // Number of clicking is countSlide
 
+        // if slide has only 5 items. Don't have next button
+        if (countSlide <= 1) {
+            nextBtn.classList.add("hide");
+        }
+        // Number of clicking is countSlide
         nextBtn.addEventListener('click', () => {
                 // if slideIndex == countSlide then reset slideIndex = 0
                 if (slideIndex === countSlide - 1) {
@@ -139,34 +185,3 @@ slides.forEach((slide) => {
         }
     })
     //----------------slide end--------------------
-
-
-
-
-
-
-function stopTrailerInfo() {
-    window.addEventListener('load', () => {
-        const trailerInfo = document.querySelector('.preview-detail-trailer')
-        const linkIframe = trailerInfo.querySelector('iframe');
-        if (linkIframe.src.search('?autoplay=1') >= 0) {
-            linkIframe.src = linkIframe.src.replace('?autoplay=1', '?')
-
-        }
-    })
-
-}
-
-function stopPlayingTrailer() {
-    window.addEventListener('load', () => {
-        const trailerBanner = document.querySelector('.trailer-film')
-        const linkIframeBanner = trailerBanner.querySelector('iframe');
-
-        if (linkIframeBanner.src.search('autoplay=1') > -1) {
-            linkIframeBanner.src = linkIframeBanner.src.replace('?autoplay=1', '?')
-        } else {
-            linkIframeBanner.src = linkIframeBanner.src.replace('?', '?autoplay=1')
-        }
-        alert(linkIframeBanner.src)
-    })
-}
