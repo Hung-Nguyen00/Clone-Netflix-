@@ -88,55 +88,62 @@ preview.addEventListener('click', (e) => {
 // Display trailer of banner
 
 // ---------------------Slider start----------------------
-const sliderPopular = document.querySelector('.popular-slider-card'), // take all card-item to an array
-    slides = document.querySelectorAll('.popular-slider-card-item'),
-    // set width for item parent
-    slide = document.querySelector('.popular-slider-card-item'),
-    slideWidth = sliderPopular.offsetWidth,
-    // button prev
-    prevBtn = document.querySelector('.popular-slider-nav .prev'), // button next
-    nextBtn = document.querySelector('.popular-slider-nav .next');
+const slides = document.querySelectorAll('.popular-slider')
 
-//  Count number of slide for every click.
-let countSlide = Math.ceil((slides.length * slide.offsetWidth) / (5 * slide.offsetWidth));
-// set index = 0;
-let slideIndex = 0;
-// click for next button
-sliderPopular.style.width = slideWidth * countSlide + 'px';
-// Number of clicking is countSlide
-
-nextBtn.addEventListener('click', () => {
-    // if slideIndex == countSlide then reset slideIndex = 0
-    if (slideIndex === countSlide - 1) {
-        slideIndex = 0;
-    } else {
-        slideIndex++;
-    }
-    // if slideIndex = 0 then prev button will hide
-    if (slideIndex > 0) {
-        prevBtn.classList.add('active')
-    } else {
-        prevBtn.classList.remove('active')
-    }
-    slider();
-})
-
-//----------------slide end--------------------
+slides.forEach((slide) => {
+        const sliderPopular = slide.querySelector('.popular-slider-card'), // take all card-item to an array
+            slidesItems = slide.querySelectorAll('.popular-slider-card-item'),
+            // set width for item parent
+            slideItem = slide.querySelector('.popular-slider-card-item'),
+            slideWidth = sliderPopular.offsetWidth,
+            // button prev
+            prevBtn = slide.querySelector('.popular-slider-nav .prev'), // button next
+            nextBtn = slide.querySelector('.popular-slider-nav .next');
 
 
-// click for pre button
-prevBtn.addEventListener('click', () => {
-        if (slideIndex === 0) {
-            slideIndex = countSlide - 1;
-        } else {
-            slideIndex--;
+        //  Count number of slide for every click.
+        let countSlide = Math.ceil((slidesItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth));
+        // set index = 0;
+        let slideIndex = 0;
+        // click for next button
+        sliderPopular.style.width = slideWidth * countSlide + 'px';
+        // Number of clicking is countSlide
+
+        nextBtn.addEventListener('click', () => {
+                // if slideIndex == countSlide then reset slideIndex = 0
+                if (slideIndex === countSlide - 1) {
+                    slideIndex = 0;
+                } else {
+                    slideIndex++;
+                }
+                // if slideIndex = 0 then prev button will hide
+                if (slideIndex > 0) {
+                    prevBtn.classList.add('active')
+                } else {
+                    prevBtn.classList.remove('active')
+                }
+                slider();
+            })
+            // click for pre button
+        prevBtn.addEventListener('click', () => {
+                if (slideIndex === 0) {
+                    slideIndex = countSlide - 1;
+                } else {
+                    slideIndex--;
+                }
+                slider();
+            })
+            // when it has event "click" Margin left is minus to next slideIndex
+        function slider() {
+            sliderPopular.style.marginLeft = -(slideWidth * slideIndex) + 'px';
         }
-        slider();
     })
-    // when it has event "click" Margin left is minus to next slideIndex
-function slider() {
-    sliderPopular.style.marginLeft = -(slideWidth * slideIndex) + 'px';
-}
+    //----------------slide end--------------------
+
+
+
+
+
 
 function stopTrailerInfo() {
     window.addEventListener('load', () => {
