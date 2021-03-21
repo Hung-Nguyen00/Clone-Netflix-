@@ -157,6 +157,7 @@ header ul li {
 
 .dropdown {
     position: relative;
+    display: block;
 }
 
 .dropdown img {
@@ -170,7 +171,7 @@ header ul li {
     opacity: 1;
 }
 
-.dropdown ul::before {
+.dropdown .dropdown-iconProfile::before {
     content: "";
     position: absolute;
     bottom: 100%;
@@ -181,7 +182,7 @@ header ul li {
     border-color: transparent transparent white transparent;
 }
 
-.dropdown ul {
+.dropdown .dropdown-iconProfile {
     visibility: hidden;
     opacity: 0;
     transition-delay: 0.3s;
@@ -196,26 +197,49 @@ header ul li {
     flex-direction: column;
 }
 
-.dropdown ul li:first-child {
+.dropdown .dropdown-iconProfile li:first-child {
     padding-top: 10px;
 }
 
-.dropdown ul li {
-    padding: 0 15px;
+.dropdown .dropdown-iconProfile li {
+    padding: 0 5px;
     margin-bottom: 10px;
-    margin-left: -5px;
+}
+
+.dropdown .dropdown-iconProfile .dropdown-manage {
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.dropdown .dropdown-iconProfile .dropdown-borderTop::after {
+    content: "";
+    top: -5px;
+    left: 0;
+    position: absolute;
+    background-color: white;
+    height: 1px;
+    width: 100%;
+}
+
+.dropdown .dropdown-iconProfile .dropdown-borderTop {
+    margin-top: 5px;
+    position: relative;
+}
+
+.dropdown .dropdown-iconProfile li img {
+    max-width: 30px;
 }
 
 .img-border-radius {
     border-radius: 5px;
 }
 
-.dropdown ul li a:hover {
+.dropdown .dropdown-iconProfile li a:hover {
     text-decoration: underline;
 }
 
-.dropdown ul li a {
-    font-size: 14px;
+.dropdown .dropdown-iconProfile li a {
+    font-size: 13px;
     color: white;
     text-transform: capitalize;
     font-weight: 300;
@@ -840,8 +864,23 @@ header ul li {
 }
 
 .preview .preview-detail-info--cast ul li span .inner a {
+    position: relative;
     font-size: 13px;
     color: white;
+}
+
+.preview .preview-detail-info--cast ul li span .inner a:last-child:after {
+    content: ".";
+    color: white;
+    margin-left: 1px;
+    font-size: 13px;
+}
+
+.preview .preview-detail-info--cast ul li span .inner a::after {
+    content: ",";
+    color: white;
+    margin-left: 1px;
+    font-size: 13px;
 }
 
 .preview .preview-detail-info--cast ul li span .inner a:hover {
@@ -865,6 +904,16 @@ header ul li {
     max-width: 100%;
     margin-left: 0;
     flex-wrap: wrap;
+}
+
+.preview .preview-detail-moreMovie-item {
+    border: 1px solid red;
+    width: 100%;
+    height: 100%;
+}
+
+.preview .preview-detail-moreMovie-item:hover {
+    border: 1px solid white;
 }
 
 .preview .preview-detail-moreMovie h2 {
@@ -907,10 +956,10 @@ header ul li {
     float: left;
 }
 
-.preview .moreMovie-items--inner i {
+.preview .moreMovie-items--inner .btn-plus {
     flex: 0 0 50%;
     max-width: 50%;
-    height: 50px;
+    height: 40px;
 }
 
 .preview .moreMovie-items--inner .preview-detail-moreMovie-item p,
@@ -919,18 +968,99 @@ header ul li {
     padding: 10px 0 10px 10px;
 }
 
+.preview .moreMovie-item-content .btn-plus p {
+    color: white;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    float: right;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 45px;
+    height: 40px;
+    padding: 5px 10px;
+}
+
+.preview .moreMovie-item-content .btn-plus p:hover {
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.preview .moreMovie-item-content .btn-plus p i {
+    font-size: 20px;
+    line-height: 35px;
+    padding-left: 3px;
+}
+
 .preview .moreMovie-items--inner .preview-detail-moreMovie-item p {
     padding-bottom: 40px;
     text-align: left;
     font-size: 13px;
     color: #fff;
     font-weight: 400;
+    max-width: 95%;
 }
 
-.preview .preview-detail-cast {
-    min-height: 100vh;
+.preview .preview-detail-about {
+    padding: 20px;
+    height: auto;
+    color: white;
     max-width: 100%;
     margin: auto;
-    padding-left: 30px;
+    padding-left: 40px;
     background-color: rgb(24, 24, 24);
+}
+
+.preview .preview-detail-about h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.preview .preview-detail-about ul {
+    max-width: 95%;
+}
+
+.preview .preview-detail-about ul li span {
+    font-size: 13px;
+    color: gray;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.preview .preview-detail-about ul li a {
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: capitalize;
+    position: relative;
+}
+
+.preview .preview-detail-about ul li a:hover {
+    text-decoration: underline;
+}
+
+.preview .preview-detail-about ul li a::after {
+    content: ",";
+    color: white;
+    margin-right: 1px;
+}
+
+.preview .preview-detail-about ul li a:last-child::after {
+    content: ".";
+    margin-right: 1px;
+    color: white;
+}
+
+.preview .preview-detail-about ul li:last-child p {
+    display: inline;
+    font-size: 13px;
+    color: white;
+}
+
+.preview .preview-detail-about ul li:last-child p span {
+    color: white;
+}
+
+.preview .preview-detail-about ul li:last-child p span:first-child {
+    font-size: 13px;
+    border: 1px solid white;
+    padding: 3px 4px;
 }

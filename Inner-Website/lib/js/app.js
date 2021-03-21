@@ -16,7 +16,6 @@ window.addEventListener('scroll', function() {
 
 loadTrailer();
 
-
 function loadTrailer() {
     setTimeout(() => {
         document.querySelector('header').classList.add('z-index');
@@ -70,7 +69,7 @@ playMovieBanner.addEventListener('click', () => {
     if (playFilm.querySelector('iframe').classList.contains('hide')) {
         playFilm.querySelector('iframe').classList.remove('hide')
     }
-    body.classList.add('ignore-overflow-x');
+    body.classList.add('ignore-overflow-y');
 
     setTimeout(() => {
         document.querySelector('.preloader').style.display = 'none';
@@ -106,14 +105,14 @@ btnMoreInfo.addEventListener('click', () => {
     loadTrailerInfo();
 
     preview.classList.add('open');
-    document.body.classList.add('ignore-overflow-x');
+    document.body.classList.add('ignore-overflow-y');
 })
 
 //----- close Preview
 preview.addEventListener('click', (e) => {
         if (e.target.classList.contains('preview')) {
             preview.classList.remove('open');
-            body.classList.remove('ignore-overflow-x');
+            body.classList.remove('ignore-overflow-y');
             // stop trailer banner
             loadTrailer();
             // stop trailer info
