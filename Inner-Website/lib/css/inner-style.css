@@ -1064,3 +1064,46 @@ header ul li {
     border: 1px solid white;
     padding: 3px 4px;
 }
+
+/* browsing accounts page */
+
+.browse-tab {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.browse-tab-header{
+    margin: 10px 0;
+}
+
+.browse-tab-header h1{
+    font-size: 4rem;
+    font-weight: lighter;
+    color: #fff;
+}
+
+.browse-tab-avatars{
+    height: 320px;
+    width: 100vw;
+    background-color: aqua;
+}
+
+.browse-tab-manage {
+    margin: 10px;
+}
+
+.browse-manage-button {
+    padding: 0.4rem 3rem;
+    text-align: center;
+    background-color: black; 
+    border-width: 1px;
+    color: gray;
+    font-size: 1.4rem;
+    border-color: gray;
+    border-radius: none;
+    border-style: solid;
+    cursor: pointer;
+}
