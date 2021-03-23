@@ -120,16 +120,41 @@ btnMoreInfo.addEventListener('click', () => {
 })
 
 // Click more Info in InfoHover
+const slideCard = document.querySelector('.popular-slider-card')
+const slideCardItems = document.querySelectorAll('.popular-slider-card-item');
 const itemInfo = document.querySelector('.item-info')
-itemInfo.addEventListener('click', (e) => {
-    const trailerInfo = document.querySelector('.preview-detail-trailer')
-    const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
-    OffTrailer();
-    loadTrailerInfo();
 
-    preview.classList.add('open');
-    document.body.classList.add('ignore-overflow-y');
+let itemIndex;
+
+slideCard.addEventListener('mousemove', (e) => {
+    if (e.target.closest('.popular-slider-card-item--hover')) {
+        const slideCardItem = e.target.closest('.popular-slider-card-item--hover').parentElement;
+        itemIndex = Array.from(slideCardItem.parentElement.children).indexOf(slideCardItem);
+
+        if (slideCardItems[itemIndex].querySelector('.item-info')) {
+            slideCardItems[itemIndex].querySelector('.item-info').addEventListener('click', (e) => {
+                const trailerInfo = document.querySelector('.preview-detail-trailer')
+                const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
+                OffTrailer();
+                loadTrailerInfo();
+                preview.classList.add('open');
+                document.body.classList.add('ignore-overflow-y');
+            })
+        }
+    }
 })
+
+
+
+// itemInfo.addEventListener('click', (e) => {
+//     const trailerInfo = document.querySelector('.preview-detail-trailer')
+//     const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
+//     OffTrailer();
+//     loadTrailerInfo();
+
+//     preview.classList.add('open');
+//     document.body.classList.add('ignore-overflow-y');
+// })
 
 // const 
 
