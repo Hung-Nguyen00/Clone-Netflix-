@@ -14,6 +14,17 @@ window.addEventListener('scroll', function() {
     header.classList.toggle('scrollTop', window.scrollY > 0);
 })
 
+
+// show menu of genres
+const subHeader = document.querySelector('.sub-header');
+const genres = document.querySelector('.sub-header-genres');
+const menuGenres = genres.querySelector('.sub-header-menu');
+
+genres.addEventListener('click', (e) => {
+    genres.classList.toggle('changeColor');
+    menuGenres.classList.toggle('show');
+})
+
 loadTrailer();
 
 function loadTrailer() {
