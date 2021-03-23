@@ -1150,6 +1150,7 @@ header ul li {
     padding: 3px 4px;
 }
 
+
 /* browsing accounts page */
 
 .browse-tab {
@@ -1160,17 +1161,17 @@ header ul li {
     justify-content: space-evenly;
 }
 
-.browse-tab-header{
+.browse-tab-header {
     margin: 10px 0;
 }
 
-.browse-tab-header h1{
+.browse-tab-header h1 {
     font-size: 4rem;
     font-weight: lighter;
     color: #fff;
 }
 
-.browse-tab-avatars{
+.browse-tab-avatars {
     height: 320px;
     width: 100vw;
     background-color: aqua;
@@ -1183,7 +1184,7 @@ header ul li {
 .browse-manage-button {
     padding: 0.4rem 3rem;
     text-align: center;
-    background-color: black; 
+    background-color: black;
     border-width: 1px;
     color: gray;
     font-size: 1.4rem;
