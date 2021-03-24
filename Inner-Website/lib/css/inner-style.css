@@ -27,7 +27,7 @@ ul {
 
 img {
     vertical-align: middle;
-    max-width: 100%;
+    max-width: 100;
 }
 
 .row {
@@ -1169,14 +1169,52 @@ header ul li {
     color: #fff;
 }
 
-.browse-tab-avatars {
+.browse-tab-accounts {
     height: 320px;
     width: 100vw;
-    background-color: aqua;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.account-container {
+    height: 320px;
+    width: 250px;
+    margin: 0 50px;
+}
+
+.account-avatar {
+    height: 250px;
+    width: 250px;
+    cursor: pointer;
+}
+
+.account-avatar img{
+    height: 246px;
+    width: 246px;
+    object-fit: fill;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.account-container h1 {
+    color: gray;
+    font-size: 2rem;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.account-avatar:hover {
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    margin-top: -2px;
+    margin-left: -2px;
 }
 
 .browse-tab-manage {
-    margin: 10px;
+    margin-top: 30px;
 }
 
 .browse-manage-button {
@@ -1255,6 +1293,9 @@ header ul li {
 .My-List-item--hover .info-movie-detail span:nth-child(2) {
     border: 1px solid white;
     padding: 1px 10px;
+}
+.My-List-item--hover h4{
+    padding-left: 15px;
 }
 .My-List-item--hover h4 span {
     margin-right: 10px;
