@@ -3,6 +3,10 @@ html {
   background: url("../../background.jpg");
 }
 
+body div.container-fluid {
+  padding-bottom: 200px !important;
+}
+
 .header {
   width: 100%;
   height: 90px;
@@ -45,6 +49,47 @@ body::after {
   margin-top: -30px;
   font-size: 24pt;
   /* z-index: 2; */
+}
+
+/* T's */
+ul {
+  list-style: none;
+}
+a,
+a.btn:hover {
+  text-decoration: none !important;
+}
+a:hover {
+  text-decoration: underline !important;
+}
+.footer {
+  height: 200px;
+  position: absolute !important;
+  bottom: 0 !important;
+  background-color: black;
+  padding: 8px 500px;
+  overflow: auto;
+}
+
+.footer,
+.footer a {
+  color: gray;
+  font-size: 0.9rem;
+}
+
+.footer p {
+  margin-bottom: 1.5rem;
+}
+
+.footer .footer-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+.footer,
+.footer li {
+  line-height: 1.9;
 }
 
 /* .header {

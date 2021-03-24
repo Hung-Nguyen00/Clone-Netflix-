@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./lib/css/account.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <title>Netflix login page</title>
     <!-- CSS only -->
     <link
@@ -24,6 +25,30 @@
   </head>
   <body>
     <div class="container">
+      <header>
+        <a href="#" class="logo"><img src="https://truecostmovie.com/img/TTC/wp-content/uploads/2015/10/netflix_logo_digitalvideo-1.png" alt=""></a>
+        <ul class="search">
+            <li class="dropdown">
+                <img src="../First-website/lib/Media/avt/avt1.png" style="max-width: 35px;" alt="">
+                <ul class="dropdown-iconProfile">
+                    <li>
+                      <img class="
+                      img-border-radius" src="../First-website/lib/Media/avt/avt1.png" alt="avt1">
+                      <a href="#">User</a>
+                    </li>
+                    <li>
+                      <img class="
+                      img-border-radius" src="../First-website/lib/Media/avt/avt2.png" alt="avt1">
+                      <a href="#">User</a>
+                    </li>
+                    <li class="dropdown-manage"><a href="#">Manage Profiles</a></li>
+                    <li class="dropdown-borderTop dropdown-manage"><a href="#">Account</a></li>
+                    <li class="dropdown-manage"><a href="#">Help Center</a></li>
+                    <li class="dropdown-manage"><a href="#">Sign out of Netflix</a></li>
+                </ul>
+            </li>
+        </ul>
+      </header>
       <div class="row">
         <div class="h1">Account</div>
       </div>
@@ -65,7 +90,7 @@
               <div class="card-header" role="tab" id="profileHeader1">
                 <h5 class="mb-0">
                   <a class="dropdown row" data-toggle="collapse" data-parent="#profile-options" href="#profileUser1" aria-expanded="true" aria-controls="profileUser1">
-                    <img scr="./lib/Media/avt/avt1.png" alt="avt1" class="col-2">
+                    <img scr="../First-website/lib/Media/avt/avt1.png" alt="avt1" class="col-2">
                     <div class="profile-info col-8">
                       <div class="profile-header">User 1</div>
                       <div class="profile-content">All Maturity Ratings</div>
@@ -146,7 +171,7 @@
               <div class="card-header" role="tab" id="profileHeader2">
                 <h5 class="mb-0">
                   <a class="dropdown row" data-toggle="collapse" data-parent="#profile-options" href="#profileUser2" aria-expanded="true" aria-controls="profileUser2">
-                    <img scr="./lib/Media/avt/avt2.png" alt="avt2" class="col-2">
+                    <img scr="../First-website/lib/Media/avt/avt2.png" alt="avt2" class="col-2">
                     <div class="profile-info col-8">
                       <div class="profile-header">User 2</div>
                       <div class="profile-content">All Maturity Ratings</div>
@@ -226,6 +251,36 @@
           </div>
         </div>
       </div>
+      <footer class="footer container-fluid px-5">
+        <p>Questions? Call 1-866-579-7172</p>
+        <div class="footer-cols">
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Ways To Watch</a></li>
+            <li><a href="#">Corporate Information</a></li>
+            <li><a href="#">Netflix Originals</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Redeem Gift Cards</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Speed Test</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Media Center</a></li>
+            <li><a href="#">Buy Gift Cards</a></li>
+            <li><a href="#">Cookie Preferences</a></li>
+            <li><a href="#">Legal Notices</a></li>
+          </ul>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
