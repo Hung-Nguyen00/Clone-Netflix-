@@ -55,7 +55,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 15px 50px;
-    z-index: 1000;
+    z-index: 11111;
     transition: all 0.5s ease;
     background-color: rgb(13, 13, 12, 0.1);
 }
@@ -1192,6 +1192,7 @@ header ul li {
     cursor: pointer;
 }
 
+
 /* My List page */
 
 .My-List-label {
@@ -1209,7 +1210,8 @@ header ul li {
     width: 100vw;
     position: relative;
 }
-.My-List-row-container{
+
+.My-List-row-container {
     margin-bottom: 100px;
     position: relative;
     width: 100vw;
@@ -1218,7 +1220,7 @@ header ul li {
     justify-content: end;
 }
 
-.My-List-item{
+.My-List-item {
     flex-basis: 15%;
     position: relative;
 }
@@ -1228,7 +1230,7 @@ header ul li {
     overflow: hidden;
 }
 
-.My-List-item--hover{
+.My-List-item--hover {
     min-height: 200px;
     display: none;
     background-color: #2f2f2f;
@@ -1237,14 +1239,13 @@ header ul li {
     color: #fff;
 }
 
-.My-List-item:hover  .My-List-item--hover{
+.My-List-item:hover .My-List-item--hover {
     display: block;
     top: -60%;
     left: -20%;
     position: absolute;
     z-index: 100;
     transition: all 0.7s ease;
-    
 }
 
 .My-List-item--hover .info-movie-detail span:first-child {
@@ -1256,6 +1257,7 @@ header ul li {
     border: 1px solid white;
     padding: 1px 10px;
 }
+
 .My-List-item--hover h4 span {
     margin-right: 10px;
     text-transform: capitalize;

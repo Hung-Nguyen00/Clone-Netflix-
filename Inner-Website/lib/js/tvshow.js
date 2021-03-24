@@ -122,7 +122,6 @@ const btnMoreInfo = document.querySelector(".banner-btn-info"),
     linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
 btnMoreInfo.addEventListener('click', () => {
     //  stop trailer
-
     OffTrailer();
     loadTrailerInfo();
 
@@ -130,46 +129,6 @@ btnMoreInfo.addEventListener('click', () => {
     document.body.classList.add('ignore-overflow-y');
 })
 
-// Click more Info in InfoHover
-const slideCard = document.querySelector('.popular-slider-card')
-const slideCardItems = document.querySelectorAll('.popular-slider-card-item');
-const itemInfo = document.querySelector('.item-info')
-
-// set itemIndex
-let itemIndex;
-
-// when mousemove into item, it will take it's value
-slideCard.addEventListener('mousemove', (e) => {
-    // if addEvent exist "item hover"
-    if (e.target.closest('.popular-slider-card-item--hover')) {
-
-        // declare a parameter assign item Hover's nodeParent from E.target (The item is clicked)
-        const slideCardItem = e.target.closest('.popular-slider-card-item--hover').parentElement;
-        // take all Item to array.
-        itemIndex = Array.from(slideCardItem.parentElement.children).indexOf(slideCardItem);
-
-        //  if CardItem[itemIndex] contains item-info class (More info)
-        if (slideCardItems[itemIndex].querySelector('.item-info')) {
-            slideCardItems[itemIndex].querySelector('.item-info').addEventListener('click', (e) => {
-                // show preview
-                const trailerInfo = document.querySelector('.preview-detail-trailer')
-                const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
-                // hide trailer
-                OffTrailer();
-                loadTrailerInfo();
-                // open preview
-                preview.classList.add('open');
-                document.body.classList.add('ignore-overflow-y');
-            })
-        }
-        //  if CardItem[itemIndex] contains fa-play class (Play Movie)
-        if (slideCardItems[itemIndex].querySelector('.fa-play')) {
-            slideCardItems[itemIndex].querySelector('.fa-play').addEventListener('click', (e) => {
-
-            })
-        }
-    }
-})
 
 //----- close Preview
 preview.addEventListener('click', (e) => {
@@ -183,7 +142,6 @@ preview.addEventListener('click', (e) => {
     }
 })
 
-// -------------------show info End--------
 
 // ---------------------Slider start----------------------
 
@@ -203,13 +161,15 @@ slides.forEach((slide, index) => {
         slideItem = slide.querySelector('.popular-slider-card-item'),
         // button prev
         prevBtn = slide.querySelector('.popular-slider-nav .prev-btn'), // button next
-        nextBtn = slide.querySelector('.popular-slider-nav .next-btn');
+        nextBtn = slide.querySelector('.popular-slider-nav .next-btn'),
 
+        trailerInfo = document.querySelector('.preview-detail-trailer'),
+        linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
 
     //  Count number of slide for every click.
-    let countSlide = Math.ceil((slideItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth));
-    // set index = 0;
-    let slideIndex = 0;
+    let countSlide = Math.ceil((slideItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth)),
+        // set index = 0;
+        slideIndex = 0;
     // click for next button
     sliderPopular.style.width = slideWidth * countSlide + 'px';
 
@@ -246,6 +206,41 @@ slides.forEach((slide, index) => {
     function slider() {
         sliderPopular.style.marginLeft = -(slideWidth * slideIndex) + 'px';
     }
+
+    //  show Info and Play video 
+
+    let itemIndex;
+    sliderPopular.addEventListener('mousemove', (e) => {
+        // if addEvent exist "item hover"
+        if (e.target.closest('.popular-slider-card-item--hover')) {
+
+            // declare a parameter assign item Hover's nodeParent from E.target (The item is clicked)
+            const slideCardItem = e.target.closest('.popular-slider-card-item--hover').parentElement;
+            // take all Item to array.
+            itemIndex = Array.from(slideCardItem.parentElement.children).indexOf(slideCardItem);
+
+            //  if CardItem[itemIndex] contains item-info class (More info)
+            if (slideItems[itemIndex].querySelector('.item-info')) {
+                slideItems[itemIndex].querySelector('.item-info').addEventListener('click', (e) => {
+                    // show preview
+                    // hide trailer
+                    OffTrailer();
+                    loadTrailerInfo();
+                    // open preview
+                    preview.classList.add('open');
+                    document.body.classList.add('ignore-overflow-y');
+                })
+            }
+            //  if CardItem[itemIndex] contains fa-play class (Play Movie)
+            if (slideItems[itemIndex].querySelector('.fa-play')) {
+                slideItems[itemIndex].querySelector('.fa-play').addEventListener('click', (e) => {
+
+                })
+            }
+        }
+    })
 })
+
+
 
 //----------------slide end--------------------
