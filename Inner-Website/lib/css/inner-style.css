@@ -1191,3 +1191,72 @@ header ul li {
     border-style: solid;
     cursor: pointer;
 }
+
+/* My List page */
+
+.My-List-label {
+    margin: 80px 0;
+    padding-left: 65px;
+}
+
+.My-List-label h1 {
+    font-size: 2rem;
+    font-weight: lighter;
+    color: #fff;
+}
+
+.My-List-container {
+    width: 100vw;
+    position: relative;
+}
+.My-List-row-container{
+    margin-bottom: 100px;
+    position: relative;
+    width: 100vw;
+    display: flex;
+    padding: 0 65px;
+    justify-content: end;
+}
+
+.My-List-item{
+    flex-basis: 15%;
+    position: relative;
+}
+
+.My-List-item img {
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.My-List-item--hover{
+    min-height: 200px;
+    display: none;
+    background-color: #2f2f2f;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+}
+
+.My-List-item:hover  .My-List-item--hover{
+    display: block;
+    top: -60%;
+    left: -20%;
+    position: absolute;
+    z-index: 100;
+    transition: all 0.7s ease;
+    
+}
+
+.My-List-item--hover .info-movie-detail span:first-child {
+    color: rgb(81, 209, 81);
+    font-weight: 600;
+}
+
+.My-List-item--hover .info-movie-detail span:nth-child(2) {
+    border: 1px solid white;
+    padding: 1px 10px;
+}
+.My-List-item--hover h4 span {
+    margin-right: 10px;
+    text-transform: capitalize;
+}
