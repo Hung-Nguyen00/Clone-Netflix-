@@ -578,6 +578,7 @@ header ul li {
     color: #fff;
     font-weight: 600;
     font-size: 17px;
+    z-index: 1;
     letter-spacing: 1px;
     margin-bottom: 10px;
 }
@@ -597,12 +598,6 @@ header ul li {
     position: relative;
 }
 
-.popular-slider-card .popular-slider-card-item--hover {
-    min-height: 200px;
-    border: 1px solid black;
-    box-shadow: 2px 2px black;
-}
-
 .popular-slider-card .popular-slider-card-item:hover .popular-slider-card-item--hover {
     visibility: visible;
     opacity: 1;
@@ -620,9 +615,12 @@ header ul li {
     display: inline-block;
     top: -20%;
     max-width: 400px;
-    left: 0;
-    z-index: 9999;
+    left: -20%;
     background-color: rgb(20, 20, 20);
+    min-height: 200px;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: rgba(37, 37, 41, 0.5) 0px 8px 15px;
 }
 
 .item-controller-info {

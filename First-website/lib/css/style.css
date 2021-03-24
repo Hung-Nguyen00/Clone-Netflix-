@@ -20,7 +20,10 @@ input {
     padding: 10px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     color: white;
 }
 
@@ -46,8 +49,7 @@ img {
 
 body {
     background-color: var(--dark-color);
-    font-family:Arial, Helvetica, sans-serif;
-    
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
@@ -56,11 +58,12 @@ button {
 
 .showcase {
     width: 100%;
-    height: 75vh;
+    height: 100vh;
     position: relative;
     color: white;
     background: url("../Media/background.jpg") no-repeat center center/cover;
 }
+
 .showcase-top {
     position: relative;
     height: 90px;
@@ -68,7 +71,8 @@ button {
 }
 
 .showcase-top img {
-    width: 180px;
+    width: 120px;
+    height: auto;
     position: absolute;
     top: 30px;
     left: 50px;
@@ -79,7 +83,7 @@ button {
     margin: auto;
     margin-top: 8rem;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -104,9 +108,9 @@ button {
     font-weight: 500;
 }
 
-.email-form{
+.email-form {
     width: 800px;
-    height:70px;
+    height: 70px;
     display: flex;
     justify-content: end;
     margin: 20px auto;
@@ -128,8 +132,6 @@ button {
     position: relative;
 }
 
-
-
 .email-input-container label {
     font-size: 1.1rem;
     color: gray;
@@ -142,12 +144,11 @@ button {
     pointer-events: none;
 }
 
-.email-form input:focus +label{
+.email-form input:focus+label {
     margin-top: -24px;
     font-size: 0.6rem;
     font-weight: bolder;
     padding: 1px;
-
 }
 
 .email-form button {
@@ -159,9 +160,7 @@ button {
     font-size: 1.8rem;
 }
 
-
-
-.showcase::after{
+.showcase::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -181,10 +180,10 @@ button {
     border-radius: 1.5px;
     margin-right: 0.5rem;
     color: white;
-    top:10px;
+    top: 10px;
     right: 0;
-    transform: translate(-50%, 50%);  
-    position: absolute;  
+    transform: translate(-50%, 50%);
+    position: absolute;
 }
 
 .btn:hover {
@@ -198,34 +197,35 @@ button {
 .description-tab {
     background-color: black;
     display: flex;
-    margin-top:7px;
-    width: 100%;
+    margin-top: 5px;
+    max-width: 100%;
     height: 500px;
     color: white;
-    padding: 0 370px;
-    justify-content: end;
+    padding: 0 150px;
+    justify-content: center;
 }
 
 .description-tab-text {
-    flex-basis: 50%;
+    flex: 50%;
     padding-top: 7rem;
     /* padding-left: 5rem; */
 }
 
-.description-tab-text h1{
+.description-tab-text h1 {
     font-size: 2.8rem;
 }
 
-.description-tab-text p{
+.description-tab-text p {
     margin-top: 1rem;
     font-size: 1.5rem;
 }
 
 .description-tab-gif {
-    flex-basis: 50%;
+    flex: 50%;
     padding-top: 3rem;
     overflow: hidden;
 }
+
 
 /* .description-tab-gif img {
     display: block;
@@ -233,14 +233,14 @@ button {
     margin-right: auto;
 } */
 
-
 .FAQ-tab {
     position: relative;
     background-color: black;
     text-align: center;
     color: white;
-    margin-top: 7px;
-    padding: 60px 400px;
+    min-height: 100vh;
+    margin-top: 10px;
+    padding-top: 20px;
     font-size: 1.4rem;
     align-items: center;
 }
@@ -249,7 +249,7 @@ button {
     margin: 40px;
 }
 
-.FAQ-item button{
+.FAQ-item button {
     width: 800px;
     height: 70px;
     color: white;
@@ -291,7 +291,8 @@ button {
     overflow: auto;
 }
 
-.footer, .footer a {
+.footer,
+.footer a {
     color: gray;
     font-size: 0.9rem;
 }
@@ -300,13 +301,14 @@ button {
     margin-bottom: 1.5rem;
 }
 
-.footer .footer-cols{
+.footer .footer-cols {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
 }
 
-.footer, .footer li {
+.footer,
+.footer li {
     line-height: 1.9;
 }
 
@@ -316,7 +318,7 @@ button {
 
 @keyframes growDown {
     0% {
-      transform: scaleY(0)
+        transform: scaleY(0)
     }
     /* 50% {
         transform: scaleY(0.5)
@@ -325,19 +327,18 @@ button {
       transform: scaleY(1.1)
     } */
     100% {
-      transform: scaleY(1)
+        transform: scaleY(1)
     }
-  }
+}
 
-  @keyframes rotateMenu {
+@keyframes rotateMenu {
     0% {
-      transform: rotateX(-90deg)
+        transform: rotateX(-90deg)
     }
     70% {
-      transform: rotateX(20deg)
+        transform: rotateX(20deg)
     }
     100% {
-      transform: rotateX(0deg)
+        transform: rotateX(0deg)
     }
-  }
-  
+}

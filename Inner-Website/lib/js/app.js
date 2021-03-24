@@ -13,8 +13,7 @@ window.addEventListener('scroll', function() {
     const header = document.querySelector("header");
     header.classList.toggle('scrollTop', window.scrollY > 0);
 })
-
-loadTrailer();
+loadTrailer()
 
 function loadTrailer() {
     setTimeout(() => {
@@ -49,7 +48,7 @@ function OffTrailer() {
     document.querySelector('.banner .banner-img img').classList.remove('hide');
 }
 
-// ------------------- animation search
+// ------------------- animation search start
 search.addEventListener('click', () => {
     search.classList.toggle('show')
     if (search.classList.contains('show')) {
@@ -58,6 +57,8 @@ search.addEventListener('click', () => {
         document.querySelector('.search-input').classList.remove('show');
     }
 })
+
+// ------------------- animation search end
 
 //------------------- play movie start
 const playFilm = document.querySelector('.play-film');
@@ -76,21 +77,22 @@ playMovieBanner.addEventListener('click', () => {
     }, 600)
 })
 
-//------------------ back to browse
+//back to browse
 document.querySelector('.close-movie').addEventListener('click', () => {
-        playFilm.classList.remove('open');
-        const iframe = playFilm.querySelector('iframe')
+    playFilm.classList.remove('open');
+    const iframe = playFilm.querySelector('iframe')
 
-        // stop iframe Youtube video when it don't auto
-        if (iframe !== null) {
-            var iframeSrc = iframe.src;
-            iframe.src = iframeSrc;
-        }
-        // remove Scroll-X
-        body.classList.remove('ignore-overflow-y');
-        loadTrailer();
-    })
-    //------------------- play movie end-------
+    // stop iframe Youtube video when it don't auto
+    if (iframe !== null) {
+        var iframeSrc = iframe.src;
+        iframe.src = iframeSrc;
+    }
+    // remove Scroll-X
+    body.classList.remove('ignore-overflow-y');
+    loadTrailer();
+})
+
+//------------------- play movie end-------
 
 
 // --------------show more info start
@@ -109,31 +111,59 @@ btnMoreInfo.addEventListener('click', () => {
 })
 
 // Click more Info in InfoHover
+const slideCard = document.querySelector('.popular-slider-card')
+const slideCardItems = document.querySelectorAll('.popular-slider-card-item');
 const itemInfo = document.querySelector('.item-info')
-itemInfo.addEventListener('click', (e) => {
-    const trailerInfo = document.querySelector('.preview-detail-trailer')
-    const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
-    OffTrailer();
-    loadTrailerInfo();
 
-    preview.classList.add('open');
-    document.body.classList.add('ignore-overflow-y');
+// set itemIndex
+let itemIndex;
+
+// when mousemove into item, it will take it's value
+slideCard.addEventListener('mousemove', (e) => {
+    // if addEvent exist "item hover"
+    if (e.target.closest('.popular-slider-card-item--hover')) {
+
+        // declare a parameter assign item Hover's nodeParent from E.target (The item is clicked)
+        const slideCardItem = e.target.closest('.popular-slider-card-item--hover').parentElement;
+        // take all Item to array.
+        itemIndex = Array.from(slideCardItem.parentElement.children).indexOf(slideCardItem);
+
+        //  if CardItem[itemIndex] contains item-info class (More info)
+        if (slideCardItems[itemIndex].querySelector('.item-info')) {
+            slideCardItems[itemIndex].querySelector('.item-info').addEventListener('click', (e) => {
+                // show preview
+                const trailerInfo = document.querySelector('.preview-detail-trailer')
+                const linkIframe = trailerInfo.querySelector('.preview-detail-banner iframe');
+                // hide trailer
+                OffTrailer();
+                loadTrailerInfo();
+                // open preview
+                preview.classList.add('open');
+                document.body.classList.add('ignore-overflow-y');
+            })
+        }
+        //  if CardItem[itemIndex] contains fa-play class (Play Movie)
+        if (slideCardItems[itemIndex].querySelector('.fa-play')) {
+            slideCardItems[itemIndex].querySelector('.fa-play').addEventListener('click', (e) => {
+
+            })
+        }
+    }
 })
-
-// const 
 
 //----- close Preview
 preview.addEventListener('click', (e) => {
-        if (e.target.classList.contains('preview')) {
-            preview.classList.remove('open');
-            body.classList.remove('ignore-overflow-y');
-            // stop trailer banner
-            loadTrailer();
-            // stop trailer info
-            stopTrailerInfo();
-        }
-    })
-    // -------------------show info End--------
+    if (e.target.classList.contains('preview')) {
+        preview.classList.remove('open');
+        body.classList.remove('ignore-overflow-y');
+        // stop trailer banner
+        loadTrailer();
+        // stop trailer info
+        stopTrailerInfo();
+    }
+})
+
+// -------------------show info End--------
 
 // ---------------------Slider start----------------------
 
@@ -142,59 +172,60 @@ const slides = document.querySelectorAll('.popular-slider')
 
 // use forEach to set every slide
 slides.forEach((slide) => {
-        // take width for each slide
-        const sliderPopular = slide.querySelector('.popular-slider-card'),
-            slideWidth = sliderPopular.offsetWidth,
+    // take width for each slide
+    const sliderPopular = slide.querySelector('.popular-slider-card'),
+        slideWidth = sliderPopular.offsetWidth,
 
-            // take all card-item to an array
-            slideItems = slide.querySelectorAll('.popular-slider-card-item'),
+        // take all card-item to an array
+        slideItems = slide.querySelectorAll('.popular-slider-card-item'),
 
-            // use to count item in a slide and take it's width
-            slideItem = slide.querySelector('.popular-slider-card-item'),
-            // button prev
-            prevBtn = slide.querySelector('.popular-slider-nav .prev-btn'), // button next
-            nextBtn = slide.querySelector('.popular-slider-nav .next-btn');
+        // use to count item in a slide and take it's width
+        slideItem = slide.querySelector('.popular-slider-card-item'),
+        // button prev
+        prevBtn = slide.querySelector('.popular-slider-nav .prev-btn'), // button next
+        nextBtn = slide.querySelector('.popular-slider-nav .next-btn');
 
 
-        //  Count number of slide for every click.
-        let countSlide = Math.ceil((slideItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth));
-        // set index = 0;
-        let slideIndex = 0;
-        // click for next button
-        sliderPopular.style.width = slideWidth * countSlide + 'px';
+    //  Count number of slide for every click.
+    let countSlide = Math.ceil((slideItems.length * slideItem.offsetWidth) / (5 * slideItem.offsetWidth));
+    // set index = 0;
+    let slideIndex = 0;
+    // click for next button
+    sliderPopular.style.width = slideWidth * countSlide + 'px';
 
-        // if slide has only 5 items. Don't have next button
-        if (countSlide <= 1) {
-            nextBtn.classList.add("hide");
-        }
-        // Number of clicking is countSlide
-        nextBtn.addEventListener('click', () => {
-                // if slideIndex == countSlide then reset slideIndex = 0
-                if (slideIndex === countSlide - 1) {
-                    slideIndex = 0;
-                } else {
-                    slideIndex++;
-                }
-                // if slideIndex = 0 then prev button will hide
-                if (slideIndex > 0) {
-                    prevBtn.classList.add('active')
-                } else {
-                    prevBtn.classList.remove('active')
-                }
-                slider();
-            })
-            // click for pre button
-        prevBtn.addEventListener('click', () => {
-                if (slideIndex === 0) {
-                    slideIndex = countSlide - 1;
-                } else {
-                    slideIndex--;
-                }
-                slider();
-            })
-            // when it has event "click" Margin left is minus to next slideIndex
-        function slider() {
-            sliderPopular.style.marginLeft = -(slideWidth * slideIndex) + 'px';
-        }
-    })
-    //----------------slide end--------------------
+    // if slide has only 5 items. Don't have next button
+    if (countSlide <= 1) {
+        nextBtn.classList.add("hide");
+    }
+    // Number of clicking is countSlide
+    nextBtn.addEventListener('click', () => {
+            // if slideIndex == countSlide then reset slideIndex = 0
+            if (slideIndex === countSlide - 1) {
+                slideIndex = 0;
+            } else {
+                slideIndex++;
+            }
+            // if slideIndex = 0 then prev button will hide
+            if (slideIndex > 0) {
+                prevBtn.classList.add('active')
+            } else {
+                prevBtn.classList.remove('active')
+            }
+            slider();
+        })
+        // click for pre button
+    prevBtn.addEventListener('click', () => {
+            if (slideIndex === 0) {
+                slideIndex = countSlide - 1;
+            } else {
+                slideIndex--;
+            }
+            slider();
+        })
+        // when it has event "click" Margin left is minus to next slideIndex
+    function slider() {
+        sliderPopular.style.marginLeft = -(slideWidth * slideIndex) + 'px';
+    }
+})
+
+//----------------slide end--------------------
