@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./lib/css/login.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <title>Netflix login page</title>
     <!-- CSS only -->
     <link
@@ -20,14 +24,16 @@
     ></script>
   </head>
   <body>
-    <div class="container-fluid">
+    <div class="container-fluid d-flex flex-column">
       <div class="header row pt-3 pl-5">
         <img src="./nf1.png" alt="Weflix" />
       </div>
-      <div class="row">
+      <div class="body row">
         <div class="px-2">
           <div class="login-box">
-            <div class="pb-2"><h1 class="text-white">Sign In</h1></div>
+            <div class="pb-3">
+              <h1 class="text-white m-0"><b>Sign In</b></h1>
+            </div>
             <div class="sign-in">
               <div class="form-group my-3">
                 <input
@@ -53,12 +59,15 @@
                 placeholder="Password"
               />
               <small id="help-password" class="form-text text-warning"
-                >Your password must contain between 4 and 60 characters.</small
+                >Your password must contain at least 8 characters (containing an
+                uppercase letter and a symbol).</small
               >
             </div>
-            <button type="submit" class="btn btn-danger w-100">Sign In</button>
-            <div class="row align-item-between">
-              <div class="form-check col align-self-start">
+            <button type="submit" class="btn btn-danger w-100 mb-3">
+              Sign In
+            </button>
+            <div class="form-below">
+              <div class="form-check col">
                 <label class="form-check-label text-light">
                   <input
                     type="checkbox"
@@ -68,54 +77,69 @@
                     value="remember"
                     checked
                   />
-                  remember me
+                  Remember me
                 </label>
               </div>
-              <div class="col">
-                <a href="#" class="text-light align-self-end">Need help?</a>
+              <div class="form-help col">
+                <a href="#" class="text-light">Need help?</a>
               </div>
             </div>
-            <div class="description">
-              <div class="mt-4">
-                <a href="/signup.html" class="text-light mt-4"
-                  >Press here to sign up</a
+            <div class="description pt-4">
+              <div class="des-fb mt-4">
+                <a href="#" class="text-secondary">
+                  Login with Facebook
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </div>
+              <div class="des-signup mt-2 text-secondary">
+                New to Weflix?
+                <a href="./signup.html" class="text-light">Sign up now.</a>
+              </div>
+              <div class="des-captcha mt-2 text-secondary">
+                This page is protected by Google reCAPTCHA to ensure you're not
+                a bot.
+                <a
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  class="text-primary"
+                  title="The information collected by Google reCAPTCHA is subject to the Google Privacy Policy and Terms of Service, and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google)."
+                  >Learn more.</a
                 >
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row"></div>
-    </div>
-    <footer class="footer container-fluid px-5">
-      <p>Questions? Call 1-866-579-7172</p>
-      <div class="footer-cols">
-        <ul>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Investor Relations</a></li>
-          <li><a href="#">Ways To Watch</a></li>
-          <li><a href="#">Corporate Information</a></li>
-          <li><a href="#">Netflix Originals</a></li>
-        </ul>
-        <ul>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Jobs</a></li>
-          <li><a href="#">Terms Of Use</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-        <ul>
-          <li><a href="#">Account</a></li>
-          <li><a href="#">Redeem Gift Cards</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Speed Test</a></li>
-        </ul>
-        <ul>
-          <li><a href="#">Media Center</a></li>
-          <li><a href="#">Buy Gift Cards</a></li>
-          <li><a href="#">Cookie Preferences</a></li>
-          <li><a href="#">Legal Notices</a></li>
-        </ul>
+      <div class="footer row p-5">
+        <p>Questions? Call 1-866-579-7172</p>
+        <div class="footer-cols">
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Ways To Watch</a></li>
+            <li><a href="#">Corporate Information</a></li>
+            <li><a href="#">Netflix Originals</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Terms Of Use</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Redeem Gift Cards</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Speed Test</a></li>
+          </ul>
+          <ul>
+            <li><a href="#">Media Center</a></li>
+            <li><a href="#">Buy Gift Cards</a></li>
+            <li><a href="#">Cookie Preferences</a></li>
+            <li><a href="#">Legal Notices</a></li>
+          </ul>
+        </div>
       </div>
-    </footer>
+    </div>
   </body>
 </html>
