@@ -51,6 +51,9 @@ a.dropdown:hover {
   color: darkgray !important;
   font-size: 12pt;
 }
+.profile-dropdown {
+  text-align: end !important;
+}
 
 .btn-light {
   background-color: lightgray !important;
@@ -291,4 +294,31 @@ header ul li {
   color: white;
   text-transform: capitalize;
   font-weight: 300;
+}
+
+/* Activity's */
+.nav {
+  border: none !important;
+} .nav-link {
+  background-color: transparent !important;
+  border: none !important;
+} .nav-link.active {
+  background-color: transparent !important;
+  border: none !important;
+  color: #007BFF !important;
+}
+.tab-content {
+  border-top: 1px darkgray solid;
+}
+.tab-pane .container-fluid .row {
+  padding: 16px 0;
+} .tab-pane .container-fluid .row .col-2 {
+  text-align: end;
+  letter-spacing: 1ch;
+} .tab-pane .container-fluid .row .col-3 {
+  text-align: end;
+} #rating .container-fluid .row div a {
+  vertical-align: middle !important;
+  min-height: 36px;
+  border: none !important;
 }
