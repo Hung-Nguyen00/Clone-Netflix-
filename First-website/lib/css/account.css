@@ -148,6 +148,7 @@ header .logo {
 
 header .logo img {
     max-width: 100px;
+    line-height: 48px;
 }
 
 header ul {
@@ -231,9 +232,10 @@ header ul li {
 }
 
 .dropdown img {
-    display: inline-block;
-    border-radius: 5px;
-    margin-top: -10px;
+    border-radius: 5px !important;
+    max-width: 50px;
+    margin-right: 10px;
+    padding: 10px 0 10px 0;
 }
 
 .dropdown:hover ul {
