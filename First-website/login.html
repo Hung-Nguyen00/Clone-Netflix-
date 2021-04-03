@@ -22,6 +22,7 @@
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
       crossorigin="anonymous"
     ></script>
+    <script src="./lib/js/login.js"></script>
   </head>
   <body>
     <div class="container-fluid d-flex flex-column">
@@ -35,7 +36,7 @@
               <h1 class="text-white m-0"><b>Sign In</b></h1>
             </div>
             <div class="sign-in">
-              <div class="form-group my-3">
+              <div class="form-group input-group my-3">
                 <input
                   type="email"
                   class="form-control bg-dark text-light"
@@ -44,12 +45,18 @@
                   aria-describedby="help-username"
                   placeholder="Email or phone number"
                 />
-                <small id="help-username" class="form-text text-warning"
-                  >Please enter a valid email or phone number.
-                </small>
+                <span class="input-group-text" id="help-username">
+                  <a
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    class="text-light"
+                    title="Please enter a valid email."
+                    ><i class="fa fa-info-circle" aria-hidden="true"></i></a
+                  >
+                </span>
               </div>
             </div>
-            <div class="form-group my-3">
+            <div class="form-group input-group my-3">
               <input
                 type="password"
                 class="form-control bg-dark text-light"
@@ -58,12 +65,18 @@
                 aria-describedby="help-password"
                 placeholder="Password"
               />
-              <small id="help-password" class="form-text text-warning"
-                >Your password must contain at least 8 characters (containing an
-                uppercase letter and a symbol).</small
-              >
+              <span class="input-group-text" id="help-username">
+                <a
+                  data-toggle="tooltip"
+                  data-placement="top"
+                  class="text-light"
+                  title="Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol)."
+                  ><i class="fa fa-info-circle" aria-hidden="true"></i></a
+                >
+              </span>
             </div>
-            <button type="submit" class="btn btn-danger w-100 mb-3">
+            <button id="login" type="submit" onclick="login()"
+              class="btn btn-danger w-100 mb-3">
               Sign In
             </button>
             <div class="form-below">
