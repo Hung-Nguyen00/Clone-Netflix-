@@ -218,7 +218,6 @@ slides.forEach((slide, index) => {
             const slideCardItem = e.target.closest('.popular-slider-card-item--hover').parentElement;
             // take all Item to array.
             itemIndex = Array.from(slideCardItem.parentElement.children).indexOf(slideCardItem);
-
             //  if CardItem[itemIndex] contains item-info class (More info)
             if (slideItems[itemIndex].querySelector('.item-info')) {
                 slideItems[itemIndex].querySelector('.item-info').addEventListener('click', (e) => {
