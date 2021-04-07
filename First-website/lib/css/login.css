@@ -72,12 +72,12 @@ small.text-warning {
     font-size: 24pt;
 }
 
-input.form-control {
-    border: none;
-    padding: 12px 12px 9px;
-    background-color: var(--input-bg-color);
-    border-width: var(--input-border-width);
-    border-bottom: var(--input-bg-color) solid;
+input.form-control, .input-group-text {
+  border: none !important;
+  padding: 12px 12px 9px !important;
+  background-color: var(--input-bg-color) !important;
+  border-width: var(--input-border-width) !important;
+  border-bottom: var(--input-bg-color) solid !important;
 }
 
 input.form-control:focus {
