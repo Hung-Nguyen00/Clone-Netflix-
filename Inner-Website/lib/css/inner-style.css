@@ -1152,7 +1152,7 @@ header ul li {
 /* browsing accounts page */
 
 .browse-tab {
-    margin-top: 200px;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1160,7 +1160,7 @@ header ul li {
 }
 
 .browse-tab-header {
-    margin: 10px 0;
+    padding-top: 100px;
 }
 
 .browse-tab-header h1 {
@@ -1170,7 +1170,7 @@ header ul li {
 }
 
 .browse-tab-accounts {
-    height: 320px;
+    height: auto;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -1178,21 +1178,21 @@ header ul li {
 }
 
 .account-container {
-    height: 320px;
-    width: 250px;
-    margin: 0 50px;
+    height: auto;
+    width: 200px;
+    text-align: center;
 }
 
 .account-avatar {
-    height: 250px;
-    width: 250px;
+    height: auto;
+    width: 200px;
     cursor: pointer;
 }
 
 .account-avatar img {
-    height: 246px;
-    width: 246px;
-    object-fit: fill;
+    max-width: 100px;
+    text-align: center;
+    height: auto;
     border-radius: 5px;
     display: inline-block;
 }
@@ -1201,24 +1201,19 @@ header ul li {
     color: gray;
     font-size: 2rem;
     text-align: center;
-    padding-top: 20px;
 }
 
-.account-avatar:hover {
+.account-avatar img:hover {
     border-color: #fff;
-    border-width: 2px;
+    border-width: 5px;
     border-style: solid;
     border-radius: 5px;
     margin-top: -2px;
     margin-left: -2px;
 }
 
-.browse-tab-manage {
-    margin-top: 30px;
-}
-
 .browse-manage-button {
-    padding: 0.4rem 3rem;
+    padding: 5px;
     text-align: center;
     background-color: black;
     border-width: 1px;
