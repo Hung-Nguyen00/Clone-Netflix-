@@ -210,7 +210,7 @@ slides.forEach((slide, index) => {
     //  show Info and Play video 
 
     let itemIndex;
-    sliderPopular.addEventListener('mousemove', (e) => {
+    sliderPopular.addEventListener('mouseover', (e) => {
         // if addEvent exist "item hover"
         if (e.target.closest('.popular-slider-card-item--hover')) {
 
@@ -218,6 +218,8 @@ slides.forEach((slide, index) => {
             const slideCardItem = e.target.closest('.popular-slider-card-item--hover').parentElement;
             // take all Item to array.
             itemIndex = Array.from(slideCardItem.parentElement.children).indexOf(slideCardItem);
+            // take info of film's id [itemIndex].
+            const detail = slideItems[itemIndex].querySelector('.popular-slider-details').innerHTML;
             //  if CardItem[itemIndex] contains item-info class (More info)
             if (slideItems[itemIndex].querySelector('.item-info')) {
                 slideItems[itemIndex].querySelector('.item-info').addEventListener('click', (e) => {
@@ -227,6 +229,7 @@ slides.forEach((slide, index) => {
                     loadTrailerInfo();
                     // open preview
                     preview.classList.add('open');
+                    preview.querySelector('.preview-detail').innerHTML = detail;
                     document.body.classList.add('ignore-overflow-y');
                 })
             }
