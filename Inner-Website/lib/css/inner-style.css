@@ -598,6 +598,10 @@ header ul li {
     position: relative;
 }
 
+.popular-slider-card .popular-slider-details {
+    display: none;
+}
+
 .popular-slider-card .popular-slider-card-item:hover .popular-slider-card-item--hover {
     visibility: visible;
     opacity: 1;
@@ -1006,13 +1010,6 @@ header ul li {
     margin-left: 0;
 }
 
-.preview .moreMovie-items--inner .preview-detail-moreMovie-item {
-    text-align: center;
-    background-color: #2f2f2f;
-    border: 1px solid #2f2f2f;
-    border-radius: 5px;
-}
-
 .preview .moreMovie-items--inner {
     flex: 0 0 33%;
     display: flex;
@@ -1043,6 +1040,25 @@ header ul li {
     flex: 0 0 50%;
     max-width: 50%;
     height: 40px;
+}
+
+.preview .moreMovie-items--inner .preview-detail-moreMovie-item {
+    max-width: 100% !important;
+    text-align: center;
+    background-color: #2f2f2f;
+    border: 1px solid #2f2f2f;
+    border-radius: 5px;
+}
+
+.preview .moreMovie-items--inner .preview-detail-moreMovie-item:hover {
+    max-width: 102% !important;
+    border: 2px solid white;
+    text-align: center;
+}
+
+.preview .moreMovie-items--inner .moreMovie-item-img img {
+    max-width: 258px !important;
+    border-radius: 5px;
 }
 
 .preview .moreMovie-items--inner .preview-detail-moreMovie-item p,
@@ -1152,7 +1168,7 @@ header ul li {
 /* browsing accounts page */
 
 .browse-tab {
-    margin-top: 200px;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1160,7 +1176,7 @@ header ul li {
 }
 
 .browse-tab-header {
-    margin: 10px 0;
+    padding-top: 100px;
 }
 
 .browse-tab-header h1 {
@@ -1170,7 +1186,7 @@ header ul li {
 }
 
 .browse-tab-accounts {
-    height: 320px;
+    height: auto;
     width: 100vw;
     display: flex;
     flex-direction: row;
@@ -1178,21 +1194,21 @@ header ul li {
 }
 
 .account-container {
-    height: 320px;
-    width: 250px;
-    margin: 0 50px;
+    height: auto;
+    width: 200px;
+    text-align: center;
 }
 
 .account-avatar {
-    height: 250px;
-    width: 250px;
+    height: auto;
+    width: 200px;
     cursor: pointer;
 }
 
 .account-avatar img {
-    height: 246px;
-    width: 246px;
-    object-fit: fill;
+    max-width: 100px;
+    text-align: center;
+    height: auto;
     border-radius: 5px;
     display: inline-block;
 }
@@ -1201,24 +1217,19 @@ header ul li {
     color: gray;
     font-size: 2rem;
     text-align: center;
-    padding-top: 20px;
 }
 
-.account-avatar:hover {
+.account-avatar img:hover {
     border-color: #fff;
-    border-width: 2px;
+    border-width: 5px;
     border-style: solid;
     border-radius: 5px;
     margin-top: -2px;
     margin-left: -2px;
 }
 
-.browse-tab-manage {
-    margin-top: 30px;
-}
-
 .browse-manage-button {
-    padding: 0.4rem 3rem;
+    padding: 5px;
     text-align: center;
     background-color: black;
     border-width: 1px;
