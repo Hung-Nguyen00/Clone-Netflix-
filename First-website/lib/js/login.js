@@ -26,6 +26,22 @@ function register() {
     }
 }
 
+function showElement(id) {
+    let e = document.getElementById(id)
+    e.style.display = "block"
+}
+
+function hideElement(id) {
+    let e = document.getElementById(id)
+    e.style.display = "none"
+}
+
+function toggleElement(id) {
+    let e = document.getElementById(id)
+    e.style.display = (e.style.display === "block") ?
+        "none" : "block"
+}
+
 function validEmail(email) {
     return mailRegex.test(String(email).toLowerCase())
 }

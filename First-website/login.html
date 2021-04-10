@@ -32,41 +32,35 @@
               <div class="form-group input-group my-3">
                 <input
                   type="email"
-                  class="form-control bg-dark text-light"
+                  class="form-control bg-dark text-light w-100"
                   name="input-username"
                   id="input-username"
                   aria-describedby="help-username"
                   placeholder="Email or phone number"
+                  onfocus="showElement('usernameTip')"
+                  onblur="hideElement('usernameTip')"
                 />
-                <span class="input-group-text" id="help-username">
-                  <a
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    class="text-light"
-                    title="Please enter a valid email."
-                    ><i class="fa fa-info-circle" aria-hidden="true"></i></a
-                  >
-                </span>
+                <small id="usernameTip" class="text-warning" style="display: none;">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  Please enter a valid email.
+                </small>
               </div>
-            </div>
-            <div class="form-group input-group my-3">
-              <input
-                type="password"
-                class="form-control bg-dark text-light"
-                name="input-password"
-                id="input-password"
-                aria-describedby="help-password"
-                placeholder="Password"
-              />
-              <span class="input-group-text" id="help-username">
-                <a
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  class="text-light"
-                  title="Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol)."
-                  ><i class="fa fa-info-circle" aria-hidden="true"></i></a
-                >
-              </span>
+              <div class="form-group input-group my-3">
+                <input
+                  type="password"
+                  class="form-control bg-dark text-light w-100"
+                  name="input-password"
+                  id="input-password"
+                  aria-describedby="help-password"
+                  placeholder="Password"
+                  onfocus="showElement('pwdTip')"
+                  onblur="hideElement('pwdTip')"
+                />
+                <small id="pwdTip" class="text-warning" style="display: none;">
+                  <i class="fa fa-info-circle" aria-hidden="true"></i>
+                  Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol).
+                </small>
+              </div>
             </div>
             <button id="login" type="submit" onclick="login()"
               class="btn btn-danger w-100 mb-3">
@@ -104,13 +98,8 @@
               <div class="des-captcha mt-2 text-secondary">
                 This page is protected by Google reCAPTCHA to ensure you're not
                 a bot.
-                <a
-                  data-toggle="tooltip"
-                  data-placement="top"
-                  class="text-primary"
-                  title="The information collected by Google reCAPTCHA is subject to the Google Privacy Policy and Terms of Service, and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google)."
-                  >Learn more.</a
-                >
+                <a class="text-primary" href="javascript:toggleElement('captchaTip')">Learn more.</a>
+                <small id="captchaTip" style="display: none;">The information collected by Google reCAPTCHA is subject to the Google Privacy Policy and Terms of Service, and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google).</small>
               </div>
             </div>
           </div>
