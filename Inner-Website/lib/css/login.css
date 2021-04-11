@@ -83,7 +83,7 @@ input.form-control, .input-group-text {
 input.form-control:focus {
     box-shadow: none;
     background-color: var(--input-bg-color-focused);
-    border-bottom: #dd7302 solid;
+    border-bottom: #dd7302 solid !important;
 }
 
 .form-below {
