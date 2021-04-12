@@ -1191,6 +1191,7 @@ header ul li {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 40px 0;
 }
 
 .account-container {
@@ -1241,6 +1242,102 @@ header ul li {
     cursor: pointer;
 }
 
+/* Create Id page */
+
+.Create-ID-container{
+    background-color: gray;
+    width: 50vw;
+    height: 70vh;
+    margin: 150px auto auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.Create-ID-item{
+    background-color: rgb(20, 20, 20);
+    flex-basis: 33%;
+    width: 50vw;
+}
+
+.Create-ID-Header{
+    position: relative;
+}
+
+.Create-ID-Header h1{
+    color: #fff;
+    font-size: 3.5rem;
+    position: absolute;
+    bottom: 55px;
+}
+
+.Create-ID-Header p{
+    color: gray;
+    font-size: 1.5rem;
+    bottom: 10px;
+    position: absolute;
+}
+
+.Create-ID-Info{
+    display: flex;
+    flex-direction: row;
+    padding: 22px 5px;
+}
+
+.Create-ID-Info-Avatar{
+    height: auto;
+    width: 200px;
+    cursor: pointer;
+}
+
+.Create-ID-Info-Avatar img{
+    max-width: 180px;
+    text-align: center;
+    height: auto;
+    border-radius: 5px;
+}
+
+.Create-ID-Info-Name{
+    padding: 65px 0 60px 0px;
+}
+
+.Create-ID-Info-Name input{
+    background-color: gray;
+    width: 600px;
+    height: 50px;
+    cursor: pointer;
+    color:#fff;
+    font-size: 1.4rem;
+    font-weight: lighter;
+    caret-color: black;
+}
+
+.Create-ID-Button{
+    padding-top: 40px;
+}
+
+.Create-ID-Continue-btn{
+    padding: 10px 50px;
+    background-color: red;
+    color: white;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: none;
+    border-style: none;
+    cursor: pointer;
+}
+
+.Create-ID-Cancel-btn{
+    padding: 8px 50px;
+    background-color: rgb(20,20,20);
+    color: gray;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: gray;
+    border-style: solid;
+    cursor: pointer;
+    margin-left: 10px;
+}
 
 /* My List page */
 
@@ -1272,6 +1369,7 @@ header ul li {
 .My-List-item {
     flex-basis: 15%;
     position: relative;
+    transition: transform 2s;
 }
 
 .My-List-item img {
@@ -1282,10 +1380,13 @@ header ul li {
 .My-List-item--hover {
     min-height: 200px;
     display: none;
-    background-color: #2f2f2f;
+    background-color:rgb(27, 27, 27);
     border-radius: 5px;
     border: none;
     color: #fff;
+    padding-left: 16px;
+    padding-bottom: 8px;
+    transform: scale(1.1);
 }
 
 .My-List-item:hover .My-List-item--hover {
@@ -1294,7 +1395,10 @@ header ul li {
     left: -20%;
     position: absolute;
     z-index: 100;
-    transition: all 0.7s ease;
+}
+
+.My-List-item--hover img{
+    margin-left: -16px;
 }
 
 .My-List-item--hover .info-movie-detail span:first-child {
