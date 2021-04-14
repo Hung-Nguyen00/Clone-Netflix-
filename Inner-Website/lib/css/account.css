@@ -73,6 +73,20 @@ a.dropdown:hover {
     background-color: lightgray !important;
 }
 
+.change-pwd {
+    width: 50% !important;
+} a small {
+    margin-left: 12px !important;
+} .form-control {
+    padding: 12px 8px !important;
+    border-color: darkgray !important;
+} a.btn {
+    border: none !important;
+    padding: 10px 0;
+    width: 100px;
+    margin-right: 8px;
+}
+
 
 /* T's */
 
