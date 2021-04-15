@@ -45,6 +45,11 @@ a.dropdown {
     color: black;
 }
 
+a.dropdown img {
+    max-width: 70px;
+    margin-bottom: 20px;
+}
+
 a.dropdown:hover {
     text-decoration: none !important;
 }
@@ -75,12 +80,18 @@ a.dropdown:hover {
 
 .change-pwd {
     width: 50% !important;
-} a small {
+}
+
+a small {
     margin-left: 12px !important;
-} .form-control {
+}
+
+.form-control {
     padding: 12px 8px !important;
     border-color: darkgray !important;
-} a.btn {
+}
+
+a.btn {
     border: none !important;
     padding: 10px 0;
     width: 100px;
@@ -192,46 +203,12 @@ header ul li {
     justify-content: flex-end;
 }
 
-.search input {
-    position: absolute;
-    visibility: hidden;
-    opacity: 0;
-    top: 0;
-    left: 60%;
-    height: 100%;
-    color: #fff;
-    background: transparent;
-    border: 1px solid rgb(255, 255, 255, 0.5);
-    outline: none;
-    border-radius: 5px;
-    padding: 0 10px 0 45px;
-    transition: all 0.5s ease;
-}
-
-.search input.show {
-    visibility: visible;
-    opacity: 1;
-    left: 0;
-    width: 300px;
-}
-
-.search .fa-search.show {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    padding-right: 10px;
-    border-right: 1px solid #fff;
-    color: #fff;
-    transition: all 0.5s ease;
-}
-
-.search li {
+.search .dropdown-avatar {
     align-items: center;
     margin-top: 10px;
 }
 
-.search li {
+.search .dropdown-avatar {
     padding-right: 10px;
 }
 
@@ -240,24 +217,24 @@ header ul li {
     color: #fff;
 }
 
-.dropdown {
+.dropdown-avatar {
     position: relative;
     display: block;
 }
 
-.dropdown img {
+.dropdown-avatar img {
     border-radius: 5px !important;
     max-width: 50px;
     margin-right: 10px;
     padding: 10px 0 10px 0;
 }
 
-.dropdown:hover ul {
+.dropdown-avatar:hover ul {
     visibility: visible;
     opacity: 1;
 }
 
-.dropdown .dropdown-iconProfile::before {
+.dropdown-avatar .dropdown-iconProfile::before {
     content: "";
     position: absolute;
     bottom: 100%;
@@ -265,10 +242,10 @@ header ul li {
     margin-left: -5px;
     border-width: 6px;
     border-style: solid;
-    border-color: transparent transparent white transparent;
+    border-color: transparent transparent rgb(155, 150, 150) transparent;
 }
 
-.dropdown .dropdown-iconProfile {
+.dropdown-avatar .dropdown-iconProfile {
     visibility: hidden;
     opacity: 0;
     transition-delay: 0.3s;
@@ -283,21 +260,21 @@ header ul li {
     flex-direction: column;
 }
 
-.dropdown .dropdown-iconProfile li:first-child {
+.dropdown-avatar .dropdown-iconProfile li:first-child {
     padding-top: 10px;
 }
 
-.dropdown .dropdown-iconProfile li {
-    padding: 0 5px;
-    margin-bottom: 10px;
+.dropdown-avatar .dropdown-iconProfile li {
+    margin-left: -10px;
+    margin-bottom: 0;
 }
 
-.dropdown .dropdown-iconProfile .dropdown-manage {
+.dropdown-avatar .dropdown-iconProfile .dropdown-manage {
     margin-bottom: 8px;
     margin-top: 0;
 }
 
-.dropdown .dropdown-iconProfile .dropdown-borderTop::after {
+.dropdown-avatar .dropdown-iconProfile .dropdown-borderTop::after {
     content: "";
     top: -5px;
     left: 0;
@@ -307,12 +284,12 @@ header ul li {
     width: 100%;
 }
 
-.dropdown .dropdown-iconProfile .dropdown-borderTop {
+.dropdown-avatar .dropdown-iconProfile .dropdown-borderTop {
     margin-top: 5px;
     position: relative;
 }
 
-.dropdown .dropdown-iconProfile li img {
+.dropdown-avatar .dropdown-iconProfile li img {
     max-width: 30px;
 }
 
@@ -320,11 +297,11 @@ header ul li {
     border-radius: 5px;
 }
 
-.dropdown .dropdown-iconProfile li a:hover {
+.dropdown-avatar .dropdown-iconProfile li a:hover {
     text-decoration: underline;
 }
 
-.dropdown .dropdown-iconProfile li a {
+.dropdown-avatar .dropdown-iconProfile li a {
     font-size: 13px;
     color: white;
     text-transform: capitalize;

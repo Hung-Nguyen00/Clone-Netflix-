@@ -61,7 +61,7 @@ button {
     height: 100vh;
     position: relative;
     color: white;
-    background: url("../Media/background.jpg") no-repeat center center/cover;
+    background: url("../background/background.jpg") no-repeat center center/cover;
 }
 
 .showcase-top {

@@ -1,6 +1,6 @@
 body,
 html {
-    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../background.jpg");
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../background/background.jpg");
     --header-height: 90px;
     --footer-height: 300px;
     --loginbox-height: 600px;
@@ -72,12 +72,13 @@ small.text-warning {
     font-size: 24pt;
 }
 
-input.form-control, .input-group-text {
-  border: none !important;
-  padding: 12px 12px 9px !important;
-  background-color: var(--input-bg-color) !important;
-  border-width: var(--input-border-width) !important;
-  border-bottom: var(--input-bg-color) solid !important;
+input.form-control,
+.input-group-text {
+    border: none !important;
+    padding: 12px 12px 9px !important;
+    background-color: var(--input-bg-color) !important;
+    border-width: var(--input-border-width) !important;
+    border-bottom: var(--input-bg-color) solid !important;
 }
 
 input.form-control:focus {
