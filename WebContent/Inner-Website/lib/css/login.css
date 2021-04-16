@@ -1,0 +1,165 @@
+body,
+html {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../background/background.jpg");
+    --header-height: 90px;
+    --footer-height: 300px;
+    --loginbox-height: 600px;
+    --input-border-width: 3px;
+    --input-bg-color: #282828;
+    --input-bg-color-focused: #323232;
+    transition: all 0.3s ease;
+}
+
+body .container-fluid {
+    position: relative;
+    min-height: 100vh;
+}
+
+.btn-danger {
+    background-color: #DD0B14;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
+.header {
+    width: 100%;
+    height: var(--header-height);
+}
+
+small.text-warning {
+    color: #dd7302;
+}
+
+.header img {
+    width: 200px;
+    /* position: fixed; */
+    padding-top: 2vh;
+    padding-left: 2vh;
+    /* z-index: 2; */
+    opacity: 95%;
+}
+
+.body {
+    min-height: 100vh;
+}
+
+.login-box {
+    max-width: 400px;
+    padding: 80px 68px 40px;
+    margin-bottom: 90px;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 0 auto -236px;
+    height: var(--loginbox-height);
+    animation: fade 0.5s alternate;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.login-box h1 {
+    margin-left: 25px;
+    opacity: 95%;
+    margin-top: -30px;
+    font-size: 24pt;
+}
+
+input.form-control,
+.input-group-text {
+    border: none !important;
+    padding: 12px 12px 9px !important;
+    background-color: var(--input-bg-color) !important;
+    border-width: var(--input-border-width) !important;
+    border-bottom: var(--input-bg-color) solid !important;
+}
+
+input.form-control:focus {
+    box-shadow: none;
+    background-color: var(--input-bg-color-focused);
+    border-bottom: #dd7302 solid !important;
+}
+
+.form-below {
+    position: relative;
+}
+
+.form-check {
+    position: absolute;
+    left: 0;
+}
+
+.form-help {
+    position: absolute;
+    right: 0;
+}
+
+.des-fb,
+.des-captcha {
+    font-size: 9pt;
+}
+
+.des-fb a i {
+    padding-left: 6px;
+    font-size: 13pt;
+}
+
+.des-signup {
+    font-size: 13pt;
+}
+
+a#learn:target {
+    opacity: 0;
+}
+
+
+/* T's */
+
+ul {
+    list-style: none;
+}
+
+a,
+a.btn:hover {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    margin-top: auto;
+    min-width: 100vw;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+}
+
+.footer,
+.footer a {
+    color: gray;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin-bottom: 1.5rem;
+}
+
+.footer .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+}
+
+.footer,
+.footer li {
+    line-height: 1.9;
+}
