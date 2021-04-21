@@ -22,7 +22,7 @@
         </div>
         <div class="body row">
             <div class="px-2">
-                <div class="login-box">
+                <form class="login-box" action="loginCheck.jsp">
                     <div class="pb-3">
                         <h1 class="text-white m-0"><b>Sign In</b></h1>
                     </div>
@@ -30,38 +30,38 @@
                         <div class="form-group input-group my-3">
                             <input type="email" class="form-control bg-dark text-light w-100" name="input-username" id="input-username" aria-describedby="help-username" placeholder="Email or phone number" onfocus="showElement('usernameTip')" onblur="hideElement('usernameTip')" />
                             <small id="usernameTip" class="text-warning" style="display: none;">
-                  <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  Please enter a valid email.
-                </small>
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            Please enter a valid email.
+                            </small>
                         </div>
                         <div class="form-group input-group my-3">
                             <input type="password" class="form-control bg-dark text-light w-100" name="input-password" id="input-password" aria-describedby="help-password" placeholder="Password" onfocus="showElement('pwdTip')" onblur="hideElement('pwdTip')" />
                             <small id="pwdTip" class="text-warning" style="display: none;">
-                  <i class="fa fa-info-circle" aria-hidden="true"></i>
-                  Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol).
-                </small>
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol).
+                            </small>
                         </div>
                     </div>
                     <button id="login" type="submit" onclick="login()" class="btn btn-danger w-100 mb-3">
-              Sign In
-            </button>
-                    <div class="form-below">
-                        <div class="form-check col">
-                            <label class="form-check-label text-light">
-                  <input
-                    type="checkbox"
-                    class="form-check-input"
-                    name="check-remember"
-                    id="check-remember"
-                    value="remember"
-                    checked
-                  />
-                  Remember me
-                </label>
-                        </div>
-                        <div class="form-help col">
-                            <a href="#" class="text-light">Need help?</a>
-                        </div>
+                        Sign In
+                    </button>
+                <div class="form-below">
+                    <div class="form-check col">
+                        <label class="form-check-label text-light">
+                            <input
+                                type="checkbox"
+                                class="form-check-input"
+                                name="check-remember"
+                                id="check-remember"
+                                value="remember"
+                                checked
+                            />
+                            Remember me
+                        </label>
+                    </div>
+                    <div class="form-help col">
+                        <a href="#" class="text-light">Need help?</a>
+                    </div>
                     </div>
                     <div class="description pt-4">
                         <div class="des-fb mt-4">
@@ -80,7 +80,7 @@
                             <small id="captchaTip " style="display: none; ">The information collected by Google reCAPTCHA is subject to the Google Privacy Policy and Terms of Service, and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google).</small>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
 
