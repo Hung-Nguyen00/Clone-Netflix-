@@ -19,7 +19,10 @@
                 LoginDao loginDao = new LoginDao();
                 boolean status = loginDao.validate(login);
                 if (status) {
-                    response.sendRedirect("/WebContent/Inner-Website/signup.jsp");
+                    response.setAttribute("inputUsername", loginBean.getInputUsername());
+                    response.setAttribute("inputPassword", loginBean.getInputPassword());
+                    response.setAttribute("inputConfirm", loginBean.getInputConfirm());
+                    response.getRequestDispatcher("/WebContent/Inner-Wensite/signup.jsp").forward(request, response);
                 } else {
                     response.sendRedirect("/WebContent/Inner-Wensite/login.jsp");
                 }

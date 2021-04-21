@@ -23,27 +23,48 @@
         </div>
         <div class="body row">
             <div class="px-2">
-                <form class="login-box">
+                <form class="login-box" action="signupCheck.jsp" method="POST">
                     <div class="pb-3">
                         <h1 class="text-white m-0"><b>Sign Up</b></h1>
                     </div>
                     <div class="sign-up">
                         <div class="form-group input-group my-3">
-                            <input type="email" class="form-control bg-dark text-light w-100" name="input-username" id="input-username" aria-describedby="help-username" placeholder="Email or phone number" onfocus="showElement('usernameTip')" onblur="hideElement('usernameTip')" />
+                            <input type="email"
+                                value="${inputUsername}"
+                                class="form-control bg-dark text-light w-100"
+                                name="inputUsername" id="input-username"
+                                aria-describedby="help-username"
+                                placeholder="Email or phone number"
+                                onfocus="showElement('usernameTip')"
+                                onblur="hideElement('usernameTip')" />
                             <small id="usernameTip" class="text-warning" style="display: none;">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 Please enter a valid email.
                             </small>
                         </div>
                         <div class="form-group input-group my-3">
-                            <input type="password" class="form-control bg-dark text-light w-100" name="input-password" id="input-password" aria-describedby="help-password" placeholder="Password" onfocus="showElement('pwdTip')" onblur="hideElement('pwdTip')" />
+                            <input type="password"
+                                value="${inputPassword}"
+                                class="form-control bg-dark text-light w-100"
+                                name="inputPassword" id="input-password"
+                                aria-describedby="help-password"
+                                placeholder="Password"
+                                onfocus="showElement('pwdTip')"
+                                onblur="hideElement('pwdTip')" />
                             <small id="pwdTip" class="text-warning" style="display: none;">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol).
                             </small>
                         </div>
                         <div class="form-group input-group my-3">
-                            <input type="password" class="form-control bg-dark text-light w-100" name="input-confirm" id="input-confirm" aria-describedby="help-confirm" placeholder="Confirm password" onfocus="showElement('pwdConfirmTip')" onblur="hideElement('pwdConfirmTip')" />
+                            <input type="password"
+                                value="${inputConfirm}"
+                                class="form-control bg-dark text-light w-100"
+                                name="inputConfirm" id="input-confirm"
+                                aria-describedby="help-confirm"
+                                placeholder="Confirm password"
+                                onfocus="showElement('pwdConfirmTip')"
+                                onblur="hideElement('pwdConfirmTip')" />
                             <small id="pwdConfirmTip" class="text-warning" style="display: none;">
                                 <i class="fa fa-info-circle" aria-hidden="true"></i>
                                 Both passwords must match.

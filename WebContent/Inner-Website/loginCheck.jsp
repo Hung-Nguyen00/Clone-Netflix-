@@ -21,7 +21,9 @@
                 if (status) {
                     response.sendRedirect("/WebContent/Inner-Website/index.jsp");
                 } else {
-                    response.sendRedirect("/WebContent/Inner-Wensite/login.jsp");
+                    response.setAttribute("inputUsername", loginBean.getInputUsername());
+                    response.setAttribute("inputPassword", loginBean.getInputPassword());
+                    response.getRequestDispatcher("/WebContent/Inner-Wensite/login.jsp").forward(request, response);
                 }
             %>
         </body>
