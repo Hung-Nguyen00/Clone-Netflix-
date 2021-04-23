@@ -1,5 +1,7 @@
+package model;
+
 // default package
-// Generated Apr 16, 2021, 3:06:54 PM by Hibernate Tools 5.4.18.Final
+// Generated Apr 23, 2021, 2:11:14 PM by Hibernate Tools 5.4.30.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -13,7 +15,7 @@ public class Actor implements java.io.Serializable {
 	private int actorId;
 	private String firstName;
 	private String lastName;
-	private Boolean director;
+	private Byte director;
 	private Date lastUpdate;
 	private Set actorMovies = new HashSet(0);
 
@@ -24,7 +26,7 @@ public class Actor implements java.io.Serializable {
 		this.actorId = actorId;
 	}
 
-	public Actor(int actorId, String firstName, String lastName, Boolean director, Date lastUpdate, Set actorMovies) {
+	public Actor(int actorId, String firstName, String lastName, Byte director, Date lastUpdate, Set actorMovies) {
 		this.actorId = actorId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -57,11 +59,11 @@ public class Actor implements java.io.Serializable {
 		this.lastName = lastName;
 	}
 
-	public Boolean getDirector() {
+	public Byte getDirector() {
 		return this.director;
 	}
 
-	public void setDirector(Boolean director) {
+	public void setDirector(Byte director) {
 		this.director = director;
 	}
 

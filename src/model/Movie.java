@@ -1,5 +1,7 @@
+package model;
+
 // default package
-// Generated Apr 16, 2021, 3:06:54 PM by Hibernate Tools 5.4.18.Final
+// Generated Apr 23, 2021, 2:11:14 PM by Hibernate Tools 5.4.30.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -20,7 +22,7 @@ public class Movie implements java.io.Serializable {
 	private String maturityRating;
 	private Date lastUpdate;
 	private String duration;
-	private Boolean topHot;
+	private Byte topHot;
 	private Set banners = new HashSet(0);
 	private Set detailMovies = new HashSet(0);
 	private Set seasonMovies = new HashSet(0);
@@ -35,7 +37,7 @@ public class Movie implements java.io.Serializable {
 	}
 
 	public Movie(int movieId, String nameMovie, String descriptionMovie, String image, String trailer, String video,
-			String lo, String maturityRating, Date lastUpdate, String duration, Boolean topHot, Set banners,
+			String lo, String maturityRating, Date lastUpdate, String duration, Byte topHot, Set banners,
 			Set detailMovies, Set seasonMovies, Set activitiHistoryMovies, Set actorMovies) {
 		this.movieId = movieId;
 		this.nameMovie = nameMovie;
@@ -135,11 +137,11 @@ public class Movie implements java.io.Serializable {
 		this.duration = duration;
 	}
 
-	public Boolean getTopHot() {
+	public Byte getTopHot() {
 		return this.topHot;
 	}
 
-	public void setTopHot(Boolean topHot) {
+	public void setTopHot(Byte topHot) {
 		this.topHot = topHot;
 	}
 

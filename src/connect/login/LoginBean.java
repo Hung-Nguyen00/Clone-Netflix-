@@ -1,4 +1,4 @@
-package src.connect.login;
+package connect.login;
 
 import java.io.Serializable;
 

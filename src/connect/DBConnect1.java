@@ -10,7 +10,7 @@ public class DBConnect1 {
 		        Connection cons = null;
 		        try {
 		        	Class.forName("com.mysql.cj.jdbc.Driver");
-		        cons = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3308/clone_netflix", "root", "Aa@123321");
+		        cons = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/netflix", "root", "@Nightfury21");
 		        	Statement mystmt = cons.createStatement();
 		        	ResultSet result = mystmt.executeQuery("select * from account");
 		        	while(result.next())

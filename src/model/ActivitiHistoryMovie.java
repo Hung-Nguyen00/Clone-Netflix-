@@ -1,5 +1,7 @@
+package model;
+
 // default package
-// Generated Apr 16, 2021, 3:06:54 PM by Hibernate Tools 5.4.18.Final
+// Generated Apr 23, 2021, 2:11:14 PM by Hibernate Tools 5.4.30.Final
 
 import java.util.Date;
 
@@ -11,9 +13,9 @@ public class ActivitiHistoryMovie implements java.io.Serializable {
 	private ActivitiHistoryMovieId id;
 	private AccountChild accountChild;
 	private Movie movie;
-	private Boolean likebtn;
-	private Boolean dislikebtn;
-	private Boolean saved;
+	private Byte likebtn;
+	private Byte dislikebtn;
+	private Byte saved;
 	private Date createDate;
 
 	public ActivitiHistoryMovie() {
@@ -25,8 +27,8 @@ public class ActivitiHistoryMovie implements java.io.Serializable {
 		this.movie = movie;
 	}
 
-	public ActivitiHistoryMovie(ActivitiHistoryMovieId id, AccountChild accountChild, Movie movie, Boolean likebtn,
-			Boolean dislikebtn, Boolean saved, Date createDate) {
+	public ActivitiHistoryMovie(ActivitiHistoryMovieId id, AccountChild accountChild, Movie movie, Byte likebtn,
+			Byte dislikebtn, Byte saved, Date createDate) {
 		this.id = id;
 		this.accountChild = accountChild;
 		this.movie = movie;
@@ -60,27 +62,27 @@ public class ActivitiHistoryMovie implements java.io.Serializable {
 		this.movie = movie;
 	}
 
-	public Boolean getLikebtn() {
+	public Byte getLikebtn() {
 		return this.likebtn;
 	}
 
-	public void setLikebtn(Boolean likebtn) {
+	public void setLikebtn(Byte likebtn) {
 		this.likebtn = likebtn;
 	}
 
-	public Boolean getDislikebtn() {
+	public Byte getDislikebtn() {
 		return this.dislikebtn;
 	}
 
-	public void setDislikebtn(Boolean dislikebtn) {
+	public void setDislikebtn(Byte dislikebtn) {
 		this.dislikebtn = dislikebtn;
 	}
 
-	public Boolean getSaved() {
+	public Byte getSaved() {
 		return this.saved;
 	}
 
-	public void setSaved(Boolean saved) {
+	public void setSaved(Byte saved) {
 		this.saved = saved;
 	}
 
