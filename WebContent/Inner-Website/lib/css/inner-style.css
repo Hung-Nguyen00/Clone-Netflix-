@@ -1057,7 +1057,7 @@ header ul li {
 }
 
 .preview .moreMovie-items--inner .moreMovie-item-img img {
-    max-width: 258px !important;
+    max-width: 100% !important;
     border-radius: 5px;
 }
 
