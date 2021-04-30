@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">Aa@123321</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3308/netflix</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="Account.hbm.xml"/>
+        <mapping resource="Movie.hbm.xml"/>
+        <mapping resource="SeriesMovie.hbm.xml"/>
+        <mapping resource="Category.hbm.xml"/>
+        <mapping resource="SeasonMovie.hbm.xml"/>
+        <mapping resource="AccountChild.hbm.xml"/>
+        <mapping resource="Banner.hbm.xml"/>
+        <mapping resource="DetailMovie.hbm.xml"/>
+        <mapping resource="ActivitiHistoryMovie.hbm.xml"/>
+        <mapping resource="ActorMovie.hbm.xml"/>
+        <mapping resource="AdminAccount.hbm.xml"/>
+        <mapping resource="Actor.hbm.xml"/>
+        <mapping resource="Menu.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

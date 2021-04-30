@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+  <table-filter match-catalog="netflix" match-name="account"/>
+  <table-filter match-catalog="netflix" match-name="account_child"/>
+  <table-filter match-catalog="netflix" match-name="activiti_history_movie"/>
+  <table-filter match-catalog="netflix" match-name="actor"/>
+  <table-filter match-catalog="netflix" match-name="actor_movie"/>
+  <table-filter match-catalog="netflix" match-name="admin_account"/>
+  <table-filter match-catalog="netflix" match-name="banner"/>
+  <table-filter match-catalog="netflix" match-name="category"/>
+  <table-filter match-catalog="netflix" match-name="detail_movie"/>
+  <table-filter match-catalog="netflix" match-name="menu"/>
+  <table-filter match-catalog="netflix" match-name="movie"/>
+  <table-filter match-catalog="netflix" match-name="season_movie"/>
+  <table-filter match-catalog="netflix" match-name="series_movie"/>
+</hibernate-reverse-engineering>
