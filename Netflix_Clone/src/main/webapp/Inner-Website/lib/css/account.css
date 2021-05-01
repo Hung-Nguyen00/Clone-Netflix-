@@ -1,0 +1,350 @@
+body {
+    background-color: #ececec !important;
+    padding-top: 64px;
+}
+
+div.h2 {
+    font-size: 16pt !important;
+    font-weight: lighter !important;
+    letter-spacing: 1.5pt;
+}
+
+.row {
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: darkgray;
+}
+
+.row .col-12 * {
+    line-height: 3ch;
+}
+
+
+/* Links and buttons */
+
+a,
+a.btn:hover {
+    text-decoration: none !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+
+/* Dropdowns */
+
+.card,
+.card-header,
+.collapse {
+    border: none !important;
+    background: transparent !important;
+}
+
+a.dropdown {
+    color: black;
+}
+
+a.dropdown img {
+    max-width: 70px;
+    margin-bottom: 20px;
+}
+
+a.dropdown:hover {
+    text-decoration: none !important;
+}
+
+.profile-option,
+.profile-info {
+    padding: 8px 0 !important;
+}
+
+.profile-header {
+    color: black !important;
+    font-size: 13pt;
+}
+
+.profile-content,
+.profile-dropdown {
+    color: darkgray !important;
+    font-size: 12pt;
+}
+
+.profile-dropdown {
+    text-align: end !important;
+}
+
+.btn-light {
+    background-color: lightgray !important;
+}
+
+.change-pwd {
+    width: 50% !important;
+}
+
+a small {
+    margin-left: 12px !important;
+}
+
+.form-control {
+    padding: 12px 8px !important;
+    border-color: darkgray !important;
+}
+
+a.btn {
+    border: none !important;
+    padding: 10px 0;
+    width: 100px;
+    margin-right: 8px;
+}
+
+
+/* T's */
+
+.footer {
+    background-color: #ececec;
+    padding: 50px 500px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    overflow: auto;
+}
+
+.footer,
+.footer a {
+    color: gray;
+    font-size: 0.9rem;
+}
+
+.footer p {
+    margin-bottom: 1.5rem;
+}
+
+.footer .footer-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+}
+
+.footer,
+.footer li {
+    line-height: 1.9;
+}
+
+
+/* Long's */
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 60px;
+    width: 100%;
+    height: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    z-index: 1000;
+    transition: all 0.5s ease;
+    background-color: black;
+}
+
+header.scrollTop {
+    background-color: rgb(13, 13, 12);
+}
+
+header.z-index {
+    background-color: rgb(13, 13, 12);
+}
+
+header header.active {
+    background-color: rgb(13, 13, 12);
+}
+
+header .logo {
+    margin-top: -20px;
+}
+
+header .logo img {
+    max-width: 100px;
+    line-height: 48px;
+}
+
+header ul {
+    display: flex;
+    margin-left: -100px;
+}
+
+header ul li {
+    margin: 0 10px;
+}
+
+.navigation li a {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.navigation li:not(.active) a:hover {
+    opacity: 0.8;
+}
+
+.search {
+    position: relative;
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search .dropdown-avatar {
+    align-items: center;
+    margin-top: 10px;
+}
+
+.search .dropdown-avatar {
+    padding-right: 10px;
+}
+
+.search li .fa {
+    font-size: 20px;
+    color: #fff;
+}
+
+.dropdown-avatar {
+    position: relative;
+    display: block;
+}
+
+.dropdown-avatar img {
+    border-radius: 5px !important;
+    max-width: 50px;
+    margin-right: 10px;
+    padding: 10px 0 10px 0;
+}
+
+.dropdown-avatar:hover ul {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dropdown-avatar .dropdown-iconProfile::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 80%;
+    margin-left: -5px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent rgb(155, 150, 150) transparent;
+}
+
+.dropdown-avatar .dropdown-iconProfile {
+    visibility: hidden;
+    opacity: 0;
+    transition-delay: 0.3s;
+    transition: all 0.3s ease;
+    position: absolute;
+    margin-top: 20px;
+    left: -50px;
+    width: 200px;
+    height: auto;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropdown-avatar .dropdown-iconProfile li:first-child {
+    padding-top: 10px;
+}
+
+.dropdown-avatar .dropdown-iconProfile li {
+    margin-left: -10px;
+    margin-bottom: 0;
+}
+
+.dropdown-avatar .dropdown-iconProfile .dropdown-manage {
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.dropdown-avatar .dropdown-iconProfile .dropdown-borderTop::after {
+    content: "";
+    top: -5px;
+    left: 0;
+    position: absolute;
+    background-color: white;
+    height: 1px;
+    width: 100%;
+}
+
+.dropdown-avatar .dropdown-iconProfile .dropdown-borderTop {
+    margin-top: 5px;
+    position: relative;
+}
+
+.dropdown-avatar .dropdown-iconProfile li img {
+    max-width: 30px;
+}
+
+.img-border-radius {
+    border-radius: 5px;
+}
+
+.dropdown-avatar .dropdown-iconProfile li a:hover {
+    text-decoration: underline;
+}
+
+.dropdown-avatar .dropdown-iconProfile li a {
+    font-size: 13px;
+    color: white;
+    text-transform: capitalize;
+    font-weight: 300;
+}
+
+
+/* Activity's */
+
+.nav {
+    border: none !important;
+}
+
+.nav-link {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.nav-link.active {
+    background-color: transparent !important;
+    border: none !important;
+    color: #007BFF !important;
+}
+
+.tab-content {
+    border-top: 1px darkgray solid;
+}
+
+.tab-pane .container-fluid .row {
+    padding: 16px 0;
+}
+
+.tab-pane .container-fluid .row .col-2 {
+    text-align: end;
+    letter-spacing: 1ch;
+}
+
+.tab-pane .container-fluid .row .col-3 {
+    text-align: end;
+}
+
+#rating .container-fluid .row div a {
+    vertical-align: middle !important;
+    min-height: 36px;
+    border: none !important;
+}
