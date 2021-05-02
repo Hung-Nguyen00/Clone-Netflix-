@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="dao.MenuDAO" %>
+<%@ page import="model.Menu" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	MenuDAO menu_dao = new MenuDAO();
+	 %>
 	<!-- Header start -->
     <header>
         <a href="#" class="logo"><img src="https://truecostmovie.com/img/TTC/wp-content/uploads/2015/10/netflix_logo_digitalvideo-1.png" alt=""></a>

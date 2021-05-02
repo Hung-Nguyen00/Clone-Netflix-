@@ -21,8 +21,8 @@ public class MenuDAO {
 			 while (rs.next()) {
 				 Menu menu = new Menu();
 				 menu.setMenuId(rs.getByte("menu_id"));
-				 menu.setNameMenu(rs.getString("menu_name"));
-				 menu.setMetaTitile(rs.getString("meta_title"));
+				 menu.setNameMenu(rs.getString("name_menu"));
+				 menu.setMetaTitile(rs.getString("meta_titile"));
 				 list.add(menu);
 			 }
 			 return list;
@@ -30,7 +30,7 @@ public class MenuDAO {
 
 	public static void main(String[] args) throws SQLException  {
 		MenuDAO menu_dao = new MenuDAO();
-		int id =1;
+		int id =2;
 		 for(Menu md : menu_dao.getMenu(id)){
 			 System.out.println(md.getMenuId()+"-"+ md.getNameMenu());
 		 }
