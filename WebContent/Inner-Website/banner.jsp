@@ -11,7 +11,7 @@
 <body>
 <%
 	MovieDAO movie_dao = new MovieDAO();
-	int id=1;
+	int id=0;
 	 %>
     <!-- Banner start -->
     <div class="banner">

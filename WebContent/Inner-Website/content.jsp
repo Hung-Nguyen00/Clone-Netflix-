@@ -11,21 +11,29 @@
 <body>
 <%
 	MovieDAO movie_dao = new MovieDAO();
-	int id=1;
+	int menu_id= 0;
+	if(request.getParameter("menu_id")!=null)
+	{
+		menu_id= Integer.parseInt(request.getParameter("menu_id")) ;
+	}
+	
 	 %>
 	 <div class="preloader">
     </div>
+    <% for(Movie m : movie_dao.getMovie(menu_id)) { %>
     <div class="trailer-film">
-        <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>>?autoplay=1&loop=1&mute=1&controls=0&playlist=<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
     </div>
+   
     <div></div>
     <div class="play-film">
-        <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
         <div class="close-movie">
             <i class="fas fa-times"></i>
             <h4 class="back-to-browse">Back to Browse</h4>
         </div>
     </div>
+     <% }%>
     <!-- banner end -->
     <!-- preview-model start -->
     <div class="preview">
@@ -36,7 +44,7 @@
     </div>
     <!--  preview-model end-->
     <!-- slider start-->
-    <% for(Movie m : movie_dao.getMovie(id)) { %>
+    <% for(Movie m : movie_dao.getMovie(menu_id)) { %>
     <div class="popular-slider">
     
         <h2>Popular on Netflix</h2>
