@@ -12,7 +12,9 @@ public class ActorMovie implements java.io.Serializable {
 	private int stt;
 	private Actor actor;
 	private Movie movie;
-	private Date lastUpdate;
+	private int movie_id;
+	private int actor_id;
+	private String lastUpdate;
 
 	public ActorMovie() {
 	}
@@ -23,13 +25,32 @@ public class ActorMovie implements java.io.Serializable {
 		this.movie = movie;
 	}
 
-	public ActorMovie(int stt, Actor actor, Movie movie, Date lastUpdate) {
+	public ActorMovie(int stt, Actor actor, Movie movie, String lastUpdate) {
 		this.stt = stt;
 		this.actor = actor;
 		this.movie = movie;
 		this.lastUpdate = lastUpdate;
 	}
+	public ActorMovie(int stt, int movie_id, int actor_id) {
+		this.stt = stt;
+		this.movie_id = movie_id;
+		this.actor_id = actor_id;
+	}
+	public int getMovie_id() {
+		return movie_id;
+	}
 
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
+
+	public int getActor_id() {
+		return actor_id;
+	}
+
+	public void setActor_id(int actor_id) {
+		this.actor_id = actor_id;
+	}
 	public int getStt() {
 		return this.stt;
 	}
@@ -54,11 +75,11 @@ public class ActorMovie implements java.io.Serializable {
 		this.movie = movie;
 	}
 
-	public Date getLastUpdate() {
+	public String getLastUpdate() {
 		return this.lastUpdate;
 	}
 
-	public void setLastUpdate(Date lastUpdate) {
+	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 

@@ -15,17 +15,16 @@ public class Actor implements java.io.Serializable {
 	private String firstName;
 	private String lastName;
 	private Byte director;
-	private Date lastUpdate;
+	private String lastUpdate;
 	private Set actorMovies = new HashSet(0);
-
-	public Actor() {
-	}
 
 	public Actor(int actorId) {
 		this.actorId = actorId;
 	}
-
-	public Actor(int actorId, String firstName, String lastName, Byte director, Date lastUpdate, Set actorMovies) {
+	public Actor() {
+		
+	}
+	public Actor(int actorId, String firstName, String lastName, Byte director, String lastUpdate, Set actorMovies) {
 		this.actorId = actorId;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -33,7 +32,18 @@ public class Actor implements java.io.Serializable {
 		this.lastUpdate = lastUpdate;
 		this.actorMovies = actorMovies;
 	}
-
+	public Actor(int actorId, String firstName, String lastName, Byte director,Set<?> actorMovies) {
+		this.actorId = actorId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.director = director;
+	}
+	public Actor(int actorId, String firstName, String lastName, Byte director) {
+		this.actorId = actorId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.director = director;
+	}
 	public int getActorId() {
 		return this.actorId;
 	}
@@ -66,11 +76,11 @@ public class Actor implements java.io.Serializable {
 		this.director = director;
 	}
 
-	public Date getLastUpdate() {
+	public String getLastUpdate() {
 		return this.lastUpdate;
 	}
 
-	public void setLastUpdate(Date lastUpdate) {
+	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 

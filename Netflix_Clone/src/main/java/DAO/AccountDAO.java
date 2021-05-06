@@ -119,9 +119,9 @@ public class AccountDAO {
 //				System.out.println(dao.insert(new Account("abc"+ i + "@gmail.com","123", null, "0783727238", null))); 
 //			}
 			
-			System.out.println(dao.getAccount("abc@gmail.com").getPhone());
+			System.out.println(dao.getAccount("abc1@gmail.com").getExpiration_date());
 //			System.out.println(dao.checkEmail("thanhh41100@gmail.com"));
-			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
+//			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
 //			System.out.println(dao.delete("abc3@gmail.com"));
 			for (Account ds : dao.getListAccount()) {
 				System.out.println(ds.getEmail() + " - " + ds.getPasswordAccount() + "-" + ds.getPhone());		

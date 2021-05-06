@@ -1,22 +1,27 @@
+<%@page import="model.Movie, java.util.*" %>
+<%@page import="DAO.MovieDAO" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <c:set var="root" value="${pageContext.request.contextPath}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Movies</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <link href="${root}/Admin/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 
 </head>
-
 <body class="sb-nav-fixed">
+	<% MovieDAO movieDAO = new MovieDAO(); %>
 		<jsp:include page="Header.jsp"></jsp:include>
         <div id="layoutSidenav_content">
             <main>
@@ -59,54 +64,31 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    <%int i=0; %>
+                                    <% for(Movie movie : movieDAO.getListMovie()){ %>
                                         <tr>
-                                            <td>1</td>
-                                            <td>John Nguyen</td>
-                                            <td>20/11/2021</td>
+                                            <td><%=i++ %></td>
+                                            <td><%=movie.getNameMovie() %></td>
+                                            <td><%=movie.getLastUpdate() %></td>
+                                            
                                             <td class="text-center">
-                                                <i class="fas fa-check-square "></i>
+                                               <%if(movie.getTopHot() == 1){ %>
+                                               	 <i class="fas fa-check-square "></i>
+                                               <%} %>
                                             </td>
-                                            <td class="text-center">
-                                                <button class="btn-trash btn-danger border-0">
-                                                    <i class="fas fa-trash"></i>
+                                             <td class="text-center">
+                                                <button class="btn-trash btn-danger border-0">  
+                                                    <a class="text-decoration-none text-light" href="${root}/ManagerMovie?command=delete&movie_id=<%=movie.getMovieId()%>"> 
+                                                     <i class="fas fa-trash"></i>
+                                                     </a>                                                
+                                                     </button>
+                                                <button class="btn-wrench bg-info border-0">
+                                                   <i class="fas fa-wrench"></i>
+                                                   </a>
                                                 </button>
-                                                <button class="btn-wrench border-0">
-                                                    <a href="movie_Detail.jsp"><i class="fas fa-eye"></i></a>
-                                                </button>
-                                            </td>
+                                            </td>  
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>John Nguyen</td>
-                                            <td>20/11/2021</td>
-                                            <td class="text-center">
-                                                <i class="fas fa-check-square "></i>
-                                            </td>
-                                            <td class="text-center">
-                                                <button class="btn-trash btn-danger border-0">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                                <button class="btn-wrench border-0">
-                                                    <a href="movie_Detail.jsp"><i class="fas fa-eye"></i></a>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>John Nguyen</td>
-                                            <td>20/11/2021</td>
-                                            <td class="text-center">
-                                                <i class="fas fa-check-square "></i>
-                                            </td>
-                                            <td class="text-center">
-                                                <button class="btn-trash btn-danger border-0">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                                <button class="btn-wrench border-0">
-                                                    <a href="movie_Detail.jsp"><i class="fas fa-eye"></i></a>
-                                                </button>
-                                            </td>
-                                        </tr>
+                                    <%}%>
                                     </tbody>
                                 </table>
                             </div>
