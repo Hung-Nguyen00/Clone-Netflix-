@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="DAO.MenuDAO" %>
+<%@ page import="model.Menu" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,15 +9,18 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	MenuDAO menu_dao = new MenuDAO();
+	 %>
 	<!-- Header start -->
     <header>
         <a href="#" class="logo"><img src="https://truecostmovie.com/img/TTC/wp-content/uploads/2015/10/netflix_logo_digitalvideo-1.png" alt=""></a>
         <ul class="navigation">
-            <li class="active"><a href="index.jsp">Home</a></li>
-            <li><a href="tvShow.jsp">TV Shows</a></li>
-            <li><a href="movies.jsp">Movies</a></li>
-            <li><a href="latest.jsp">Latest</a></li>
-            <li><a href="myList.jsp">My list</a></li>
+            <li class="active"><a href="index.jsp?menu_id=0">Home</a></li>
+            <li><a href="tvShow.jsp?menu_id=1">TV Shows</a></li>
+            <li><a href="movies.jsp?menu_id=2">Movies</a></li>
+            <li><a href="latest.jsp?menu_id=3">Latest</a></li>
+            <li><a href="myList.jsp?menu_id=4">My list</a></li>
         </ul>
         <ul class="search">
             <li>

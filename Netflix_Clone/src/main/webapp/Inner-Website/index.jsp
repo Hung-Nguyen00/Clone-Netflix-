@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="DAO.MenuDAO" %>
+<%@ page import="model.Menu" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +15,7 @@
  </head>
 
 <body>
+<h1> <%=request.getParameter("menu_id")%></h1>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="content.jsp"></jsp:include>
