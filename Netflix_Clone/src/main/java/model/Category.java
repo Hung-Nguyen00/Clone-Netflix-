@@ -1,6 +1,7 @@
 package model;
+
 // default package
-// Generated Apr 27, 2021, 3:04:25 PM by Hibernate Tools 5.4.27.Final
+// Generated Apr 23, 2021, 2:11:14 PM by Hibernate Tools 5.4.30.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,6 +13,7 @@ import java.util.Set;
 public class Category implements java.io.Serializable {
 
 	private int categoryId;
+	private int menu_id;
 	private Menu menu;
 	private String metaTitle;
 	private Date createDate;
@@ -34,6 +36,14 @@ public class Category implements java.io.Serializable {
 		this.createDate = createDate;
 		this.nameCategory = nameCategory;
 		this.detailMovies = detailMovies;
+	}
+	
+	public int getMenuId() {
+		return this.menu_id;
+	}
+	
+	public void setMenuId(int menu_id) {
+		this.menu_id = menu_id;
 	}
 
 	public int getCategoryId() {

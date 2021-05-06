@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
     <wb-module deploy-name="Netflix_Clone">
+                
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="jstl-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/Long/Downloads/LabLaptrinhWebJSPServlet/jstl-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mysql-connector-java-8.0.23.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.23.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="servlet-api.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/D:/apache-tomcat-9.0.45/lib/servlet-api.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+                
         <property name="context-root" value="Netflix_Clone"/>
+                
         <property name="java-output-path" value="/Netflix_Clone/build/classes"/>
+            
     </wb-module>
+    
 </project-modules>

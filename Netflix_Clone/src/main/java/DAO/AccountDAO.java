@@ -15,7 +15,7 @@ import model.Account;
 public class AccountDAO {
 	
 	public ArrayList<Account> getListAccount() throws SQLException {
-		Connection connection = DBConnect1.getConnecttion();
+		Connection connection = DBConnect1.getConnection();
 		String sql = "SELECT * FROM account";
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
@@ -35,7 +35,7 @@ public class AccountDAO {
 	}
 
 	public Account getAccount(String email) throws SQLException {
-		Connection connection = DBConnect1.getConnecttion();
+		Connection connection = DBConnect1.getConnection();
 		String sql = "SELECT * FROM account WHERE email = '" + email + "'";
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
@@ -50,7 +50,7 @@ public class AccountDAO {
 		return account;
 	}
 	public boolean checkEmail(String email) throws SQLException{
-			Connection connection = DBConnect1.getConnecttion();
+			Connection connection = DBConnect1.getConnection();
 			String sql = "SELECT email FROM account WHERE email = '" + email + "'";
 			PreparedStatement ps;
 			try {
@@ -67,7 +67,7 @@ public class AccountDAO {
 	}
 	public boolean insert(Account c) throws SQLException {
 		try {
-		Connection connection = DBConnect1.getConnecttion();
+		Connection connection = DBConnect1.getConnection();
 		String sql = "INSERT INTO account VALUE(?,?,?,?)";
 
 		PreparedStatement ps = connection.prepareCall(sql);
@@ -84,7 +84,7 @@ public class AccountDAO {
 	
 	public boolean update(Account c) throws SQLException {
 		try {
-		Connection connection = DBConnect1.getConnecttion();
+		Connection connection = DBConnect1.getConnection();
 		String sql = "UPDATE account SET password_account = ?, expiration_date = ?, phone = ? WHERE email = ?";
 		PreparedStatement ps = connection.prepareCall(sql);
 		
@@ -101,7 +101,7 @@ public class AccountDAO {
 	
 	public boolean delete(String email) throws SQLException {
 	try {
-		Connection connection = DBConnect1.getConnecttion();
+		Connection connection = DBConnect1.getConnection();
 		String sql = "DELETE FROM account WHERE email = ?";
 		PreparedStatement ps = connection.prepareCall(sql)	;
 		ps.setString(1, email);
