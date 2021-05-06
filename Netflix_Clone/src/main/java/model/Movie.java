@@ -55,20 +55,6 @@ public class Movie implements java.io.Serializable {
 		this.activitiHistoryMovies = activitiHistoryMovies;
 		this.actorMovies = actorMovies;
 	}
-	public Movie(int movieId, String nameMovie, String descriptionMovie, String image, String trailer, String video,
-			String lo, String maturityRating, String duration, Byte topHot) {
-		this.movieId = movieId;
-		this.nameMovie = nameMovie;
-		this.descriptionMovie = descriptionMovie;
-		this.image = image;
-		this.trailer = trailer;
-		this.video = video;
-		this.lo = lo;
-		this.maturityRating = maturityRating;
-		this.duration = duration;
-		this.topHot = topHot;
-	
-	}
 
 	public int getMovieId() {
 		return this.movieId;

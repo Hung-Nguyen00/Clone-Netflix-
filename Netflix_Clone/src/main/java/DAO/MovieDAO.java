@@ -128,7 +128,7 @@ public class MovieDAO {
 	public boolean delete(int movie_id) throws SQLException {
 	try {
 		Connection connection = DBConnect1.getConnecttion();
-		String sql = "DELETE FROM movie WHERE movie_id = '"+ movie_id +"'";
+		String sql = "DELETE FROM movie WHERE actor_id = '"+ movie_id +"'";
 		PreparedStatement ps = connection.prepareCall(sql)	;
 		int temp = ps.executeUpdate();
 		return temp == 1;

@@ -5,23 +5,38 @@ const model = document.querySelector('.modelAcc'),
     actor = document.querySelector('.browActor'),
     dataList = document.getElementById('browActor'),
     buttonAdd = document.querySelector('.add-Actor'),
-    listCategories = document.getElementById('list-categories')
+    listCategories = document.getElementById('list-categories'),
+    tbody = document.querySelector('tbody'),
+    indexAccount = tbody.querySelectorAll('tr'),
+    infoAccount = document.querySelectorAll('td'),
+    editAccount = tbody.querySelector('.btn-wrench')
     // var ok = (5>3) ? 'b' : 'c'
 
 
-btnAdd.addEventListener('click', () => {
-    model.classList.add('open');
-    body.classList.add('hideScroll');
-    let topOffset = window.pageYOffset;
-    model.style.top = topOffset + 'px';
-})
+// buttonAdd.addEventListener('click', (e) => {
+//     if (validation()) {
+//         alert('This name existed');
+//     } else {
+//         var option = document.createElement("span");
+//         var spanText = document.createElement("span");
+//         option.setAttribute('value', actor.value);
+//         spanText.textContent = actor.value;
+//         option.classList.add('tag-Categories', 'peer');
+//         spanText.classList.add('badge', 'badge-pill', 'fl-r', 'badge-danger', 'lh-0', 'p-10', 'text-center', 'mt-2', 'mb-2');
+//         option.appendChild(spanText);
+//         listCategories.appendChild(option);
+//     }
+// })
 
-model.addEventListener("click", function(e) {
-    if (e.target.classList.contains('modelAcc')) {
-        model.classList.remove("open");
-        body.classList.remove('hideScroll');
-    }
-});
+// // check value from tag is like value in input
+// function validation() {
+//     for (let index = 0; index < listTagCategories.length; index++) {
+//         if (listTagCategories[index].getAttribute('value') === actor.value) {
+//             return true
+//         }
+//     }
+//     return false
+// }
 
 
 

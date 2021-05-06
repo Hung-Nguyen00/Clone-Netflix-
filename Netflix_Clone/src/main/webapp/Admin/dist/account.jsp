@@ -27,6 +27,7 @@
 			error = (String) request.getParameter("error");
 		}
 	%>
+
     <jsp:include page="Header.jsp"></jsp:include>
         <div class="modelAcc">
             <div class="model-account bgc-white p-20 bd">
@@ -41,6 +42,7 @@
                         <div class="form-group">
                             <label for="exampleInputPassword">Password</label>
                             <input type="password" name="password" class="form-control"  placeholder="Password">
+                            
                         </div>
                         <div class="form-group">
                             <label for="expiration">Expiration Date</label>

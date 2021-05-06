@@ -66,7 +66,7 @@ public class ActorDAO {
 		return false;
 		}
 	}
-	// get Max ID in database
+	
 	public int getMaxId() throws SQLException {
 		try {
 		Connection connection = DBConnect1.getConnecttion();
@@ -74,10 +74,11 @@ public class ActorDAO {
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
 		int i = 0;
-//		 loop any row in database to get every Items and return a value
 		while(rs.next()) {
 			i = rs.getInt("actor_id");
+			System.out.println(i);
 		}
+		
 		return i;
 		} catch (Exception e) {
 		return 0;

@@ -97,6 +97,5 @@ public class ManagerMovieServlet extends HttpServlet {
 		}
 			response.sendRedirect(url);
 	}
-	
-}
+	}
 

@@ -10,14 +10,10 @@ public class Banner implements java.io.Serializable {
 	private BannerId id;
 	private Menu menu;
 	private Movie movie;
-	private String name_menu;
 
 	public Banner() {
-		
 	}
-	public Banner(String name_menu) {
-		this.name_menu = name_menu;
-	}
+
 	public Banner(BannerId id, Menu menu, Movie movie) {
 		this.id = id;
 		this.menu = menu;
@@ -38,14 +34,6 @@ public class Banner implements java.io.Serializable {
 
 	public void setMenu(Menu menu) {
 		this.menu = menu;
-	}
-
-	public String getName_menu() {
-		return this.name_menu;
-	}
-
-	public void setName_menu(String name_menu) {
-		this.name_menu = name_menu;
 	}
 
 	public Movie getMovie() {
