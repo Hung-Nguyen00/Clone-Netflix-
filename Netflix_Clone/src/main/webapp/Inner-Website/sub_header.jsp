@@ -38,7 +38,7 @@
                 <% int index =0; %>
                 <% for(Category c : category_dao.getCategorybyMenu(menu_id)) { %>
                 <%index++ ;%>
-                <li> <a href="${root}/Inner_Website/detail_category.jsp?category_id=<%=c.getCategoryId() %>"><%=c.getNameCategory() %></a></li>
+                <li> <a href="${root}/Inner-Website/detail_category.jsp?category_id=<%=c.getCategoryId() %>"><%=c.getNameCategory() %></a></li>
                 	<%if(index % 5 == 0 && index < category_dao.getCategorybyMenu(menu_id).size() ){ %>
                 	</ul>
                 	<ul>
