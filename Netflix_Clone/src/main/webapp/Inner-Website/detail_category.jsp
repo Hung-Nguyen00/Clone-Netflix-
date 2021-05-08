@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="DAO.CategoryDAO" %>
+<%@ page import="model.Category" %>
+<%@ page import="DAO.MenuDAO" %>
+<%@ page import="model.Menu" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +13,11 @@
     <link rel="stylesheet" href="../Inner-Website/lib/css/inner-style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <title>My List</title>
+    <title>Netflix</title>
 </head>
 
 <body>
+<h1> <%=request.getParameter("category_id")%></h1>
  	<jsp:include page="header.jsp"></jsp:include>
     <div class="My-List-label">
         <h1>My List</h1>
@@ -283,10 +288,6 @@
                 </div>
             </div>
         </div>
-        <div class="My-List-row-container" id="row-2">
-
-        </div>
-
     </div>
 </body>
 

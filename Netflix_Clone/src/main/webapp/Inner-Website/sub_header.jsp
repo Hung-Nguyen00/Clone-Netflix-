@@ -4,7 +4,7 @@
 <%@ page import="model.Category" %>
 <%@ page import="DAO.MenuDAO" %>
 <%@ page import="model.Menu" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +38,7 @@
                 <% int index =0; %>
                 <% for(Category c : category_dao.getCategorybyMenu(menu_id)) { %>
                 <%index++ ;%>
-                <li> <a href="${root}/"><%=c.getNameCategory() %></a></li>
+                <li> <a href="${root}/Inner_Website/detail_category.jsp?category_id=<%=c.getCategoryId() %>"><%=c.getNameCategory() %></a></li>
                 	<%if(index % 5 == 0 && index < category_dao.getCategorybyMenu(menu_id).size() ){ %>
                 	</ul>
                 	<ul>
