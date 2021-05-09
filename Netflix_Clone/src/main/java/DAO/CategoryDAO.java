@@ -27,11 +27,27 @@ public class CategoryDAO {
 				 list.add(category);
 			 }
 			 return list;
-			 } 
+			 }
+	public ArrayList<Category> getCategorybyCategoryId(int category_id) 
+			throws SQLException {
+			 Connection connection = DBConnect1.getConnection();
+			 String sql = "SELECT * FROM category WHERE category_id = '" + category_id + "'";
+			 PreparedStatement ps = connection.prepareCall(sql);
+			 ResultSet rs = ps.executeQuery();
+			 ArrayList<Category> list = new ArrayList<>();
+			 while (rs.next()) {
+				 Category category = new Category();
+				 category.setCategoryId(rs.getInt("category_id"));
+				 category.setMenuId(rs.getInt("menu_id"));
+				 category.setNameCategory(rs.getString("name_category"));
+				 list.add(category);
+			 }
+			 return list;
+			 }
 
 	public static void main(String[] args) throws SQLException  {
 		CategoryDAO category_dao = new CategoryDAO();
-		 for(Category cd : category_dao.getCategorybyMenu(2)){
+		 for(Category cd : category_dao.getCategorybyCategoryId(2)){
 			 System.out.println(cd.getCategoryId()+"-"+ cd.getNameCategory());
 		 }
 

@@ -20,7 +20,7 @@ public class Detail_CategoryDAO {
 			 while (rs.next()) {
 				 DetailMovie detail_movie = new DetailMovie();
 				 detail_movie.setCategoryId(rs.getInt("category_id"));
-				 detail_movie.setMovieId(rs.getInt("category_id"));
+				 detail_movie.setMovieId(rs.getInt("movie_id"));
 				 
 				 list.add(detail_movie);
 			 }
@@ -28,8 +28,8 @@ public class Detail_CategoryDAO {
 			 } 
 
 	public static void main(String[] args) throws SQLException  {
-		Detail_CategoryDAO category_dao = new Detail_CategoryDAO();
-		 for(DetailMovie cd : category_dao.getDetailMoviebyCategory(2)){
+		Detail_CategoryDAO detail_category_dao = new Detail_CategoryDAO();
+		 for(DetailMovie cd : detail_category_dao.getDetailMoviebyCategory(1)){
 			 System.out.println(cd.getCategoryId()+"-"+ cd.getMovieId());
 		 }
 

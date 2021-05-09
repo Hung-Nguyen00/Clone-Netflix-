@@ -15,7 +15,7 @@
  </head>
 
 <body>
-<h1> <%=request.getParameter("menu_id")%></h1>
+<h1 style="display:none"> <%=request.getParameter("menu_id")%></h1>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="content.jsp"></jsp:include>
