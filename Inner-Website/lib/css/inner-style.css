@@ -596,6 +596,7 @@ header ul li {
     flex: 0 0 20%;
     max-width: 20%;
     position: relative;
+    margin-bottom: 30px;
 }
 
 .popular-slider-card .popular-slider-details {
