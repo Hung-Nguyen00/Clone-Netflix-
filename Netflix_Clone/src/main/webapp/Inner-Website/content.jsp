@@ -45,10 +45,10 @@
     <!--  preview-model end-->
     <!-- slider start-->
     <% for(Movie m : movie_dao.getMovie(menu_id)) { %>
-    <div class="popular-slider">
+    <div class="popular-slider" style=" display: flex; flex-wrap: wrap; width: 100%;">
     
         <h2>Popular on Netflix</h2>
-        <div class="popular-slider-card">
+        <div class="popular-slider-card" style="flex-wrap: wrap;">
             <!-- slider-item-popular start-->
             <div class="popular-slider-card-item">
                 <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">

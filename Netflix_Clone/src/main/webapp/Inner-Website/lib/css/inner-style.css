@@ -587,6 +587,7 @@ header ul li {
     display: flex;
     flex: 0 0 100%;
     max-width: 100%;
+    flex-wrap: wrap;
     margin-left: 50px;
     transition: margin 1s ease;
 }
@@ -596,6 +597,7 @@ header ul li {
     flex: 0 0 20%;
     max-width: 20%;
     position: relative;
+    margin-bottom: 30px;
 }
 
 .popular-slider-card .popular-slider-details {
@@ -1375,23 +1377,16 @@ header ul li {
 .My-List-row-container {
     margin-bottom: 100px;
     position: relative;
-    width: 100%;
+    width: 100vw;
     display: flex;
     padding: 0 65px;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: end;
-    flex: 0 0 100%;
-    max-width: 100%;
 }
 
 .My-List-item {
-    flex: 0 0 10%;
-    max-width: 100%;
+    flex-basis: 15%;
     position: relative;
     transition: transform 2s;
-    padding: 5px;
-    margin-bottom: 10px;
 }
 
 .My-List-item img {
