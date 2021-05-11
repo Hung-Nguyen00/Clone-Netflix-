@@ -7,24 +7,68 @@ package model;
  */
 public class DetailMovie implements java.io.Serializable {
 
-	private char stt;
+
+	private int stt;
 	private Category category;
 	private Movie movie;
+	private String category_name;
+	public String getcategory_name() {
+		return category_name;
+	}
 
+	public void setcategory_name(String category_cate) {
+		this.category_name = category_cate;
+	}
+
+	private int movie_id;
+	private int category_id;
+	private String last_update;
+	
 	public DetailMovie() {
 	}
 
-	public DetailMovie(char stt, Category category, Movie movie) {
+	public DetailMovie(int stt, Category category, Movie movie) {
 		this.stt = stt;
 		this.category = category;
 		this.movie = movie;
 	}
+	public DetailMovie(int stt, int movie_id, int category_id) {
+		super();
+		this.stt = stt;
+		this.movie_id = movie_id;
+		this.category_id = category_id;
+	}
 
-	public char getStt() {
+	
+	public int getMovie_id() {
+		return movie_id;
+	}
+
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
+
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+
+	public String getLast_update() {
+		return last_update;
+	}
+
+	public void setLast_update(String last_update) {
+		this.last_update = last_update;
+	}
+
+	public int getStt() {
 		return this.stt;
 	}
 
-	public void setStt(char stt) {
+	public void setStt(int stt) {
 		this.stt = stt;
 	}
 

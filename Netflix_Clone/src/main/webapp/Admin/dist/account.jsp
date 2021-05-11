@@ -147,7 +147,8 @@
       <script type="text/javascript">
 	const model = document.querySelector('.modelAcc'),
 		    body = document.querySelector('body'),
-		    btnAdd = document.querySelector('.btn-add')
+		    btnAdd = document.querySelector('.btn-add'),
+		   
     
     btnAdd.addEventListener('click', () => {
         model.classList.add('open');

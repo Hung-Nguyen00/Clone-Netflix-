@@ -7,9 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.CategoryDAO;
 import DAO.MovieDAO;
 import DAO.Movie_ActorDAO;
+import DAO.Movie_Category;
 import model.ActorMovie;
+import model.DetailMovie;
 import model.Movie;
 
 /**
@@ -20,6 +23,8 @@ public class ManagerMovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        Movie_ActorDAO actorMovieDAO = new Movie_ActorDAO();
        MovieDAO movieDAO = new MovieDAO();
+       CategoryDAO cateDAO = new CategoryDAO();
+       Movie_Category movieCateDAO = new Movie_Category();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,6 +41,9 @@ public class ManagerMovieServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
 		String movie_id = request.getParameter("movie_id");
+		String stt = request.getParameter("stt");
+		
+		String sttCate = request.getParameter("sttCate");
 		String url = "";
 		try {
 			switch (command) {
@@ -43,12 +51,22 @@ public class ManagerMovieServlet extends HttpServlet {
 					movieDAO.delete(Integer.parseInt(movie_id));
 					url = "/Netflix_Clone/Admin/dist/movie_Movie.jsp";
 					break;
+				case "deleteActor":
+					actorMovieDAO.delete(Integer.parseInt(stt));
+					url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + movie_id;
+					break;
+				case "deleteCate":
+					movieCateDAO.delete(Integer.parseInt(sttCate));
+					url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + movie_id;
+					break;
 			}
 		} catch (Exception e) {
 		}
 		response.sendRedirect(url);
 	}
-
+	//1. Create Movie
+	//2. Create Catogories
+	//3. Add Cetogories in detail_movie
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -56,37 +74,66 @@ public class ManagerMovieServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String command = request.getParameter("command");
-		String first_name = request.getParameter("first_name");
-		String last_name = request.getParameter("last_name");
-		String director = request.getParameter("director");
+		String name = request.getParameter("name");
+		String maturity = request.getParameter("maturity_rate");
+		String duration = request.getParameter("duration");
+		String image = request.getParameter("image");
+		String trailer = request.getParameter("trailer");
+		String movie = request.getParameter("movie");
+		String description = request.getParameter("description");
+		String logo = request.getParameter("logo");
+		String top_hot = request.getParameter("top_hot");
+			
+		String actor_id = request.getParameter("browActor");
+		String cate_id = request.getParameter("browCate");
+		
 		String url = "", error = "";
 		try {
 			if (error.length() == 0) {
 				switch (command) {
 				case "insert":
-					if(director != null)
-					{
-						
-						url = "/Netflix_Clone/Admin/dist/actor.jsp";
+					int movie_id = movieDAO.getMaxId() + 1;
+					if(top_hot != null)
+					{	
+						movieDAO.insert(new Movie(movie_id, name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("1")));
+						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + movie_id;
+						request.setAttribute("succced", "A new movie is created");	
 						break;
 					}
 					else
 					{
-						
-						url = "/Netflix_Clone/Admin/dist/actor.jsp";
+						movieDAO.insert(new Movie(movie_id, name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("2")));
+						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + movie_id;
+						request.setAttribute("succced", "A new movie is created");	
 						break;
 					}
-					
+				case "insertActor":
+						int stt = actorMovieDAO.getMaxId() + 1;
+						actorMovieDAO.insert(new ActorMovie(stt, Integer.parseInt(request.getParameter("movie_id")), Integer.parseInt(actor_id)));
+						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" +  request.getParameter("movie_id");
+						request.setAttribute("succced", "A new movie is created");	
+						break;
+				case "insertCate":
+						int sttCate = cateDAO.getMaxStt() + 1;
+						movieCateDAO.insert(new DetailMovie(sttCate, Integer.parseInt(request.getParameter("movie_id")), Integer.parseInt(cate_id)));
+						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" +  request.getParameter("movie_id");
+						request.setAttribute("succced", "A new movie is created");	
+						break;
+												
 				case "update":
-					if(director.equals("true"))
+					if(top_hot != null)
 					{
-						
-						url = "/Netflix_Clone/Admin/dist/actor.jsp";
+						movieDAO.update(new Movie(Integer.parseInt(request.getParameter("movie_id")), name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("1")));
+						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + request.getParameter("movie_id");
+						request.setAttribute("succced", "Update succced");	
 						break;
 					}
 					else
 					{
-						url = "/Netflix_Clone/Admin/dist/actor.jsp";
+	
+						movieDAO.update(new Movie(Integer.parseInt(request.getParameter("movie_id")), name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("2")));
+						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + request.getParameter("movie_id");
+						request.setAttribute("succced", "Update succced");	
 						break;
 					}
 				}
@@ -96,6 +143,7 @@ public class ManagerMovieServlet extends HttpServlet {
 		} catch (Exception e) {
 		}
 			response.sendRedirect(url);
+		
 	}
 	}
 

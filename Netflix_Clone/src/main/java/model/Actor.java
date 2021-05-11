@@ -33,7 +33,13 @@ public class Actor implements java.io.Serializable {
 		this.lastUpdate = lastUpdate;
 		this.actorMovies = actorMovies;
 	}
+	public Actor(int actorId, String firstName, String lastName, Byte director) {
+		this.actorId = actorId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.director = director;
 
+	}
 	public int getActorId() {
 		return this.actorId;
 	}

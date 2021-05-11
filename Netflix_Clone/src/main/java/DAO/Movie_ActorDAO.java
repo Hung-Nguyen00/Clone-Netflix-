@@ -15,16 +15,21 @@ public class Movie_ActorDAO {
 	
 		public ArrayList<ActorMovie> getListMovie_Actor(int movie_id) throws SQLException {
 			Connection connection = DBConnect1.getConnecttion();
-			String sql = "SELECT * FROM actor_movie WHERE movie_id = '"+ movie_id +"'";
+			String sql = "SELECT c.first_name as first_name, c.last_name as last_name, a.stt as stt , DATE_FORMAT(a.last_update, '%d-%m-%Y') last_update "
+						+ " FROM actor_movie as a "
+						+ "Join actor as c ON c.actor_id = a.actor_id "
+						+ "where a.movie_id = '" + movie_id +"'";
+			
 			PreparedStatement ps = connection.prepareCall(sql);
 			ResultSet rs = ps.executeQuery();
+			
 			ArrayList<ActorMovie> list = new ArrayList<>();
 			while (rs.next()) {
 				ActorMovie actor = new ActorMovie();
 				actor.setStt(rs.getInt("stt"));
-				actor.setLastUpdate(rs.getString("last_update"));
-				actor.setMovie_id(rs.getInt("movie_id"));
-				actor.setActor_id(rs.getInt("actor_id"));
+				actor.setLast_update(rs.getString("last_update"));
+				actor.setFirstName(rs.getString("first_name"));
+				actor.setLastName(rs.getString("last_name"));
 				list.add(actor);
 			}
 			return list;
@@ -101,7 +106,7 @@ public class Movie_ActorDAO {
 		public boolean delete(int stt) throws SQLException {
 		try {
 			Connection connection = DBConnect1.getConnecttion();
-			String sql = "DELETE FROM actor WHERE actor_id = '"+ stt +"'";
+			String sql = "DELETE FROM actor_movie WHERE stt = '"+ stt +"'";
 			PreparedStatement ps = connection.prepareCall(sql)	;
 			int temp = ps.executeUpdate();
 			return temp == 1;
@@ -112,14 +117,16 @@ public class Movie_ActorDAO {
 		
 		public static void main(String[] args) throws SQLException {
 				Movie_ActorDAO dao = new Movie_ActorDAO();
-				int j=2, k=25;
-				for(int i=1; i<5; i++ ) {
+				int j=1, k=27;
+				for(int i=5; i<5; i++ ) {
 					System.out.println(dao.insert(new ActorMovie(i, j, k )));
 					k++;
 				}
-				System.out.println(dao.getMaxId());
-				for (ActorMovie ds : dao.getListMovie_Actor(2)) {
-					System.out.println(ds.getMovie_id() + " - " + ds.getActor_id());		
-					}	
+//				System.out.println();
+//				System.out.println(dao.getMaxId());
+//				System.out.println(dao.getListMovie_Actor(2).size());
+//				for (ActorMovie ds : dao.getListMovie_Actor(2)) {
+//					System.out.println(ds.getFirstName() + " - " + ds.getLastName() + " " + ds.getLast_update());		
+//					}	
 		}
 	}

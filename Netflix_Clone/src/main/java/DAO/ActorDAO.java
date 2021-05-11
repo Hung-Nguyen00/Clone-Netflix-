@@ -27,7 +27,27 @@ public class ActorDAO {
 			actor.setFirstName(rs.getString("first_name"));
 			actor.setLastName(rs.getString("last_name"));
 			actor.setDirector(rs.getByte("director"));
-			actor.setLastUpdate(rs.getString("last_update"));
+			actor.setLastUpdate(rs.getDate("last_update"));
+			list.add(actor);
+		}
+		return list;
+	}
+	
+	public ArrayList<Actor> getListActorOfMovie(int movie_id) throws SQLException {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "SELECT * FROM actor as a "
+				+ "WHERE a.actor_id NOT IN "
+				+ "(SELECT am.actor_id FROM actor_movie as am where am.movie_id = '"+ movie_id +"')";//SELECT * FROM netflix.category WHERE menu_id = '"+ menu_id +"';
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		ArrayList<Actor> list = new ArrayList<>();
+		while (rs.next()) {
+			Actor actor = new Actor();
+			actor.setActorId(rs.getInt("actor_id"));
+			actor.setFirstName(rs.getString("first_name"));
+			actor.setLastName(rs.getString("last_name"));
+			actor.setDirector(rs.getByte("director"));
+			actor.setLastUpdate(rs.getDate("last_update"));
 			list.add(actor);
 		}
 		return list;
@@ -121,7 +141,7 @@ public class ActorDAO {
 //				System.out.println(dao.insert(new Actor(i, "John", "Nguyen", Byte.parseByte("1")))); 
 //			}
 			System.out.println(dao.getMaxId());
-			for (Actor ds : dao.getListActor()) {
+			for (Actor ds : dao.getListActorOfMovie(2)) {
 				System.out.println(ds.getFirstName() + " - " + ds.getLastName() + " " + ds.getLastUpdate());		
 				}	
 	}

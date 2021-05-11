@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Update - Movie</title>
+    <title>Create Movie</title>
      <link href="${root}/Admin/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -39,12 +39,6 @@
 		<% CategoryDAO cateDAO = new CategoryDAO(); %>
 		<% ActorDAO actorDAO = new ActorDAO(); %>
 		<% String param = request.getParameter("movie_id"); %>
-		<% 
-		Movie movie = new Movie();
-		if(param!= null){
-			movie = movieDAO.getMovie(Integer.parseInt(param));
-		}
-		%>
         <div class="modelAcc">
             <div class="model-account bgc-white p-20 bd">
                 <h6 class="c-grey-900 pt-3 text-center">Add Actor</h6>
@@ -117,7 +111,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Detail Movies</h1>
+                    <h1 class="mt-4">Information of Movies</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                         <li class="breadcrumb-item">Movie</li>
@@ -135,45 +129,41 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-9">
                                             <label for="name">Name</label>
-                                            <input type="text" name="name"  class="form-control" value="<%=movie.getNameMovie() %>" id="name">
+                                            <input type="text" name="name"  class="form-control"  id="name">
 
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="duration">Duration</label>
-                                            <input type="text" name="duration" placeholder="2h10m" class="form-control" value="<%=movie.getDuration()%>" id="duration">
+                                            <input type="text" name="duration" placeholder="2h10m" class="form-control" id="duration">
                                         </div>
                                     </div>
                                      <div class="form-group">
                                         <label for="maturity_rate">Maturity Rate</label>
-                                        <input type="text"  class="form-control" name="maturity_rate" value="<%=movie.getMaturityRating() %>" placeholder="Match for more than 18 ages">
+                                        <input type="text"  class="form-control" name="maturity_rate" placeholder="Match for more than 18 ages">
                                     </div>
                                     <div class="form-group">
                                         <label for="trailer">Trailer</label>
-                                        <input type="text" name="trailer" value="<%=movie.getTrailer() %>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
+                                        <input type="text" name="trailer" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label for="Image">Image</label>
-                                        <input type="text" name="image" value="<%=movie.getImage()%>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
+                                        <input type="text" name="image" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label for="movie">Movie</label>
-                                        <input type="text" name="movie" value="<%=movie.getVideo()%>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="movie">
+                                        <input type="text" name="movie" value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="movie">
                                     </div>
                                     <div class="form-group">
                                         <label for="Description">Description</label>
-                                        <textarea class="form-control" value="<%=movie.getDescriptionMovie()%>" name="description" id="Description" rows="3"> Hello</textarea>
+                                        <textarea class="form-control" name="description" id="Description" rows="3"> Hello</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="Logo">Logo</label>
-                                        <input type="text" name="logo" value="<%=movie.getLo() %>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="logo">
+                                        <input type="text" name="logo" value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="logo">
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox checkbox-circle checkbox-info peers ai-c">
-                                        	<%if(movie.getTopHot() == 1){ %>
-                                            <input type="checkbox" id="inputCall2" checked name="top_hot" class="peer">
-                                           <%}else{ %>
                                             <input type="checkbox" id="inputCall2" name="top_hot" class="peer">
-                                           <%} %>
                                             <label for="inputCall2" class="peers peer-greed js-sb ai-c">
                                                 <span class="peer peer-greed">Top Hot</span>
                                             </label>

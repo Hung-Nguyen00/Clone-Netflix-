@@ -64,19 +64,18 @@ public class ManagerActorServlet extends HttpServlet {
 			if (error.length() == 0) {
 				switch (command) {
 				case "insert":
-					if(director.equals("false"))
+					if(director != null)
 					{
 						actorDAO.insert(new Actor(actorDAO.getMaxId()+1, first_name, last_name, Byte.parseByte("2")));
 						url = "/Netflix_Clone/Admin/dist/actor.jsp";
 						break;
 					}
-					if(director.equals("true"))
+					else
 					{
 						actorDAO.insert(new Actor(actorDAO.getMaxId()+1, first_name, last_name, Byte.parseByte("1")));
 						url = "/Netflix_Clone/Admin/dist/actor.jsp";
 						break;
 					}
-					
 				case "update":
 					if(director.equals("true"))
 					{

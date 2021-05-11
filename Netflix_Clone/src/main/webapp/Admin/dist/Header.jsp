@@ -90,8 +90,12 @@
                             Banner
                         </a>
                          <a class="nav-link collapsed" href="actor.jsp">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-user-injured"></i></div>
                             Actor
+                        </a>
+                         <a class="nav-link collapsed" href="allofmovie.jsp">
+                            <div class="sb-nav-link-icon"><i class="fas fa-film"></i></div>
+                            Movies
                         </a>
                         <a class="nav-link collapsed" href="account.jsp">
                             <div class="sb-nav-link-icon"><i class="fas fa-user-circle"></i></div>

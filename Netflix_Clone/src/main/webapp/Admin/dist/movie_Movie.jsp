@@ -38,7 +38,7 @@
                             <button class="float-right w-auto btn-info border-0 p-1 pr-2 pl-2">
                                 <div>
                                     <i class="fas fa-plus"></i>
-                                    <a href="movie_Detail.jsp" class="text-decoration-none  text-light">Add</a>
+                                    <a href="create_movie.jsp" class="text-decoration-none  text-light">Add</a>
                                 </div>
                             </button>
                         </div>
@@ -64,8 +64,8 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <%int i=0; %>
-                                    <% for(Movie movie : movieDAO.getListMovie()){ %>
+                                    <%int i=1; %>
+                                    <% for(Movie movie : movieDAO.getListMovieOfMenu(2)){ %>
                                         <tr>
                                             <td><%=i++ %></td>
                                             <td><%=movie.getNameMovie() %></td>
@@ -83,8 +83,9 @@
                                                      </a>                                                
                                                      </button>
                                                 <button class="btn-wrench bg-info border-0">
+                                                   <a class="text-decoration-none text-light" 
+                                                  href="${root}/Admin/dist/movie_Detail.jsp?command=update&movie_id=<%=movie.getMovieId()%>">
                                                    <i class="fas fa-wrench"></i>
-                                                   </a>
                                                 </button>
                                             </td>  
                                         </tr>

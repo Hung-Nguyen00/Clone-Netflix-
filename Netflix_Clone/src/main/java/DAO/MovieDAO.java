@@ -34,6 +34,35 @@ public class MovieDAO {
 		}
 		return list;
 	}
+	
+	public ArrayList<Movie> getListMovieOfMenu(int id_menu) throws SQLException {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "SELECT * FROM netflix.movie "
+				+ "where movie_id IN (SELECT d.movie_id FROM  netflix.category as c "
+				+ "INNER JOIN netflix.detail_movie as d ON d.category_id = c.category_id "
+				+ "where c.menu_id = '"+id_menu +"')";
+		
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		
+		ArrayList<Movie> list = new ArrayList<>();
+		while (rs.next()) {
+			Movie actor = new Movie();
+			actor.setMovieId(rs.getInt("movie_id"));
+			actor.setNameMovie(rs.getString("name_movie"));
+			actor.setDescriptionMovie(rs.getString("description_movie"));
+			actor.setImage(rs.getString("image"));
+			actor.setTrailer(rs.getString("trailer"));
+			actor.setVideo(rs.getString("video"));
+			actor.setLo(rs.getString("lo"));
+			actor.setMaturityRating(rs.getString("maturity_rating"));
+			actor.setLastUpdate(rs.getDate("last_update"));
+			actor.setDuration(rs.getString("duration"));
+			actor.setTopHot(rs.getByte("top_hot"));
+			list.add(actor);
+		}
+		return list;
+	}
 
 	public Movie getMovie(int movie_id) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
@@ -143,11 +172,12 @@ public class MovieDAO {
 //				System.out.println(dao.insert(new Movie(i,"Buffalo",null,null,null,null,null,null,null,Byte.parseByte("1")))); 
 //			}
 //			System.out.println(dao.update(new Movie(6,"Bird",null,null,null,null,null,null,null,Byte.parseByte("1"))));
-			System.out.println(dao.delete(7));
-			System.out.println(dao.getMaxId());
-			for (Movie ds : dao.getListMovie()) {
-				System.out.println(ds.getNameMovie() + " - " + ds.getDescriptionMovie());		
-				}	
+//			System.out.println(dao.delete(7));
+//			System.out.println(dao.getMaxId());
+			for(Movie m : dao.getListMovieOfMenu(2))
+			{
+				System.out.println(m.getNameMovie());
+			}
 	}
 
 }

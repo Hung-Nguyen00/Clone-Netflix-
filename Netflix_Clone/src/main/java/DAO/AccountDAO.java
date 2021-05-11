@@ -49,9 +49,9 @@ public class AccountDAO {
 		}
 		return account;
 	}
-	public boolean checkEmail(String email) throws SQLException{
+	public boolean checkEmail(String email, String password) throws SQLException{
 			Connection connection = DBConnect1.getConnecttion();
-			String sql = "SELECT email FROM account WHERE email = '" + email + "'";
+			String sql = "SELECT email FROM account WHERE email = '" + email + "' and password_account = '"+ password+"'";
 			PreparedStatement ps;
 			try {
 				 ps = connection.prepareCall(sql);
@@ -119,13 +119,14 @@ public class AccountDAO {
 //				System.out.println(dao.insert(new Account("abc"+ i + "@gmail.com","123", null, "0783727238", null))); 
 //			}
 			
-			System.out.println(dao.getAccount("abc@gmail.com").getPhone());
-//			System.out.println(dao.checkEmail("thanhh41100@gmail.com"));
-			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
-//			System.out.println(dao.delete("abc3@gmail.com"));
-			for (Account ds : dao.getListAccount()) {
-				System.out.println(ds.getEmail() + " - " + ds.getPasswordAccount() + "-" + ds.getPhone());		
-				}	
+//			System.out.println(dao.getAccount("abc@gmail.com").getPhone());
+////			System.out.println(dao.checkEmail("thanhh41100@gmail.com"));
+//			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
+////			System.out.println(dao.delete("abc3@gmail.com"));
+//			for (Account ds : dao.getListAccount()) {
+//				System.out.println(ds.getEmail() + " - " + ds.getPasswordAccount() + "-" + ds.getPhone());		
+//				}	
+			System.out.println(dao.checkEmail("abc1@gmail.com", "thanhhung"));
 	}
 			
 }
