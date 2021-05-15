@@ -14,6 +14,18 @@ public class SeasonMovie implements java.io.Serializable {
 	private byte seasonId;
 	private Movie movie;
 	private Date lastUpdate;
+	private int movie_id;
+	private String last_update;
+
+
+	public String getLast_update() {
+		return last_update;
+	}
+
+	public void setLast_update(String last_update) {
+		this.last_update = last_update;
+	}
+
 	private Set seriesMovies = new HashSet(0);
 
 	public SeasonMovie() {
@@ -29,6 +41,11 @@ public class SeasonMovie implements java.io.Serializable {
 		this.movie = movie;
 		this.lastUpdate = lastUpdate;
 		this.seriesMovies = seriesMovies;
+	}
+	
+	public SeasonMovie(byte seasonId, int movie_id) {
+		this.seasonId = seasonId;
+		this.movie_id = movie_id;
 	}
 
 	public byte getSeasonId() {
@@ -46,7 +63,15 @@ public class SeasonMovie implements java.io.Serializable {
 	public void setMovie(Movie movie) {
 		this.movie = movie;
 	}
+	
+	public int getMovie_id() {
+		return movie_id;
+	}
 
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
+	
 	public Date getLastUpdate() {
 		return this.lastUpdate;
 	}

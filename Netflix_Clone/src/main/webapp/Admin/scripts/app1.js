@@ -8,13 +8,7 @@ const model = document.querySelector('.modelAcc'),
     body = document.querySelector('body'),
     btnAdd = document.querySelector('.btn-add'),
     actor = document.querySelector('.browActor'),
-    dataList = document.getElementById('browActor'),
-    buttonAdd = document.querySelector('.add-Actor'),
-    listCategories = document.getElementById('list-categories'),
-    tbody = document.querySelector('tbody'),
-    indexAccount = tbody.querySelectorAll('tr'),
-    infoAccount = document.querySelectorAll('td'),
-    editAccount = tbody.querySelector('.btn-wrench')
+   
     // var ok = (5>3) ? 'b' : 'c'
 
 // editAccount.addEventListener('click', (e) => {
@@ -52,6 +46,7 @@ const model = document.querySelector('.modelAcc'),
 //     }
 //     return false
 // }
+
 
 btnAddCate.addEventListener('click', () => {
     modelCate.classList.add('open');

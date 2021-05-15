@@ -18,8 +18,8 @@ import model.Movie;
 /**
  * Servlet implementation class ManagerMovie
  */
-@WebServlet("/ManagerMovie")
-public class ManagerMovieServlet extends HttpServlet {
+@WebServlet("/ManagerTVShow")
+public class ManagerTVShowServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        Movie_ActorDAO actorMovieDAO = new Movie_ActorDAO();
        MovieDAO movieDAO = new MovieDAO();
@@ -28,7 +28,7 @@ public class ManagerMovieServlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerMovieServlet() {
+    public ManagerTVShowServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,15 +49,15 @@ public class ManagerMovieServlet extends HttpServlet {
 			switch (command) {
 				case "delete":
 					movieDAO.delete(Integer.parseInt(movie_id));
-					url = "/Netflix_Clone/Admin/dist/movie_Movie.jsp";
+					url = "/Netflix_Clone/Admin/dist/movie_TVShow.jsp";
 					break;
 				case "deleteActor":
 					actorMovieDAO.delete(Integer.parseInt(stt));
-					url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + movie_id;
+					url = "/Netflix_Clone/Admin/dist/create_TVShow.jsp?movie_id=" + movie_id;
 					break;
 				case "deleteCate":
 					movieCateDAO.delete(Integer.parseInt(sttCate));
-					url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + movie_id;
+					url = "/Netflix_Clone/Admin/dist/create_TVShow.jsp?movie_id=" + movie_id;
 					break;
 			}
 		} catch (Exception e) {
@@ -96,27 +96,27 @@ public class ManagerMovieServlet extends HttpServlet {
 					if(top_hot != null)
 					{	
 						movieDAO.insert(new Movie(movie_id, name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("1")));
-						url = "/Netflix_Clone/Admin/dist/movie_Detail.jsp?command=update&movie_id=" + movie_id;
+						url = "/Netflix_Clone/Admin/dist/detail_TVShow.jsp?command=update&movie_id=" + movie_id;
 						request.setAttribute("succced", "A new movie is created");	
 						break;
 					}
 					else
 					{
 						movieDAO.insert(new Movie(movie_id, name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("2")));
-						url = "/Netflix_Clone/Admin/dist/movie_Detail.jsp?command=update&movie_id=" + movie_id;
+						url = "/Netflix_Clone/Admin/dist/detail_TVShow.jsp?command=update&movie_id=" + movie_id;
 						request.setAttribute("succced", "A new movie is created");	
 						break;
 					}
 				case "insertActor":
 						int stt = actorMovieDAO.getMaxId() + 1;
 						actorMovieDAO.insert(new ActorMovie(stt, Integer.parseInt(request.getParameter("movie_id")), Integer.parseInt(actor_id)));
-						url = "/Netflix_Clone/Admin/dist/movie_Detail.jsp?command=update&movie_id=" +  request.getParameter("movie_id");
+						url = "/Netflix_Clone/Admin/dist/detail_TVShow.jsp?command=update&movie_id=" +  request.getParameter("movie_id");
 						request.setAttribute("succced", "A new movie is created");	
 						break;
 				case "insertCate":
 						int sttCate = cateDAO.getMaxStt() + 1;
 						movieCateDAO.insert(new DetailMovie(sttCate, Integer.parseInt(request.getParameter("movie_id")), Integer.parseInt(cate_id)));
-						url = "/Netflix_Clone/Admin/dist/movie_Detail.jsp?command=update&movie_id=" +  request.getParameter("movie_id");
+						url = "/Netflix_Clone/Admin/dist/detail_TVShow.jsp?command=update&movie_id=" +  request.getParameter("movie_id");
 						request.setAttribute("succced", "A new movie is created");	
 						break;
 												
@@ -124,7 +124,7 @@ public class ManagerMovieServlet extends HttpServlet {
 					if(top_hot != null)
 					{
 						movieDAO.update(new Movie(Integer.parseInt(request.getParameter("movie_id")), name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("1")));
-						url = "/Netflix_Clone/Admin/dist/movie_Detail.jsp?command=update&movie_id=" + request.getParameter("movie_id");
+						url = "/Netflix_Clone/Admin/dist/detail_TVShow.jsp?movie_id=" + request.getParameter("movie_id");
 						request.setAttribute("succced", "Update succced");	
 						break;
 					}
@@ -132,13 +132,13 @@ public class ManagerMovieServlet extends HttpServlet {
 					{
 	
 						movieDAO.update(new Movie(Integer.parseInt(request.getParameter("movie_id")), name, description, image, trailer, movie, logo, maturity, duration, Byte.parseByte("2")));
-						url = "/Netflix_Clone/Admin/dist/create_movie.jsp?movie_id=" + request.getParameter("movie_id");
+						url = "/Netflix_Clone/Admin/dist/detail_TVShow.jsp?movie_id=" + request.getParameter("movie_id");
 						request.setAttribute("succced", "Update succced");	
 						break;
 					}
 				}
 			} else {
-				url = "/Netflix_Clone/Admin/dist/movie_Movie.jsp";
+				url = "/Netflix_Clone/Admin/dist/movie_TVShow.jsp";
 			}
 		} catch (Exception e) {
 		}

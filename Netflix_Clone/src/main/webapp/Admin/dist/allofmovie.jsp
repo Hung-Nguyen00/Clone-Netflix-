@@ -76,14 +76,20 @@
                                                <%} %>
                                             </td>
                                              <td class="text-center">
-                                                <button class="btn-trash btn-danger border-0">  
+                                                <button class="btn btn-danger border-0">  
                                                     <a class="text-decoration-none text-light" href="${root}/ManagerMovie?command=delete&movie_id=<%=movie.getMovieId()%>"> 
                                                      <i class="fas fa-trash"></i>
                                                      </a>                                                
                                                      </button>
-                                                <button class="btn-wrench bg-info border-0">
-                                                   <i class="fas fa-wrench"></i>
-                                                   </a>
+                                                <button class="btn btn-info bg-info border-0">
+                                                   <a class="text-decoration-none text-light" 
+                                                  href="${root}/Admin/dist/movie_Detail.jsp?command=update&movie_id=<%=movie.getMovieId()%>">
+                                                   Movie
+                                                </button>
+                                                <button class="btn btn-info bg-info border-0">
+                                                   <a class="text-decoration-none text-light" 
+                                                  href="${root}/Admin/dist/detail_TVShow.jsp?command=update&movie_id=<%=movie.getMovieId()%>">
+                                                   TV Show
                                                 </button>
                                             </td>  
                                         </tr>

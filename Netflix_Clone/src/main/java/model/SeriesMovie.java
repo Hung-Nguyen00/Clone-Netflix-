@@ -12,6 +12,24 @@ public class SeriesMovie implements java.io.Serializable {
 	private int seriesId;
 	private SeasonMovie seasonMovie;
 	private String descriptionSeries;
+	private byte season_id;
+	private String last_update;
+	public String getLast_update() {
+		return last_update;
+	}
+
+	public void setLast_update(String last_update) {
+		this.last_update = last_update;
+	}
+
+	public byte getSeason_id() {
+		return season_id;
+	}
+
+	public void setSeason_id(byte season_id) {
+		this.season_id = season_id;
+	}
+
 	private String duration;
 	private String video;
 	private Date lastUpdate;
@@ -32,6 +50,13 @@ public class SeriesMovie implements java.io.Serializable {
 		this.duration = duration;
 		this.video = video;
 		this.lastUpdate = lastUpdate;
+	}
+	public SeriesMovie(int seriesId, byte season_id, String descriptionSeries, String duration, String video) {
+		this.seriesId = seriesId;
+		this.season_id = season_id;
+		this.descriptionSeries = descriptionSeries;
+		this.duration = duration;
+		this.video = video;
 	}
 
 	public int getSeriesId() {

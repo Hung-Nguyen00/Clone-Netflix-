@@ -1,12 +1,16 @@
-
-<%@page import="DAO.*"%>
-
-<%@page import="model.SeasonMovie" %>
 <%@page import="model.DetailMovie"%>
+<%@page import="DAO.CategoryDAO"%>
+<%@page import="DAO.ActorDAO"%>
+<%@page import="DAO.MovieDAO" %>
+<%@page import="DAO.Movie_ActorDAO" %>
+<%@page import="DAO.Movie_Category" %>
+<%@page import= "DAO.SeasonDAO" %>
+
 <%@page import="model.Movie"%>
 <%@page import="model.Actor"%>
 <%@page import="model.Category" %>
 <%@page import="model.ActorMovie, java.util.*" %>
+<%@page import="model.SeasonMovie" %>
 <%@page import="model.Category" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
@@ -34,15 +38,10 @@
 		<% Movie_ActorDAO actormovieDAO = new Movie_ActorDAO(); %>
 		<% Movie_Category movieCateDAO = new Movie_Category(); %>
 		<% CategoryDAO cateDAO = new CategoryDAO(); %>
-		<% ActorDAO actorDAO = new ActorDAO(); %>
-		<% String param = request.getParameter("movie_id"); %>
-		<% 
+		<% ActorDAO actorDAO = new ActorDAO();
 		SeasonDAO seasonDAO = new SeasonDAO();
-		Movie movie = new Movie();
-		if(param!= null){
-			movie = movieDAO.getMovie(Integer.parseInt(param));
-		}
 		%>
+		<% String param = request.getParameter("movie_id"); %>
         <div class="modelAcc">
             <div class="model-account bgc-white p-20 bd">
                 <h6 class="c-grey-900 pt-3 text-center">Add Actor</h6>
@@ -115,17 +114,17 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Information of Movies</h1>
+                    <h1 class="mt-4">Information of TVShow</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
                         <li class="breadcrumb-item"><a href="movie_TVShow.jsp">TV Show</a></li>
-                        <li class="breadcrumb-item active">TVShow Details</li>
+                        <li class="breadcrumb-item active">TV Show Details</li>
                     </ol>
                     <div class="d-flex flex-lg-wrap">
                         <div class="bgc-white p-20 bd border pr-3 pl-3 col-md-6">
                             <h4 class="c-grey-900 text-center pt-3 mb-4">Movie Information</h4>
                             <div class="mT-30">
-                             <form class="needs-validation pb-2" novalidate action="${root}/ManagerMovie" method="post">
+                                <form class="needs-validation pb-2" novalidate action="${root}/ManagerTVShow" method="post">
                                 <%String succced = (String)request.getAttribute("succced"); %>
                                 <%if(succced != null){ %>
                                 	<p class="text-danger"><%=succced%> </p>
@@ -133,45 +132,41 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-9">
                                             <label for="name">Name</label>
-                                            <input type="text" name="name"  class="form-control" value="<%=movie.getNameMovie() %>" id="name">
+                                            <input type="text" name="name"  class="form-control"  id="name">
 
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="duration">Duration</label>
-                                            <input type="text" name="duration" placeholder="2h10m" class="form-control" value="<%=movie.getDuration()%>" id="duration">
+                                            <input type="text" name="duration" placeholder="2h10m" class="form-control" id="duration">
                                         </div>
                                     </div>
                                      <div class="form-group">
                                         <label for="maturity_rate">Maturity Rate</label>
-                                        <input type="text"  class="form-control" name="maturity_rate" value="<%=movie.getMaturityRating() %>" placeholder="Match for more than 18 ages">
+                                        <input type="text"  class="form-control" name="maturity_rate" placeholder="Match for more than 18 ages">
                                     </div>
                                     <div class="form-group">
                                         <label for="trailer">Trailer</label>
-                                        <input type="text" name="trailer" value="<%=movie.getTrailer() %>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
+                                        <input type="text" name="trailer" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label for="Image">Image</label>
-                                        <input type="text" name="image" value="<%=movie.getImage()%>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
+                                        <input type="text" name="image" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label for="movie">Movie</label>
-                                        <input type="text" name="movie" value="<%=movie.getVideo()%>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="movie">
+                                        <input type="text" name="movie" value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="movie">
                                     </div>
                                     <div class="form-group">
                                         <label for="Description">Description</label>
-                                        <textarea class="form-control" value="<%=movie.getDescriptionMovie()%>" name="description" id="Description" rows="3"> Hello</textarea>
+                                        <textarea class="form-control" name="description" id="Description" rows="3"> Hello</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="Logo">Logo</label>
-                                        <input type="text" name="logo" value="<%=movie.getLo() %>" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="logo">
+                                        <input type="text" name="logo" value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="logo">
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox checkbox-circle checkbox-info peers ai-c">
-                                        	<%if(movie.getTopHot() == 1){ %>
-                                            <input type="checkbox" id="inputCall2" checked name="top_hot" class="peer">
-                                           <%}else{ %>
                                             <input type="checkbox" id="inputCall2" name="top_hot" class="peer">
-                                           <%} %>
                                             <label for="inputCall2" class="peers peer-greed js-sb ai-c">
                                                 <span class="peer peer-greed">Top Hot</span>
                                             </label>
@@ -274,15 +269,14 @@
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Name</th>
-                                                
                                                 <th>Edit</th>
                                             </tr>
                                         </tfoot>
                                          <%if(param != null){ %>
-                                       		<%if(movieCateDAO.getListCategoryOfMovie(Integer.parseInt(param),1).size() > 0){%>
+                                       		<%if(movieCateDAO.getListCategoryOfMovie(Integer.parseInt(param),2).size() > 0){%>
                                        	<tbody>
                                        		 <% int sttActor = 0; %>
-                                            <%for(DetailMovie am : movieCateDAO.getListCategoryOfMovie(Integer.parseInt(param),1)){ %>
+                                            <%for(DetailMovie am : movieCateDAO.getListCategoryOfMovie(Integer.parseInt(param),2)){ %>
                                             <tr>
                                                 <td><%=++sttActor %></td>
                                                 <td><%=am.getcategory_name()%></td>
@@ -306,8 +300,8 @@
                                               <div class="card mb-4 pl-2 col-6 pr-2">
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i> Seasons
-                               <%if(param != null){ %>
-                                <form action="${root}/ManagerSeason" method="post">
+                                <%if(param != null){ %>
+                                 <form action="${root}/ManagerSeason" method="post">
                                 	<input type="hidden" name="movie_id" value="<%=param%>">
                      				<input type="hidden" name="command" value="insertSeason">
 	                               <button type="submit" class="btn-add-Category float-right w-auto btn-info border-0 p-1 pr-2 pl-2">
@@ -338,8 +332,10 @@
                                                 <th>Edit</th>
                                             </tr>
                                         </tfoot>
-                                        <tbody>
+                                           <tbody>
                                         <% int stt = 0; %>
+                                        <%if(param != null){ %>
+                                       		<%if(seasonDAO.getListSeasonMovie(Integer.parseInt(param)).size() > 0){%>
                                        <%for (SeasonMovie sm : seasonDAO.getListSeasonMovie(Integer.parseInt(param))) {%>
                                             <tr>
                                                 <td><%= ++stt %></td>
@@ -356,6 +352,8 @@
                                                 </button>
                                                 </td>
                                             </tr>
+                                           <%} %>
+                                           <%} %>
                                            <%} %>
                                         </tbody>
                                     </table>

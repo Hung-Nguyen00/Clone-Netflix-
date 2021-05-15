@@ -174,7 +174,7 @@ public class MovieDAO {
 //			System.out.println(dao.update(new Movie(6,"Bird",null,null,null,null,null,null,null,Byte.parseByte("1"))));
 //			System.out.println(dao.delete(7));
 //			System.out.println(dao.getMaxId());
-			for(Movie m : dao.getListMovieOfMenu(2))
+			for(Movie m : dao.getListMovieOfMenu(1))
 			{
 				System.out.println(m.getNameMovie());
 			}

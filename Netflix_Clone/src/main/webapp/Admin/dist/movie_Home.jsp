@@ -22,8 +22,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Data Table Movies</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item">Home</li>
+                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="movie_home.jsp">movie</a></li>
                         <li class="breadcrumb-item active">Movie</li>
                     </ol>
                     <div class="card mb-4">

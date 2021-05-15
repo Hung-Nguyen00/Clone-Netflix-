@@ -119,8 +119,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Detail Movies</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item">Movie</li>
+                         <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="movie_home.jsp">Movie</a></li>
                         <li class="breadcrumb-item active">Movie Details</li>
                     </ol>
                     <div class="d-flex flex-lg-wrap">
@@ -217,7 +217,7 @@
                                             <tr>
                                                 <th>STT</th>
                                                 <th>Name</th>
-                                                <th>Last Update</th>>
+                                                <th>Last Update</th>
                                                 <th>Edit</th>
                                             </tr>
                                         </tfoot>
