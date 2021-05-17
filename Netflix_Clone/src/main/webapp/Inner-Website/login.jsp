@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="./lib/js/login.js"></script>
+    <c:set var = "root" value="${pageContext.request.contextPath}"/>
 </head>
 
 <body>
@@ -26,25 +28,24 @@
                     <div class="pb-3">
                         <h1 class="text-white m-0"><b>Sign In</b></h1>
                     </div>
+                    <form action="${root}/ManagerAccountServlet" method="post">
                     <div class="sign-in">
                         <div class="form-group input-group my-3">
-                            <input type="email" class="form-control bg-dark text-light w-100" name="input-username" id="input-username" aria-describedby="help-username" placeholder="Email or phone number" onfocus="showElement('usernameTip')" onblur="hideElement('usernameTip')" />
+                            <input type="email" class="form-control bg-dark text-light w-100" name="email" id="input-username" aria-describedby="help-username" placeholder="Email or phone number" onfocus="showElement('usernameTip')" onblur="hideElement('usernameTip')" />
                             <small id="usernameTip" class="text-warning" style="display: none;">
                   <i class="fa fa-info-circle" aria-hidden="true"></i>
                   Please enter a valid email.
                 </small>
                         </div>
                         <div class="form-group input-group my-3">
-                            <input type="password" class="form-control bg-dark text-light w-100" name="input-password" id="input-password" aria-describedby="help-password" placeholder="Password" onfocus="showElement('pwdTip')" onblur="hideElement('pwdTip')" />
+                            <input type="password" class="form-control bg-dark text-light w-100" name="password" id="input-password" aria-describedby="help-password" placeholder="Password" onfocus="showElement('pwdTip')" onblur="hideElement('pwdTip')" />
                             <small id="pwdTip" class="text-warning" style="display: none;">
                   <i class="fa fa-info-circle" aria-hidden="true"></i>
                   Your password must contain at least 8 characters (containing at least an uppercase letter, a lowercase letter, a number and a symbol).
                 </small>
                         </div>
                     </div>
-                    <button id="login" type="submit" onclick="login()" class="btn btn-danger w-100 mb-3">
-              Sign In
-            </button>
+                    
                     <div class="form-below">
                         <div class="form-check col">
                             <label class="form-check-label text-light">
@@ -57,7 +58,13 @@
                     checked
                   />
                   Remember me
+                  
                 </label>
+                <input type= "hidden" name= "command" value="login">
+                <button id="login" type="submit"  class="btn btn-danger w-100 mb-3">
+              Sign In
+            </button>
+                </form>
                         </div>
                         <div class="form-help col">
                             <a href="#" class="text-light">Need help?</a>
@@ -66,7 +73,7 @@
                     <div class="description pt-4">
                         <div class="des-fb mt-4">
                             <a href="#" class="text-secondary">
-                    Login with Facebook
+                    <!--Login with Facebook-->
                     <i class="fa fa-facebook"></i>
                   </a>
                         </div>

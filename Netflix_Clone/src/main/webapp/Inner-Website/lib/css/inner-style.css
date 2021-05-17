@@ -658,6 +658,18 @@ header ul li {
     color: white;
 }
 
+.movie-button {
+    border: 1px solid gray;
+    background-color: rgb(44, 42, 42);
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    line-height: 43px;
+    color: white;
+}
+
+
+
 .item-controller-info .item-info a:hover,
 .item-controller-info ul li a:hover {
     border: 1px solid white;
@@ -876,7 +888,16 @@ header ul li {
     margin-right: 10px;
 }
 
-.preview .preview-controller-info li a {
+.preview .preview-controller-info li a{
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    width: 40px;
+    border: 1px solid rgb(218, 213, 213, 0.5);
+    background-color: rgb(85, 84, 84, 0.2);
+}
+
+.preview .preview-controller-info li button{
     height: 40px;
     padding: 5px 10px;
     border-radius: 50%;
@@ -1232,6 +1253,7 @@ header ul li {
 .account-container:last-child:hover {
     border: 1px solid gray;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .account-avatar img:hover {
@@ -1241,6 +1263,8 @@ header ul li {
     border-radius: 5px;
     margin-top: -2px;
     margin-left: -2px;
+    cursor: pointer;
+
 }
 
 .browse-manage-button {

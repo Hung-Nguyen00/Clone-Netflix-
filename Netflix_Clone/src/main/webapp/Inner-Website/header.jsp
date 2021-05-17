@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="DAO.MenuDAO" %>
 <%@ page import="model.Menu" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:set var = "root" value="${pageContext.request.contextPath}"/>
 <%
 	MenuDAO menu_dao = new MenuDAO();
 	 %>
@@ -54,7 +57,9 @@
                     <li class="dropdown-manage"><a href="#">Manage Profiles</a></li>
                     <li class="dropdown-borderTop dropdown-manage"><a href="account.html">Account</a></li>
                     <li class="dropdown-manage"><a href="#">Help Center</a></li>
-                    <li class="dropdown-manage"><a href="../First-website/login.html">Sign out of Netflix</a></li>
+                    <li class="dropdown-manage">
+                    	<a href="${root}/logout">Sign out of Netflix</a>
+                    </li>
                 </ul>
             </li>
         </ul>

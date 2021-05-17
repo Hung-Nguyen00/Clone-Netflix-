@@ -14,6 +14,27 @@
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
     <script src="./lib/js/login.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" 
+type="text/javascript"></script>
+ <script type="text/javascript">
+ $(document).ready(function () {
+ var x_timer;
+ $("#email").keyup(function (e) {
+ clearTimeout(x_timer);
+ var user_name = $(this).val();
+ x_timer = setTimeout(function () {
+ check_username_ajax(user_name);
+ }, 1000);
+ });
+ function check_username_ajax(username) {
+ $("#user-result").html('<img src="img/ajax-loader.gif" />');
+ $.post('CheckEmailServlet', {'username': username}, function (data) {
+ $("#user-result").html(data);
+ });
+ }
+ });
+ </script>
+    
 </head>
 
 <body>

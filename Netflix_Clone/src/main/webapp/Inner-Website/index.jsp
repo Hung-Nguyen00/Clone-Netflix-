@@ -15,10 +15,20 @@
  </head>
 
 <body>
+<%
+	response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setHeader("Expires", "0");
+	if(session.getAttribute("email")==null){
+		response.sendRedirect("/Netflix_Clone/Inner-Website/firstHome.jsp");
+	}
+%>
+<h1 style="display:none">Hello ${account_id}</h1>
 <h1 style="display:none"> <%=request.getParameter("menu_id")%></h1>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="content.jsp"></jsp:include>
 	<script src="../Inner-Website/lib/js/app.js"></script>
+	
 </body>
 </html>

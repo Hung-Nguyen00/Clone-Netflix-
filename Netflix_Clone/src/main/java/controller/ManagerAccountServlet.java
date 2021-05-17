@@ -1,12 +1,16 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mysql.cj.Session;
 
 import DAO.AccountDAO;
 import model.Account;
@@ -41,6 +45,12 @@ public class ManagerAccountServlet extends HttpServlet {
 					accountDAO.delete(email);
 					url = "/Netflix_Clone/Admin/dist/account.jsp";
 					break;
+				case "logout":
+					HttpSession session = request.getSession();
+					session.invalidate();
+					session.removeAttribute("email");
+					url = "/Netflix_Clone/Inner-Website/login.jsp";
+					break;
 			}
 		} catch (Exception e) {
 		}
@@ -70,6 +80,18 @@ public class ManagerAccountServlet extends HttpServlet {
 					accountDAO.update(new Account(request.getParameter("email_account"), password, expiration, phone));
 					url = "/Netflix_Clone/Admin/dist/account.jsp";
 					break;
+				case "login":
+					
+					if(accountDAO.checkEmail(email, password)) {
+						HttpSession session = request.getSession();
+						session.setAttribute("email", email);
+						url = "/Netflix_Clone/Inner-Website/browse.jsp";
+						
+					} else
+					{
+						url = "/Netflix_Clone/Inner-Website/login.jsp";
+					}
+					
 				}
 			} else {
 				url = "/Netflix_Clone/Admin/dist/account.jsp";

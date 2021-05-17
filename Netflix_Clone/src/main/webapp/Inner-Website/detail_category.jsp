@@ -49,7 +49,7 @@
        <div class="popular-slider">
     	<div class="popular-slider-card" style="display: flex; flex-wrap: wrap; margin-bottom: 2rem;">
        	<% for(Movie m : movie_dao.getMoviebyCategory(category_id)) { %>
-            <div class="popular-slider-card-item" style="margin-bottom: 2rem;">>
+            <div class="popular-slider-card-item" style="margin-bottom: 2rem;">
                 <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
                     <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
@@ -57,9 +57,9 @@
                         <div class="item-controller">
                             <ul>
                                 <li><a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>"><i class="fa fa-play"></i></a></li>
-                                <li><a href="#"><i class="fa fa-plus"></i></a></li>
-                                <li><a href="#"><i class="fa fa-thumbs-up"></i></a></li>
-                                <li><a href="#"><i class="fa fa-thumbs-down"></i></a></li>
+                                <li><button class="movie-button" id="savebtn"><i class="fa fa-plus"></i></button></li>
+                                <li><button onclick="myFunction()" style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="likebtn"><i class="fa fa-thumbs-up"></i></button></li>
+                                <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="dislikebtn"><i class="fa fa-thumbs-down"></i></button></li>
                             </ul>
                         </div>
                         <div class="item-info">
@@ -94,9 +94,9 @@
                             <div class="preview-controller-info">
                                 <ul>
                                     <li><a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>"><i class="fa fa-play"></i> Resume</a></li>
-                                    <li><a href="#"><i class="fa fa-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-thumbs-up"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-thumbs-down"></i></a></li>
+                                    <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="savebtn"><i class="fa fa-plus"></i></button></li>
+                                <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="likebtn"><i class="fa fa-thumbs-up"></i></button></li>
+                                <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="dislikebtn"><i class="fa fa-thumbs-down"></i></button></li>
                                 </ul>
                             </div>
                         </div>
@@ -195,6 +195,16 @@
 		</div>
 		</div>    
     <script src="../Inner-Website/lib/js/detail_category.js"></script>
+    
+    <<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("likebtn").click(function(){
+    $("p").toggle();
+  });
+});
+</script>
+    
 </body>
 
 </html>

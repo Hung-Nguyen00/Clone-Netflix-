@@ -1,5 +1,6 @@
 package DAO;
-import connect.DBConnect1;
+import connect.DBConnect1
+;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,70 +13,59 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import model.Account;
+import model.AccountChild;
 
-public class AccountDAO {
+public class Account_ChildDAO {
 	
-	public ArrayList<Account> getListAccount() throws SQLException {
+	public int getMaxId() throws SQLException {
+		try {
 		Connection connection = DBConnect1.getConnection();
-		String sql = "SELECT * FROM account";
+		String sql = "SELECT a.account_id as account_id FROM account_child as a ORDER BY a.account_id DESC LIMIT 1";
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		Byte i = 0;
+		while(rs.next()) {
+			i = rs.getByte("account_id");
+		}
+		return i;
+		} catch (Exception e) {
+		return 0;
+		}
+	}
+
+	
+	public ArrayList<AccountChild> getAccountChildsbyEmail(String email) 
+			throws SQLException {
+		Connection connection = DBConnect1.getConnection();
+		String sql = "SELECT * FROM account_child WHERE email= '" + email + "'";
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
 		int i=0;
-		ArrayList<Account> list = new ArrayList<>();
+		ArrayList<AccountChild> list = new ArrayList<>();
 		while (rs.next()) {
 			i++;
-			Account account = new Account();
-			account.setEmail(rs.getString("email"));
-			account.setPasswordAccount(rs.getString("password_account"));
-			account.setExpirationDate(rs.getDate("expiration_date"));
-			account.setPhone(rs.getString("phone"));
-			account.setStt(i);
-			list.add(account);
+			AccountChild ac = new AccountChild();
+			ac.setAccountId(rs.getByte("account_id"));
+			ac.setNameAccount(rs.getString("name_account"));
+			ac.setCreateDate(rs.getDate("create_date"));
+			ac.setAvatar(rs.getString("avatar"));
+			ac.setEmail(rs.getString("email"));
+			list.add(ac);
 		}
 		return list;
 	}
-
-	public Account getAccount(String email) throws SQLException {
-		Connection connection = DBConnect1.getConnection();
-		String sql = "SELECT * FROM account WHERE email = '" + email + "'";
-		PreparedStatement ps = connection.prepareCall(sql);
-		ResultSet rs = ps.executeQuery();
-
-		Account account = new Account();
-		while (rs.next()) {
-			account.setEmail(rs.getString("email"));
-			account.setPasswordAccount(rs.getString("password_account"));
-			account.setExpiration_date(rs.getString("expiration_date"));
-			account.setPhone(rs.getString("phone"));
-		}
-		return account;
-	}
-	public boolean checkEmail(String email, String password) throws SQLException{
-		Connection connection = DBConnect1.getConnection();
-		String sql = "SELECT email FROM account WHERE email = '" + email + "' and password_account = '"+ password+"'";
-		PreparedStatement ps;
-		try {
-			 ps = connection.prepareCall(sql);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
-				connection.close();
-				return true;
-			}	
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	return false;
-}
-	public boolean insert(Account c) throws SQLException {
+	
+	public boolean insert(AccountChild c) throws SQLException {
 		try {
 		Connection connection = DBConnect1.getConnection();
-		String sql = "INSERT INTO account VALUE(?,?,?,?)";
-
+		String sql = "INSERT INTO account_child  VALUE(?,?,?,?,?)";
+		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
 		PreparedStatement ps = connection.prepareCall(sql);
-		ps.setString(1, c.getEmail());
-		ps.setString(2, c.getPasswordAccount());
-		ps.setString(3, c.getExpiration_date());
-		ps.setString(4, c.getPhone());
+		ps.setByte(1, c.getAccountId());
+		ps.setString(2, c.getNameAccount());
+		ps.setString(3, c.getAvatar());
+		ps.setString(4, c.getEmail());
+		ps.setDate(5, sqlDate);
 		int temp = ps.executeUpdate();
 		return temp == 1;
 		} catch (Exception e) {
@@ -113,20 +103,24 @@ public class AccountDAO {
 		return false;
 		}
 	}		
+
+	
 	
 	public static void main(String[] args) throws SQLException {
-			AccountDAO dao = new AccountDAO();
+			Account_ChildDAO dao = new Account_ChildDAO();
 //			for(int i=2; i<10; i++ ) {
 //				System.out.println(dao.insert(new Account("abc"+ i + "@gmail.com","123", null, "0783727238", null))); 
 //			}
 			
 //			System.out.println(dao.getAccount("abc@gmail.com").getPhone());
-		System.out.println(dao.checkEmail("vuhoanglong21@gmail.com","@Nightfury21"));
+//		System.out.println(dao.getAccountChildsbyEmail("vuhoanglong21@gmail.com"));
 //			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
 //			System.out.println(dao.delete("abc3@gmail.com"));
-//			for (Account ds : dao.getListAccount()) {
-//				System.out.println(ds.getEmail() + " - " + ds.getPasswordAccount() + "-" + ds.getPhone());		
-				}	
-//	}
+			int id = dao.getMaxId()+1;
+			System.out.println(dao.insert( new AccountChild((byte) id ,"Tung" , "../Inner-Website/data/img/gulogo-6.jpg", "gaiazeronos@gmail.com")));
+			for (AccountChild ds : dao.getAccountChildsbyEmail("gaiazeronos@gmail.com")) {
+				System.out.println(ds.getEmail() + " - " + ds.getAccountId() + "-" + ds.getNameAccount());		
+				}
+	}
 			
 }

@@ -9,9 +9,8 @@ import java.util.Date;
  */
 public class ActivitiHistoryMovie implements java.io.Serializable {
 
-	private ActivitiHistoryMovieId id;
-	private AccountChild accountChild;
-	private Movie movie;
+	private Byte accountId;
+	private Byte movieId;
 	private Byte likebtn;
 	private Byte dislikebtn;
 	private Byte saved;
@@ -20,45 +19,37 @@ public class ActivitiHistoryMovie implements java.io.Serializable {
 	public ActivitiHistoryMovie() {
 	}
 
-	public ActivitiHistoryMovie(ActivitiHistoryMovieId id, AccountChild accountChild, Movie movie) {
-		this.id = id;
-		this.accountChild = accountChild;
-		this.movie = movie;
+	public ActivitiHistoryMovie( Byte accountId, Byte movieId) {
+		this.accountId = accountId;
+		this.movieId = movieId;
 	}
 
-	public ActivitiHistoryMovie(ActivitiHistoryMovieId id, AccountChild accountChild, Movie movie, Byte likebtn,
+	public ActivitiHistoryMovie(Byte accountId, Byte movieId, Byte likebtn,
 			Byte dislikebtn, Byte saved, Date createDate) {
-		this.id = id;
-		this.accountChild = accountChild;
-		this.movie = movie;
+		this.accountId = accountId;
+		this.movieId = movieId;
 		this.likebtn = likebtn;
 		this.dislikebtn = dislikebtn;
 		this.saved = saved;
 		this.createDate = createDate;
 	}
 
-	public ActivitiHistoryMovieId getId() {
-		return this.id;
+	
+
+	public Byte getAccountId() {
+		return accountId;
 	}
 
-	public void setId(ActivitiHistoryMovieId id) {
-		this.id = id;
+	public void setAccountId(Byte accountId) {
+		this.accountId = accountId;
 	}
 
-	public AccountChild getAccountChild() {
-		return this.accountChild;
+	public Byte getMovieId() {
+		return movieId;
 	}
 
-	public void setAccountChild(AccountChild accountChild) {
-		this.accountChild = accountChild;
-	}
-
-	public Movie getMovie() {
-		return this.movie;
-	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
+	public void setMovieId(Byte movieId) {
+		this.movieId = movieId;
 	}
 
 	public Byte getLikebtn() {
