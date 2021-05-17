@@ -53,8 +53,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Information of Movies</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="movie_TVShow.jsp">TV Show</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_TVShow.jsp">TV Show</a></li>
                         <li class="breadcrumb-item">Movie Details</li>
                         <li class="breadcrumb-item active">update Series</li>
                     </ol>
@@ -63,8 +63,12 @@
                             <h4 class="c-grey-900 text-center pt-3 mb-4">Movie Information of <strong>episode <%=NumberOfChapter %></strong></h4>
                             <div class="mT-30">
                             <%if(Integer.parseInt(series_id) > -1){ %>
-                                <form class="needs-validation pb-2" novalidate action="${root}/ManagerSeason" method="post">
-                                <%String succced = (String)request.getAttribute("succced"); %>
+                                <form class="needs-validation pb-2" novalidate action="${root}/ManagerSeries" method="post">
+                                 <%String succced = (String)request.getAttribute("succced"); %>
+                                <%if(succced != null){ %>
+                                	<p class="text-success"><%=succced%> </p>
+                                <%} %>
+                                <p class="text-danger">${error}</p>
                                     <div class="form-group">
                                             <label for="duration">Duration</label>
                                             <input type="text" name="duration" value="<%=seriesmovie.getDuration() %>" placeholder="2h10m" class="form-control" id="duration">
@@ -81,7 +85,7 @@
                                      <input type="hidden" name="season_id" value="<%=season_id%>">
                                      <input type="hidden" name="series_id" value="<%=series_id%>">
                                      <input type="hidden" name="command" value="updateSeries">
-
+									<input type="hidden" name="valiUpdate" value="">
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>
                                 <%} %>

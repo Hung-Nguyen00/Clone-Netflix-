@@ -46,9 +46,13 @@ public class Category implements java.io.Serializable {
 		this.nameCategory = nameCategory;
 		this.menu_id = menu_id;
 	}
-	public Category(int categoryId, String metaTitle, String nameCategory) {
+	public Category(int categoryId, String nameCategory, int menu_id) {
 		this.categoryId = categoryId;
-		this.metaTitle = metaTitle;
+		this.nameCategory = nameCategory;
+		this.menu_id = menu_id;
+	}
+	public Category(int categoryId, String nameCategory) {
+		this.categoryId = categoryId;
 		this.nameCategory = nameCategory;
 	}
 	public String getCreate_date() {

@@ -79,6 +79,18 @@ public class Movie_Category {
 			} catch (Exception e) {
 			return false;
 			}
+		}
+	
+	public boolean deleteCateOfMovie(int movie_id) throws SQLException {
+		try {
+			Connection connection = DBConnect1.getConnecttion();
+			String sql = "DELETE FROM detail_movie WHERE movie_id = '"+ movie_id +"'";
+			PreparedStatement ps = connection.prepareCall(sql)	;
+			int temp = ps.executeUpdate();
+			return temp == 1;
+			} catch (Exception e) {
+			return false;
+			}
 		}	
 	public static void main(String[] args) throws SQLException {
 		Movie_Category dao = new Movie_Category();

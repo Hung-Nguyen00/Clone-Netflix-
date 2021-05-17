@@ -7,7 +7,7 @@ const model = document.querySelector('.modelAcc'),
     btnAddCate = document.querySelector('.btn-add-Category'),
     body = document.querySelector('body'),
     btnAdd = document.querySelector('.btn-add'),
-    actor = document.querySelector('.browActor'),
+    actor = document.querySelector('.browActor')
    
     // var ok = (5>3) ? 'b' : 'c'
 
@@ -47,13 +47,6 @@ const model = document.querySelector('.modelAcc'),
 //     return false
 // }
 
-
-btnAddCate.addEventListener('click', () => {
-    modelCate.classList.add('open');
-    body.classList.add('hideScroll');
-    let topOffset = window.pageYOffset;
-    modelCate.style.top = topOffset + 'px';
-})
 
 btnAddSeason.addEventListener('click', () => {
     modelSeason.classList.add('open');

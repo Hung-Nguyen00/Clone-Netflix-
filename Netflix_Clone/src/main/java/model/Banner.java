@@ -7,25 +7,37 @@ package model;
  */
 public class Banner implements java.io.Serializable {
 
-	private BannerId id;
+	private byte banner_id;
+	
+	private String last_update;
+	
+
+	private byte menu_id;
+	private int movie_id;
 	private Menu menu;
 	private Movie movie;
 
 	public Banner() {
 	}
 
-	public Banner(BannerId id, Menu menu, Movie movie) {
-		this.id = id;
+	public Banner(byte id, Menu menu, Movie movie) {
+		this.banner_id = id;
 		this.menu = menu;
 		this.movie = movie;
 	}
-
-	public BannerId getId() {
-		return this.id;
+	
+	public Banner(byte id, byte menu_id, int movie_id) {
+		this.banner_id = id;
+		this.menu_id = menu_id;
+		this.movie_id = movie_id;
 	}
 
-	public void setId(BannerId id) {
-		this.id = id;
+	public byte getBanner_id() {
+		return banner_id;
+	}
+
+	public void setBanner_id(byte banner_id) {
+		this.banner_id = banner_id;
 	}
 
 	public Menu getMenu() {
@@ -42,6 +54,28 @@ public class Banner implements java.io.Serializable {
 
 	public void setMovie(Movie movie) {
 		this.movie = movie;
+	}
+	public byte getMenu_id() {
+		return menu_id;
+	}
+
+	public void setMenu_id(byte menu_id) {
+		this.menu_id = menu_id;
+	}
+
+	public int getMovie_id() {
+		return movie_id;
+	}
+
+	public void setMovie_id(int movie_id) {
+		this.movie_id = movie_id;
+	}
+	public String getLast_update() {
+		return last_update;
+	}
+
+	public void setLast_update(String last_update) {
+		this.last_update = last_update;
 	}
 
 }

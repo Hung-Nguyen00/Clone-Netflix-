@@ -29,15 +29,15 @@
 	%>
 	
     <jsp:include page="Header.jsp"></jsp:include>
-        <div class="modelAcc">
+        <div class="modelAcc open">
             <div class="model-account bgc-white p-20 bd">
-                <h6 class="c-grey-900 pt-3 text-center">Edit Account</h6>
+                <h6 class="c-grey-900 pt-3 text-center">Create Account</h6>
                 <div class="mT-30 pr-2 pl-2 pb-2">
-                    <form action="${root}/ManagerAccountServlet" method="post"">
+                <h6 class="text-danger">${error}</h6>
+                    <form action="${root}/ManagerAccountServlet" method="post">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        	               	
+                            <input type="email" name="email" class="form-control"  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">          	               	
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword">Password</label>
@@ -51,8 +51,8 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" name="phone"  size="11" class="form-control" placeholder="Phone">
-                           
+                            <input type="text" name="phone" maxlength="11" size="11" class="form-control" placeholder="Phone">
+                           	
                         </div>
                          <input type="hidden" name="command" value="insert">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -63,13 +63,8 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                
-                	<div class="d-flex ">
-                		  <h1 class="mt-4">Data Table Accounts</h1>
-              				<h6 class="text-success">${success}</h6>
-                	</div>
-                  
-                    	    
+                    <h1 class="mt-4">Data Table Accounts</h1>
+              		
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
                         <li class="breadcrumb-item active">Accounts</li>
@@ -79,10 +74,8 @@
                             <i class="fas fa-table mr-1"></i> Data Table Accounts
                             <button class="btn-add float-right w-auto btn-info border-0 p-1 pr-2 pl-2">
                                 <div>
-                                    <a class="text-light text-decoration-none" href="${root}/Admin/dist/create_account.jsp">
                                     <i class="fas fa-plus"></i>
                                     <span>Add</span>
-                                    </a>
                                 </div>
                             </button>
                         </div>
@@ -151,7 +144,9 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
-	
+
+      <script type="text/javascript">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="${root}/Admin/dist/js/scripts.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>

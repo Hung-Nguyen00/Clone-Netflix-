@@ -16,7 +16,7 @@ public class AccountDAO {
 	
 	public ArrayList<Account> getListAccount() throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
-		String sql = "SELECT * FROM account";
+		String sql = "SELECT *, DATE_FORMAT(expiration_date, '%d-%m-%Y') format_expiration_date FROM account";
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
 		int i=0;
@@ -26,7 +26,7 @@ public class AccountDAO {
 			Account account = new Account();
 			account.setEmail(rs.getString("email"));
 			account.setPasswordAccount(rs.getString("password_account"));
-			account.setExpirationDate(rs.getDate("expiration_date"));
+			account.setExpiration_date(rs.getString("format_expiration_date"));
 			account.setPhone(rs.getString("phone"));
 			account.setStt(i);
 			list.add(account);
@@ -36,7 +36,7 @@ public class AccountDAO {
 
 	public Account getAccount(String email) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
-		String sql = "SELECT * FROM account WHERE email = '" + email + "'";
+		String sql = "SELECT *, DATE_FORMAT(expiration_date, '%Y-%m-%d') format_expiration_date FROM account WHERE email = '" + email + "'";
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
 
@@ -44,7 +44,7 @@ public class AccountDAO {
 		while (rs.next()) {
 			account.setEmail(rs.getString("email"));
 			account.setPasswordAccount(rs.getString("password_account"));
-			account.setExpiration_date(rs.getString("expiration_date"));
+			account.setExpiration_date(rs.getString("format_expiration_date"));
 			account.setPhone(rs.getString("phone"));
 		}
 		return account;
@@ -54,7 +54,7 @@ public class AccountDAO {
 			String sql = "SELECT email FROM account WHERE email = '" + email + "' and password_account = '"+ password+"'";
 			PreparedStatement ps;
 			try {
-				 ps = connection.prepareCall(sql);
+				ps = connection.prepareCall(sql);
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()) {
 					connection.close();
@@ -65,6 +65,22 @@ public class AccountDAO {
 			}
 		return false;
 	}
+	public boolean valiEmail(String email) throws SQLException{
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "SELECT email FROM account WHERE email = '" + email + "'";
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareCall(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				connection.close();
+				return true;
+			}	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+			return false;
+		}
 	public boolean insert(Account c) throws SQLException {
 		try {
 		Connection connection = DBConnect1.getConnecttion();

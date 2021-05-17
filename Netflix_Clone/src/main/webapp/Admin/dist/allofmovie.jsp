@@ -1,5 +1,10 @@
-<%@page import="model.Movie, java.util.*" %>
+f<%@page import="model.Movie, java.util.*" %>
 <%@page import="DAO.MovieDAO" %>
+<%@page import="DAO.MenuDAO" %>
+<%@page import="DAO.SeasonDAO" %>
+<%@page import="DAO.BannerDAO" %>
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -21,14 +26,23 @@
 
 </head>
 <body class="sb-nav-fixed">
-	<% MovieDAO movieDAO = new MovieDAO(); %>
+	<% MovieDAO movieDAO = new MovieDAO();
+		MenuDAO menuDAO = new MenuDAO();
+		SeasonDAO seasonDAO = new SeasonDAO();
+		BannerDAO bannerDAO = new BannerDAO();
+	%>
+	
+	
 		<jsp:include page="Header.jsp"></jsp:include>
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Movies</h1>
+                   	<div class="d-flex justify-content-between">
+                   	<h1 class="mt-4">Movies</h1>
+                    <h4 class="mt-4 text-success align-text-bottom">${succced}</h4>
+                   	</div>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
                         <li class="breadcrumb-item active">Movies</li>
                     </ol>
                     <div class="card mb-4">
@@ -50,6 +64,7 @@
                                             <th>Name</th>
                                             <th>Last Update</th>
                                             <th> Top Hot </th>
+                                           
                                             <th>Edit</th>
                                         </tr>
                                     </thead>
@@ -59,6 +74,7 @@
                                             <th>Name</th>
                                             <th>Last Update</th>
                                             <th>Top Hot</th>
+                                             
                                             <th>Edit</th>
                                         </tr>
                                     </tfoot>
@@ -75,22 +91,35 @@
                                                	 <i class="fas fa-check-square "></i>
                                                <%} %>
                                             </td>
+                                           
                                              <td class="text-center">
-                                                <button class="btn btn-danger border-0">  
-                                                    <a class="text-decoration-none text-light" href="${root}/ManagerMovie?command=delete&movie_id=<%=movie.getMovieId()%>"> 
-                                                     <i class="fas fa-trash"></i>
-                                                     </a>                                                
-                                                     </button>
-                                                <button class="btn btn-info bg-info border-0">
-                                                   <a class="text-decoration-none text-light" 
-                                                  href="${root}/Admin/dist/movie_Detail.jsp?command=update&movie_id=<%=movie.getMovieId()%>">
-                                                   Movie
-                                                </button>
+                                                
+                                              <%if(menuDAO.getMenuOfMovie(movie.getMovieId()).getMenuId() == (byte)1 || seasonDAO.checkMovieHasSeason(movie.getMovieId())== true){ %>       
+                                            
                                                 <button class="btn btn-info bg-info border-0">
                                                    <a class="text-decoration-none text-light" 
                                                   href="${root}/Admin/dist/detail_TVShow.jsp?command=update&movie_id=<%=movie.getMovieId()%>">
                                                    TV Show
                                                 </button>
+                                                <%}else if(menuDAO.getMenuOfMovie(movie.getMovieId()).getMenuId() == (byte)2){ %>
+                                                	<button class="btn btn-info border-0">
+                                                   <a class="text-decoration-none text-light" 
+                                                  href="${root}/Admin/dist/movie_Detail.jsp?command=update&movie_id=<%=movie.getMovieId()%>">
+                                                   Movie
+                                                </button>
+                                                <%}else if(bannerDAO.checkBannerHasMovie(movie.getMovieId()) == true){ %>
+                                                	<button class="btn btn-info border-0">
+	                                                   <a class="text-decoration-none text-light" 
+	                                                  		href="${root}/Admin/dist/banner.jsp">
+	                                                   Banner
+                                                	</button>
+                                               	 <%}else{%>
+                                            		<button class="btn btn-danger border-0">  
+                                                    <a class="text-decoration-none text-light" href="${root}/ManagerMovie?command=deleteMOVIE&movie_id=<%=movie.getMovieId()%>"> 
+                                                     <i class="fas fa-trash"></i>
+                                                     </a>                                                
+                                                   </button>
+                                              	<%} %>
                                             </td>  
                                         </tr>
                                     <%}%>

@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Movies</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
                         <li class="breadcrumb-item">Movie</li>
                         <li class="breadcrumb-item active">Movies</li>
                     </ol>
@@ -65,7 +65,7 @@
                                     </tfoot>
                                     <tbody>
                                     <%int i=1; %>
-                                    <% for(Movie movie : movieDAO.getListMovieOfMenu(2)){ %>
+                                    <% for(Movie movie : movieDAO.getListMovieOfMenu((byte)2)){ %>
                                         <tr>
                                             <td><%=i++ %></td>
                                             <td><%=movie.getNameMovie() %></td>

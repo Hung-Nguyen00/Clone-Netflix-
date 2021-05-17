@@ -119,8 +119,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Detail Movies</h1>
                     <ol class="breadcrumb mb-4">
-                         <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="movie_home.jsp">Movie</a></li>
+                         <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_home.jsp">Movie</a></li>
                         <li class="breadcrumb-item active">Movie Details</li>
                     </ol>
                     <div class="d-flex flex-lg-wrap">
@@ -130,8 +130,9 @@
                                 <form class="needs-validation pb-2" novalidate action="${root}/ManagerMovie" method="post">
                                 <%String succced = (String)request.getAttribute("succced"); %>
                                 <%if(succced != null){ %>
-                                	<p class="text-danger"><%=succced%> </p>
+                                	<p class="text-success"><%=succced%> </p>
                                 <%} %>
+                                	<p class="text-danger">${error}</p>
                                     <div class="form-row">
                                         <div class="form-group col-md-9">
                                             <label for="name">Name</label>
@@ -183,8 +184,12 @@
                                     <%if(param != null){ %>
                                      <input type="hidden" name="command" value="update">
                                      <input type="hidden" name="movie_id" value="<%=param%>">
+                                     <input type="hidden" name="validation" value="">
+                                      <input type="hidden" name="reload" value="">
                                     <%}else { %>
                                     <input type="hidden" name="command" value="insert">
+                                    <input type="hidden" name="validation" value="">
+                                    <input type="hidden" name="reload" value="">
                                     <%} %>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>

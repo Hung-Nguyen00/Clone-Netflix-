@@ -35,13 +35,12 @@ public class MovieDAO {
 		return list;
 	}
 	
-	public ArrayList<Movie> getListMovieOfMenu(int id_menu) throws SQLException {
+	public ArrayList<Movie> getListMovieOfMenu(byte id_menu) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
 		String sql = "SELECT * FROM netflix.movie "
 				+ "where movie_id IN (SELECT d.movie_id FROM  netflix.category as c "
 				+ "INNER JOIN netflix.detail_movie as d ON d.category_id = c.category_id "
 				+ "where c.menu_id = '"+id_menu +"')";
-		
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
 		
@@ -157,7 +156,7 @@ public class MovieDAO {
 	public boolean delete(int movie_id) throws SQLException {
 	try {
 		Connection connection = DBConnect1.getConnecttion();
-		String sql = "DELETE FROM movie WHERE actor_id = '"+ movie_id +"'";
+		String sql = "DELETE FROM movie WHERE movie_id = '"+ movie_id +"'";
 		PreparedStatement ps = connection.prepareCall(sql)	;
 		int temp = ps.executeUpdate();
 		return temp == 1;
@@ -174,10 +173,7 @@ public class MovieDAO {
 //			System.out.println(dao.update(new Movie(6,"Bird",null,null,null,null,null,null,null,Byte.parseByte("1"))));
 //			System.out.println(dao.delete(7));
 //			System.out.println(dao.getMaxId());
-			for(Movie m : dao.getListMovieOfMenu(1))
-			{
-				System.out.println(m.getNameMovie());
-			}
+			System.out.println(dao.delete(10));
 	}
 
 }

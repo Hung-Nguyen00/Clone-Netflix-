@@ -49,7 +49,7 @@
                     <form action="${root}/ManagerTVShow" method="post">
                         <div class="form-group">
                             <label>Name Actor</label>
-                            <input list="browActor" name="browActor" class="w-100 mt-2 pt-0" placeholder="Choose name">
+                            <input list="browActor" name="browActor" required class="w-100 mt-2 pt-0" placeholder="Choose name">
                             <datalist id="browActor">
                             <%if(param != null){ %>
                           	<% for(Actor ac : actorDAO.getListActorOfMovie(Integer.parseInt(param))){ %>
@@ -60,6 +60,7 @@
                             </datalist>
                         </div>
                         	<input type="hidden" name="movie_id" value ="<%=param%>">
+                        	<input type="hidden" name="valiActor" value="">
                         	<input type="hidden" name="command" value="insertActor">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
@@ -73,7 +74,7 @@
                     <form action="${root}/ManagerTVShow" method="post">
                         <div class="form-group">
                             <label>Name Category</label>
-                            <input list="browCate" name="browCate" class="w-100 mt-2 pt-0" placeholder="Choose name">
+                            <input list="browCate" name="browCate" required class="w-100 mt-2 pt-0" placeholder="Choose name">
                             <datalist id="browCate">
                               <%if(param != null){ %>
                           	<% for(Category ac : cateDAO.getListCategoryForMovie(Integer.parseInt(param),2)){ %>
@@ -84,6 +85,7 @@
                             </datalist>
                         </div>
                         <input type="hidden" name="movie_id" value ="<%=param%>">
+                        <input type="hidden" name="valiCate" value="">
                         	<input type="hidden" name="command" value="insertCate">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
@@ -116,53 +118,51 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Information of TVShow</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="movie_TVShow.jsp">TV Show</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_TVShow.jsp">TV Show</a></li>
                         <li class="breadcrumb-item active">TV Show Details</li>
                     </ol>
                     <div class="d-flex flex-lg-wrap">
                         <div class="bgc-white p-20 bd border pr-3 pl-3 col-md-6">
                             <h4 class="c-grey-900 text-center pt-3 mb-4">Movie Information</h4>
                             <div class="mT-30">
+                            <h5></h5>
                                 <form class="needs-validation pb-2" novalidate action="${root}/ManagerTVShow" method="post">
-                                <%String succced = (String)request.getAttribute("succced"); %>
-                                <%if(succced != null){ %>
-                                	<p class="text-danger"><%=succced%> </p>
-                                <%} %>
+                           			<p class="text-danger">${error}</p>
                                     <div class="form-row">
                                         <div class="form-group col-md-9">
                                             <label for="name">Name</label>
-                                            <input type="text" name="name"  class="form-control"  id="name">
-
+                                            <input type="text" name="name" required  class="form-control"  id="name">
+											
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="duration">Duration</label>
-                                            <input type="text" name="duration" placeholder="2h10m" class="form-control" id="duration">
-                                        </div>
+                                            <input type="text" name="duration" required placeholder="2h10m" class="form-control" id="duration">
+                                        </div> 
                                     </div>
                                      <div class="form-group">
                                         <label for="maturity_rate">Maturity Rate</label>
-                                        <input type="text"  class="form-control" name="maturity_rate" placeholder="Match for more than 18 ages">
+                                        <input type="text"  class="form-control" required name="maturity_rate" placeholder="Match for more than 18 ages">
                                     </div>
                                     <div class="form-group">
                                         <label for="trailer">Trailer</label>
-                                        <input type="text" name="trailer" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
+                                        <input type="text" name="trailer"  required placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label for="Image">Image</label>
-                                        <input type="text" name="image" placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
+                                        <input type="text" name="image" required placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="trailer" placeholder="1234 Main St">
                                     </div>
                                     <div class="form-group">
                                         <label for="movie">Movie</label>
-                                        <input type="text" name="movie" value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="movie">
+                                        <input type="text" name="movie" required placeholder="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="movie">
                                     </div>
                                     <div class="form-group">
                                         <label for="Description">Description</label>
-                                        <textarea class="form-control" name="description" id="Description" rows="3"> Hello</textarea>
+                                        <textarea class="form-control" required name="description" id="Description" rows="3"> Hello</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="Logo">Logo</label>
-                                        <input type="text" name="logo" value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="logo">
+                                        <input type="text" name="logo" required value="https://github.com/John-Nguyen0411/Clone-Netflix-/blob/main/Inner-Website/lib/js/app.js" class="form-control" id="logo">
                                     </div>
                                     <div class="form-group">
                                         <div class="checkbox checkbox-circle checkbox-info peers ai-c">
@@ -176,8 +176,10 @@
                                     <%if(param != null){ %>
                                      <input type="hidden" name="command" value="update">
                                      <input type="hidden" name="movie_id" value="<%=param%>">
+                                     <input type="hidden" name="validation" value="">
                                     <%}else { %>
                                     <input type="hidden" name="command" value="insert">
+                                    <input type="hidden" name="validation" value="">
                                     <%} %>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>

@@ -30,6 +30,23 @@ public class SeasonDAO {
 		return list;
 	}
 	
+	public boolean checkMovieHasSeason(int movie_id) throws SQLException{
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "Select * from movie as sm where sm.movie_id in"
+				+ "(Select movie_id from season_movie as sm1 where sm.movie_id = sm1.movie_id) "
+				+ "and sm.movie_id = '"+ movie_id +"'";
+		PreparedStatement ps;
+		try {
+			 ps = connection.prepareCall(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				connection.close();
+				return true;
+			}	
+		} catch (Exception e) {
+		}
+		return false;
+	}
 //	public ArrayList<SeasonMovie> getListSeasonMovieOfMovie(int movie_id) throws SQLException {
 //		Connection connection = DBConnect1.getConnecttion();
 //		String sql = "SELECT * FROM SeasonMovie as a "
@@ -173,7 +190,7 @@ public class SeasonDAO {
 //				System.out.println(dao.insert(new SeasonMovie(i, "John", "Nguyen", Byte.parseByte("1")))); 
 //			}
 			
-			System.out.println(dao.getMaxId());
+			System.out.println(dao.checkMovieHasSeason(1));
 			
 //			for (SeasonMovie ds : dao.getListSeasonMovie(2)) {
 //				System.out.println(ds.getSeasonId());		

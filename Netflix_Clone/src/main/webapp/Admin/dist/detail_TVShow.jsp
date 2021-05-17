@@ -21,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Create Movie</title>
+    <title>Detail TV Show</title>
      <link href="${root}/Admin/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -61,6 +61,9 @@
                             </datalist>
                         </div>
                         	<input type="hidden" name="movie_id" value ="<%=param%>">
+                        	
+                        	<input type="hidden" name="valiActor" value="">
+                        
                         	<input type="hidden" name="command" value="insertActor">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
@@ -77,7 +80,7 @@
                             <input list="browCate" name="browCate" class="w-100 mt-2 pt-0" placeholder="Choose name">
                             <datalist id="browCate">
                               <%if(param != null){ %>
-                          	<% for(Category ac : cateDAO.getListCategoryForMovie(Integer.parseInt(param),2)){ %>
+                          	<% for(Category ac : cateDAO.getListCategoryForMovie(Integer.parseInt(param),1)){ %>
                           		<%int id = ac.getCategoryId(); %>  
                                 <option value="<%= id %>"> <%= ac.getNameCategory() %></option>
                                <%} %>
@@ -86,6 +89,7 @@
                         </div>
                         <input type="hidden" name="movie_id" value ="<%=param%>">
                         	<input type="hidden" name="command" value="insertCate">
+                        	<input type="hidden" name="valiCate" value="">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
@@ -117,8 +121,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Information of Movies</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="movie_TVShow.jsp">TV Show</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_TVShow.jsp">TV Show</a></li>
                         <li class="breadcrumb-item active">TVShow Details</li>
                     </ol>
                     <div class="d-flex flex-lg-wrap">
@@ -128,13 +132,12 @@
                              <form class="needs-validation pb-2" novalidate action="${root}/ManagerMovie" method="post">
                                 <%String succced = (String)request.getAttribute("succced"); %>
                                 <%if(succced != null){ %>
-                                	<p class="text-danger"><%=succced%> </p>
+                                	<p class="text-success"><%=succced%> </p>
                                 <%} %>
                                     <div class="form-row">
                                         <div class="form-group col-md-9">
                                             <label for="name">Name</label>
                                             <input type="text" name="name"  class="form-control" value="<%=movie.getNameMovie() %>" id="name">
-
                                         </div>
                                         <div class="form-group col-md-3">
                                             <label for="duration">Duration</label>
@@ -178,11 +181,15 @@
                                         </div>
                                     </div>
                                     
-                                    <%if(param != null){ %>
+                                     <%if(param != null){ %>
                                      <input type="hidden" name="command" value="update">
                                      <input type="hidden" name="movie_id" value="<%=param%>">
+                                     <input type="hidden" name="validation" value="validation">
+                                      <input type="hidden" name="reload" value="">
                                     <%}else { %>
                                     <input type="hidden" name="command" value="insert">
+                                    <input type="hidden" name="validation" value="validation">
+                                    <input type="hidden" name="reload" value="">
                                     <%} %>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>
@@ -231,7 +238,7 @@
                                                 <td class="text-center">
                                                   <button class="btn-trash btn-danger border-0">
                                                    <a class="text-decoration-none text-light" 
-                                                   href="${root}/ManagerMovie?command=deleteActor&stt=<%=am.getStt()%>&movie_id=<%=param%>">
+                                                   href="${root}/ManagerTVShow?command=deleteActor&stt=<%=am.getStt()%>&movie_id=<%=param%>">
                                                     	<i class="fas fa-trash"></i>
                                                    </a>
                                                 	</button>
@@ -289,7 +296,7 @@
                                                 <td class="text-center">
                                                   <button class="btn-trash btn-danger border-0">
                                                    <a class="text-decoration-none text-light" 
-                                                   href="${root}/ManagerMovie?command=deleteCate&sttCate=<%=am.getStt()%>&movie_id=<%=param%>">
+                                                   href="${root}/ManagerTVShow?command=deleteCate&sttCate=<%=am.getStt()%>&movie_id=<%=param%>">
                                                     	<i class="fas fa-trash"></i>
                                                    </a>
                                                 	</button>
@@ -307,7 +314,7 @@
                             <div class="card-header">
                                 <i class="fas fa-table mr-1"></i> Seasons
                                <%if(param != null){ %>
-                                <form action="${root}/ManagerSeason" method="post">
+                                <form action="${root}/SeasonServlet" method="post">
                                 	<input type="hidden" name="movie_id" value="<%=param%>">
                      				<input type="hidden" name="command" value="insertSeason">
 	                               <button type="submit" class="btn-add-Category float-right w-auto btn-info border-0 p-1 pr-2 pl-2">
@@ -384,7 +391,6 @@
 		    body = document.querySelector('body'),
 		    btnAdd = document.querySelector('.btn-add'),
 		    modelCate = document.querySelector('.modelCate'),
-		    btnAddSeason = document.querySelector('.btn-add-Season'),
 		    modelSeason = document.querySelector('.modelSeason'),
     		btnAddCate = document.querySelector('.btn-add-Category'),
     		listActor = document.querySelector('.list_actor_id');
@@ -407,12 +413,6 @@
         modelCate.classList.remove("open");
         body.classList.remove('hideScroll');
     }
-	});
-	modelSeason.addEventListener("click", function(e) {
-	    if (e.target.classList.contains('modelSeason')) {
-	        modelSeason.classList.remove("open");
-	        body.classList.remove('hideScroll');
-	    }
 	});
     model.addEventListener("click", function(e) {
         if (e.target.classList.contains('modelAcc')) {

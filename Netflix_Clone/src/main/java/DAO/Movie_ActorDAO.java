@@ -113,7 +113,18 @@ public class Movie_ActorDAO {
 			} catch (Exception e) {
 			return false;
 			}
-		}		
+		}
+		public boolean deleteActorOfMovie(int movie_id) throws SQLException {
+			try {
+				Connection connection = DBConnect1.getConnecttion();
+				String sql = "DELETE FROM actor_movie WHERE movie_id = '"+ movie_id +"'";
+				PreparedStatement ps = connection.prepareCall(sql)	;
+				int temp = ps.executeUpdate();
+				return temp == 1;
+				} catch (Exception e) {
+				return false;
+				}
+			}	
 		
 		public static void main(String[] args) throws SQLException {
 				Movie_ActorDAO dao = new Movie_ActorDAO();

@@ -44,8 +44,8 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">Information of Movies</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="movie_TVShow.jsp">TV Show</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_TVShow.jsp">TV Show</a></li>
                         <li class="breadcrumb-item">Movie Details</li>
                         <li class="breadcrumb-item active">Create Series</li>
                     </ol>
@@ -53,8 +53,12 @@
                         <div class="bgc-white p-20 bd border pr-3 pl-3 col-md-6">
                             <h4 class="c-grey-900 text-center pt-3 mb-4">Movie Information</h4>
                             <div class="mT-30">
-                                <form class="needs-validation pb-2" novalidate action="${root}/ManagerSeason" method="post">
-                                <%String succced = (String)request.getAttribute("succced"); %>
+                                <form class="needs-validation pb-2" novalidate action="${root}/ManagerSeries" method="post">
+                                 <%String succced = (String)request.getAttribute("succced"); %>
+                                <%if(succced != null){ %>
+                                	<p class="text-success"><%=succced%> </p>
+                                <%} %>
+                                	<p class="text-danger">${error}</p>
                                     <div class="form-row">
                                         <div class="form-group col-md-3">
                                             <label for="duration">Duration</label>
@@ -73,7 +77,7 @@
                                     <input type="hidden" name="movie_id" value="<%=param%>">
                                      <input type="hidden" name="season_id" value="<%=season_id%>">
                                     <input type="hidden" name="command" value="insertSeries">
-    
+    								 <input type="hidden" name="valiInsert" value="">
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>
                             </div>
@@ -123,7 +127,7 @@
                                                 <td><%=am.getLast_update() %></td>
                                                 <td class="text-center">
                                                 <button class="btn btn-danger border-0">  
-                                                     <a class="text-decoration-none text-light" href="${root}/ManagerSeason?command=deleteSeries&movie_id=<%=param%>&season_id=<%=season_id%>&series_id=<%= am.getSeriesId()%>">
+                                                     <a class="text-decoration-none text-light" href="${root}/ManagerSeries?command=deleteSeries&movie_id=<%=param%>&season_id=<%=season_id%>&series_id=<%= am.getSeriesId()%>">
                                                      	<i class="fas fa-trash"></i>
                                                      </a>                                                
                                                      </button>

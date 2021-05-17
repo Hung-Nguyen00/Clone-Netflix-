@@ -43,7 +43,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword">Password</label>
-                            <input type="text" name="password" class="form-control"  value="<%=account.getPasswordAccount() %>" placeholder="Password">
+                            <input type="text" name="password" size="50" class="form-control"  value="<%=account.getPasswordAccount() %>" placeholder="Password">
                             
                         </div>
                          
@@ -54,7 +54,7 @@
                         
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" name="phone" required value="<%=account.getPhone()%>" class="form-control" placeholder="Phone">
+                            <input type="text" name="phone" size="11" required value="<%=account.getPhone()%>" class="form-control" placeholder="Phone">
                            
                         </div>
                          <input type="hidden" name="command" value="update">

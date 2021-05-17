@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,7 +61,20 @@ public class ManagerActorServlet extends HttpServlet {
 		String first_name = request.getParameter("first_name");
 		String last_name = request.getParameter("last_name");
 		String director = request.getParameter("director");
-		String url = "", error = "";
+		
+		StringBuilder error = new StringBuilder(); 
+		StringBuilder success = new StringBuilder(); 
+		String url = "";
+		if(first_name == "" || first_name== null)
+		{
+			error.append("first name is not empty </br>");
+			
+		}
+		if(last_name == "" || last_name== null)
+		{
+			error.append("last_name is not empty </br>");
+		}
+		
 		try {
 			if (error.length() == 0) {
 				switch (command) {
@@ -67,12 +82,14 @@ public class ManagerActorServlet extends HttpServlet {
 					if(director != null)
 					{
 						actorDAO.insert(new Actor(actorDAO.getMaxId()+1, first_name, last_name, Byte.parseByte("2")));
+						success.append("A new Actor is created susscessfully");
 						url = "/Netflix_Clone/Admin/dist/actor.jsp";
 						break;
 					}
 					else
 					{
 						actorDAO.insert(new Actor(actorDAO.getMaxId()+1, first_name, last_name, Byte.parseByte("1")));
+						success.append("A new Actor is created susscessfully");
 						url = "/Netflix_Clone/Admin/dist/actor.jsp";
 						break;
 					}
@@ -80,22 +97,29 @@ public class ManagerActorServlet extends HttpServlet {
 					if(director.equals("true"))
 					{
 						actorDAO.update(new Actor(Integer.parseInt(request.getParameter("actor_id")), first_name, last_name, Byte.parseByte("1")));
+						success.append("Updated succeeded");
 						url = "/Netflix_Clone/Admin/dist/actor.jsp";
 						break;
 					}
 					else
 					{
 						actorDAO.update(new Actor(Integer.parseInt(request.getParameter("actor_id")), first_name, last_name, Byte.parseByte("0")));
+						success.append("Updated succeeded");
 						url = "/Netflix_Clone/Admin/dist/actor.jsp";
 						break;
 					}
+				default:
+					request.setAttribute("success", success.toString());
 				}
 			} else {
+				request.setAttribute("error", error.toString());
 				url = "/Netflix_Clone/Admin/dist/actor.jsp";
 			}
 		} catch (Exception e) {
 		}
-			response.sendRedirect(url);
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(url);
+		rd.forward(request, response);
+		
 	}
 
 }

@@ -1,22 +1,42 @@
+<%@page import="model.AdminAccount, java.util.*" %>
+<%@page import="DAO.AdminAccountDAO" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
+    <c:set var="root" value="${pageContext.request.contextPath}" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Dashboard - SB Admin</title>
-    <link href="css/styles.css" rel="stylesheet" />
+    <title>Home</title>
+    <link href="${root}/Admin/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="sb-nav-fixed">
+<%
+		AdminAccount admin = new AdminAccount();
+		response.setHeader("Cache-Control","no-cache, no-store, must-revalidate");
+		response.setHeader("Pragma","no-cache");
+		response.setHeader("Expires","0");
+	
+		if(session.getAttribute("user") == null)
+		{
+			response.sendRedirect("/Netflix_Clone/Admin/dist/Login.jsp");
+		}
+		if (session.getAttribute("user") != null)
+		{
+			admin = (AdminAccount) session.getAttribute("user");
+		}
+%>
 		<jsp:include page="Header.jsp"></jsp:include>
+		
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">

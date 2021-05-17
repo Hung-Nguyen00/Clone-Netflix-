@@ -18,7 +18,7 @@ public class CategoryDAO {
 	public ArrayList<Category> getCategorybyMenu(int menu_id) 
 			throws SQLException {
 			 Connection connection = DBConnect1.getConnecttion();
-			 String sql = "SELECT * FROM category WHERE menu_id = '" + menu_id + "'";
+			 String sql = "SELECT *, DATE_FORMAT(create_date, '%d-%m-%Y') new_create_date FROM category WHERE menu_id = '" + menu_id + "'";
 			 PreparedStatement ps = connection.prepareCall(sql);
 			 ResultSet rs = ps.executeQuery();
 			 ArrayList<Category> list = new ArrayList<>();
@@ -26,12 +26,29 @@ public class CategoryDAO {
 				 Category category = new Category();
 				 category.setCategoryId(rs.getInt("category_id"));
 				 category.setMenuId(rs.getInt("menu_id"));
+				 category.setCreate_date(rs.getString("new_create_date"));
 				 category.setNameCategory(rs.getString("name_category"));
 				 list.add(category);
 			 }
 			 return list;
 			 }
-	
+	public boolean checkMovieHasCate(int category_id) throws SQLException{
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "Select * from category as sm where sm.category_id in"
+				+ "(Select category_id from detail_movie as sm1 where sm.category_id = sm1.category_id) "
+				+ "and sm.category_id = '"+ category_id +"'";
+		PreparedStatement ps;
+		try {
+			 ps = connection.prepareCall(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				connection.close();
+				return true;
+			}	
+		} catch (Exception e) {
+		}
+		return false;
+	}
 	public ArrayList<Category> getCategorybyCategoryId(int category_id) 
 			throws SQLException {
 			 Connection connection = DBConnect1.getConnecttion();
@@ -85,13 +102,13 @@ public class CategoryDAO {
 
 	public Category getCategory(int category_id) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
-		String sql = "SELECT * FROM category WHERE category = '" + category_id + "'";
+		String sql = "SELECT * FROM category WHERE category_id = '" + category_id + "'";
 		PreparedStatement ps = connection.prepareCall(sql);
 		ResultSet rs = ps.executeQuery();
 		Category category = new Category();
 		while (rs.next()) {
 			 category.setCategoryId(rs.getInt("category_id"));
-			 category.setNameCategory(rs.getString("category_name"));
+			 category.setNameCategory(rs.getString("name_category"));
 			 category.setCreate_date(rs.getString("create_date"));
 		}
 		return category;
@@ -105,7 +122,7 @@ public class CategoryDAO {
 		
 		PreparedStatement ps = connection.prepareCall(sql);
 		ps.setInt(1, c.getCategoryId());
-		ps.setString(2, c.getMetaTitle());
+		ps.setString(2, c.getNameCategory().replace(" ", "-"));
 		ps.setDate(3, sqlDate);
 		ps.setString(4, c.getNameCategory());
 		ps.setInt(5, c.getMenuId());
@@ -151,23 +168,24 @@ public class CategoryDAO {
 	
 	
 	
-//	public boolean update(Category c) throws SQLException {
-//		try {
-//		Connection connection = DBConnect1.getConnecttion();
-//		String sql = "UPDATE category SET meta_title = ?, create_date = ?, name_category = ? WHERE category_id = ?";
-//		PreparedStatement ps = connection.prepareCall(sql);
-//		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-//		ps.setString(1, c.getMetaTitle());
-//		ps.setDate(2, sqlDate);
-//		ps.setString(3, c.getNameCategory());
-//		ps.setInt(4, c.getCategoryId());
-//		int temp = ps.executeUpdate();
-//		return temp == 1;
-//		} catch (Exception e) {
-//		return false;
-//		}
-//	}		
-////	
+	public boolean update(Category c) throws SQLException {
+		try {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "UPDATE category SET meta_title = ?, create_date = ?, name_category = ?, menu_id = ? WHERE category_id = ?";
+		PreparedStatement ps = connection.prepareCall(sql);
+		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		ps.setString(1, c.getNameCategory().replace(" ", "-"));
+		ps.setDate(2, sqlDate);
+		ps.setString(3, c.getNameCategory());
+		ps.setByte(4, (byte)c.getMenuId());
+		ps.setInt(5, c.getCategoryId());
+		int temp = ps.executeUpdate();
+		return temp == 1;
+		} catch (Exception e) {
+		return false;
+		}
+	}		
+//	
 	public boolean delete(int category_id) throws SQLException {
 	try {
 		Connection connection = DBConnect1.getConnecttion();
@@ -186,11 +204,11 @@ public class CategoryDAO {
 //			 System.out.println(category_dao.insert( new Category(i, "Comedy", "Comedy" + 1, 2)));
 //		
 //		}
-		 System.out.println(category_dao.getMaxStt());
-		
-		 for(Category cd : category_dao.getListCategoryForMovie(2,2)){
-			 System.out.println(cd.getCategoryId()+"-"+ cd.getNameCategory());
-		 }
+		 System.out.println(category_dao.insert(new Category(10, "scrience fiction", 1)));
+		 System.out.println(category_dao.checkMovieHasCate(10));
+//		 for(Category cd : category_dao.getListCategoryForMovie(2,2)){
+//			 System.out.println(cd.getCategoryId()+"-"+ cd.getNameCategory());
+//		 }
 	}
 	
 }

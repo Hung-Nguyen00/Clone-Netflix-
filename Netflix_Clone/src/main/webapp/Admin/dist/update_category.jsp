@@ -18,28 +18,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Create Series</title>
+    <title>Update Category</title>
      <link href="${root}/Admin/dist/css/styles.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-<body class="sb-nav-fixed">
+<body class="sb-nav-fixed hideScroll">
 <jsp:include page="Header.jsp"></jsp:include>
+
 	<% CategoryDAO cateDAO = new CategoryDAO(); %>
-	<% int menu_id = Integer.parseInt(request.getParameter("menu_id"));%>
-   <div class="modelAcc">
+	<% String category_id = request.getParameter("category_id");
+		int menu_id = Integer.parseInt(request.getParameter("menu_id"));
+		Category category = new Category();
+		if(category_id != null)
+		{
+			category = cateDAO.getCategory(Integer.parseInt(category_id));
+		}
+	
+	%>
+   <div class="modelAcc open">
             <div class="model-account bgc-white p-20 bd">
-                <h6 class="c-grey-900 pt-3 text-center">Add category to <Strong>Movie</Strong></h6>
+                <h6 class="c-grey-900 pt-3 text-center">Edit Category of Movie</h6>
                 <div class="mT-30 pr-2 pl-2 pb-2">
                     <form action="${root}/ManagerCategoryServlet" method="post">
                         <div class="form-group">
                             <label for="first_Name">Name</label>
-                            <input type="text" class="form-control" name="category_name" id="first_Name" aria-describedby="emailHelp" placeholder="Category's name...">
+                            <input type="text" class="form-control" name="category_name" id="first_Name" value="<%=category.getNameCategory()%>" placeholder="Category's name...">
                         </div>
-                        <input type="hidden" value="<%=menu_id%>" name="menu_id">
-                        <input type="hidden" value="insert" name="command">
+                        <input type="hidden" value="<%=category_id%>" name="category_id">
+                         <input type="hidden" value="<%=menu_id%>" name="menu_id">
+                        <input type="hidden" value="update" name="command">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
@@ -51,7 +61,7 @@
                     <h1 class="mt-4">Categories</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_Movie.jsp">Movie</a></li>
+                        <li class="breadcrumb-item">Movie</li>
                         <li class="breadcrumb-item active">Categories</li>
                     </ol>
                     <div class="card mb-4">
@@ -93,15 +103,15 @@
                                             <td><%=cate.getCreate_date()%></td>
                                             <td class="text-center">
                                             <%if(!cateDAO.checkMovieHasCate(cate.getCategoryId())){ %>
-                                                 <button class="btn-trash btn-danger border-0">
-                                                    <a class="text-decoration-none text-light" href="${root}/ManagerCategoryServlet?menu_id=<%=menu_id%>&command=delete&category_id=<%=cate.getCategoryId()%>">
+                                                <button class="btn-trash btn-danger border-0">
+                                                    <a class="text-decoration-none text-light" href="${root}/ManagerCategoryServlet?menu_id=<%=menu_id %>&command=delete&category_id=<%=cate.getCategoryId()%>">
                                                     <i class="fas fa-trash"></i>
                                                     </a>
                                                 </button>
                                              <%} %>
                                               <button class="btn-wrench bg-info border-0">
                                                   <a class="text-decoration-none text-light" 
-                                                  href="${root}/Admin/dist/update_category.jsp?menu_id=<%=menu_id%>&command=update&category_id=<%=cate.getCategoryId()%>">
+                                                  href="${root}/Admin/dist/update_category.jsp?menu_id=<%=menu_id %>&command=update&category_id=<%=cate.getCategoryId()%>">
                                                    <i class="fas fa-wrench"></i>
                                                    </a>
                                                 </button>
@@ -143,12 +153,6 @@
 	        model.style.top = topOffset + 'px';
 	    })
 	    
-	    model.addEventListener("click", function(e) {
-        if (e.target.classList.contains('modelAcc')) {
-            model.classList.remove("open");
-            body.classList.remove('hideScroll');
-        }
-    });
 	</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>

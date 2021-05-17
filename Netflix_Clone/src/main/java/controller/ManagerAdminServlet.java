@@ -10,20 +10,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import DAO.AccountDAO;
-import model.Account;
+import DAO.AdminAccountDAO;
+import model.AdminAccount;
 /**
  * Servlet implementation class ManagerAccountServlett
  */
-@WebServlet("/ManagerAccountServlet")
-public class ManagerAccountServlet extends HttpServlet {
+@WebServlet("/ManagerAdmin")
+public class ManagerAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	AccountDAO accountDAO = new AccountDAO();
+	 AdminAccountDAO adminDAO = new AdminAccountDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerAccountServlet() {
+    public ManagerAdminServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,21 +34,11 @@ public class ManagerAccountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");
-		String command = request.getParameter("command");
-		String email = request.getParameter("email");
-		String url = "";
-		try {
-			switch (command) {
-				case "delete":
-					accountDAO.delete(email);
-					url = "/Netflix_Clone/Admin/dist/account.jsp";
-					break;
-			}
-		} catch (Exception e) {
-		}
-		response.sendRedirect(url);
+		   HttpSession session = request.getSession(false);
+	        if (session != null) {
+	            session.invalidate();
+	            response.sendRedirect("/Netflix_Clone/Admin/dist/Login.jsp");    
+	        }
 	}
 
 	/**
@@ -56,28 +47,29 @@ public class ManagerAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
 		String command = request.getParameter("command");
-		String email = request.getParameter("email");
+		String name_account = request.getParameter("name_account");
 		String password = request.getParameter("password");
-		String	phone = request.getParameter("phone");
-		String expiration = request.getParameter("date");
+		String first_name = request.getParameter("first_name");
+		String last_name = request.getParameter("last_name");
 		String url = "";
 		
 		StringBuilder error = new StringBuilder(); 
-		StringBuilder success = new StringBuilder(); 
-		if(email == "" || email == null)
+		if(name_account == "" || name_account == null)
 		{
-			error.append("Email is not empty </br>");	
+			error.append("Account's name is not empty");
 		}
 		if(password == "" || password == null)
 		{
-			error.append("Password is not empty");	
+			error.append("Password is not empty");
 		}
 		
 		try {
-			if(accountDAO.valiEmail(email) == true)
+			if(adminDAO.valiAccountOfAdmin(name_account) == true)
 			{
-				error.append("Email is exist");
+				error.append("Account is existed");
 				url = "/Admin/dist/create_account.jsp";
 			}
 		} catch (SQLException e1) {
@@ -86,24 +78,38 @@ public class ManagerAccountServlet extends HttpServlet {
 		}
 		try {
 			if (error.length() == 0) {
+				AdminAccount admin = new AdminAccount();
 				switch (command) {
-				case "insert":
-					accountDAO.insert(new Account(email, password, expiration, phone));
-					success.append("A new account is created susscessfully");
-					request.setAttribute("success", success.toString());
-					url = "/Admin/dist/account.jsp";
-					break;
-				case "update":
-					accountDAO.update(new Account(request.getParameter("email_account"), password, expiration, phone));
-					url = "/Admin/dist/account.jsp";
-					success.append("Updated susscessfully");
-					request.setAttribute("success", success.toString());
+//				case "insert":
+//					accountDAO.insert(new Account(email, password, expiration, phone));
+//					success.append("New a account is created susscessfully");
+//					request.setAttribute("success", success.toString());
+//					url = "/Admin/dist/account.jsp";
+//					break;
+//				case "update":
+//					accountDAO.update(new Account(request.getParameter("email_account"), password, expiration, phone));
+//					url = "/Admin/dist/account.jsp";
+//					success.append("Updated susscessfully");
+//					request.setAttribute("success", success.toString());
+//					break;
+//				}
+				case "login":
+					admin = adminDAO.checkAdmin(name_account, password);
+					if( admin != null)
+					{
+						session.setAttribute("user", admin);
+						url = "/Admin/dist/index.jsp";
+					}
+					else {
+						session.setAttribute("error", "Account's name or password incorrect.!");
+						url = "/Admin/dist/Login.jsp";
+					}
 					break;
 				}
+				
 			} else {
 				request.setAttribute("error", error.toString());
-				
-				url = "/Admin/dist/create_account.jsp";
+				url = "/Admin/dist/Login.jsp";
 			}
 		} catch (Exception e) {
 			

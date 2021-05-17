@@ -87,34 +87,14 @@
                 </div>
             </div>
         </div>
-        <div class="modelSeason">
-            <div class="model-account bgc-white p-20 bd">
-                <h6 class="c-grey-900 pt-3 text-center">Season</h6>
-                <div class="mT-30 pr-2 pl-2 pb-2">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1" class="mb-2">Name Season</label>
-                            <input list="browSeason" class="w-100 mt-2 pt-0" placeholder="Choose name">
-                            <datalist id="browSeason">
-                                <option value="Internet Explorer"></option>
-                                <option value="Firefox"></option>
-                                <option value="Chrome"></option>
-                                <option value="Opera"></option>
-                                <option value="Safari"></option>
-                            </datalist>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+   
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
                     <h1 class="mt-4">Information of Movies</h1>
                     <ol class="breadcrumb mb-4">
-                         <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="movie_home.jsp">Movie</a></li>
+                         <li class="breadcrumb-item"><a href="${root}/Admin/dist/index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root}/Admin/dist/movie_home.jsp">Movie</a></li>
                         <li class="breadcrumb-item active">Movie Details</li>
                     </ol>
                     <div class="d-flex flex-lg-wrap">
@@ -122,10 +102,8 @@
                             <h4 class="c-grey-900 text-center pt-3 mb-4">Movie Information</h4>
                             <div class="mT-30">
                                 <form class="needs-validation pb-2" novalidate action="${root}/ManagerMovie" method="post">
-                                <%String succced = (String)request.getAttribute("succced"); %>
-                                <%if(succced != null){ %>
-                                	<p class="text-danger"><%=succced%> </p>
-                                <%} %>
+                                	<p class="text-danger">${error}</p>
+                           
                                     <div class="form-row">
                                         <div class="form-group col-md-9">
                                             <label for="name">Name</label>
@@ -169,12 +147,13 @@
                                             </label>
                                         </div>
                                     </div>
-                                    
-                                    <%if(param != null){ %>
+                                   <%if(param != null){ %>
                                      <input type="hidden" name="command" value="update">
                                      <input type="hidden" name="movie_id" value="<%=param%>">
+                                     <input type="hidden" name="validation" value="">
                                     <%}else { %>
                                     <input type="hidden" name="command" value="insert">
+                                    <input type="hidden" name="validation" value="">
                                     <%} %>
                                     <button type="submit" class="btn btn-primary">Save</button>
                                 </form>
