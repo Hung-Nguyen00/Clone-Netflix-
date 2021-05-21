@@ -225,6 +225,40 @@ $(document).ready(function(){
   });
 });
 </script>
+	<script>
+$(document).ready(function(){
+  $(".likebtn").click(function(){
+    if($(this).css("background-color") == "rgb(255, 0, 0)"){
+    	$(this).css("background-color", "rgb(42, 42, 42)");
+        
+        
+    }else{
+    	$(this).css("background-color", "red");
+        var id = $(this).attr("id");
+        $("#"+id+".dislikebtn").css("background-color", "rgb(42, 42, 42)");
+        
+        
+    }
+    
+  });
+});
+</script>
+<script>
+$(document).ready(function(){
+  $(".dislikebtn").click(function(){
+    if($(this).css("background-color") == "rgb(255, 0, 0)"){
+    	$(this).css("background-color", "rgb(42, 42, 42)");
+        
+        
+    }else{
+    	$(this).css("background-color", "red");
+        var id = $(this).attr("id");
+        $("#"+id+".likebtn").css("background-color", "rgb(42, 42, 42)");
+    }
+    
+  });
+});
+</script>
     <script>
 $(document).ready(function(){
 	

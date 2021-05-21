@@ -16,11 +16,11 @@ import model.ActivitiHistoryMovie;
 import DAO.Activity_HistoryDAO;
 
 
-@WebServlet("/toggleSaveController")
-public class toggleSaveController extends HttpServlet {
+@WebServlet("/ToggleSaveController")
+public class ToggleSaveController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     Activity_HistoryDAO dao = new Activity_HistoryDAO();
-    public toggleSaveController() {
+    public ToggleSaveController() {
         super();
     }
  
