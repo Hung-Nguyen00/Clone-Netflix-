@@ -60,7 +60,7 @@ public class MovieDAO {
 			 }
 			 return list;
 			 }
-
+	
 	public static void main(String[] args) throws SQLException  {
 		MovieDAO movie_dao = new MovieDAO();
 		int id =2;

@@ -6,6 +6,8 @@
 <%@ page import="model.Menu" %>
 <%@ page import="DAO.MovieDAO" %>
 <%@ page import="model.Movie" %>
+<%@ page import="DAO.Activity_HistoryDAO" %>
+<%@ page import="model.ActivitiHistoryMovie" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -21,11 +23,20 @@
 </head>
 
 <body>
-
+<% 
+response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setHeader("Expires", "0");
+	if(session.getAttribute("account_id")==null){
+		response.sendRedirect("/Netflix_Clone/Inner-Website/firstHome.jsp");
+	}
+%>
 <h1 style="display:none"> <%=request.getParameter("category_id")%></h1>
+<h1 class="session_account" style="display:none"> <%=session.getAttribute("account_id")%></h1>
 <%
 	MovieDAO movie_dao = new MovieDAO();
 	CategoryDAO category_dao = new CategoryDAO();
+	Activity_HistoryDAO AHDAO = new Activity_HistoryDAO();
 	int category_id= -1;
 	if(request.getParameter("category_id")!=null)
 	{
@@ -40,7 +51,9 @@
 
         </div>
     </div>
- 	<% for(Category c : category_dao.getCategorybyCategoryId(category_id)) { %>
+ 	<% for(Category c : category_dao.getCategorybyCategoryId(category_id)) { 
+ 		
+ 	%>
     <div class="My-List-label">
         <h1><%=c.getNameCategory() %></h1>
     </div>
@@ -48,7 +61,9 @@
     <div class="detail-movie" style="position: absolute; top: 28%; left: 0; display: flex; flex-wrap: wrap; width: 100%;">
        <div class="popular-slider">
     	<div class="popular-slider-card" style="display: flex; flex-wrap: wrap; margin-bottom: 2rem;">
-       	<% for(Movie m : movie_dao.getMoviebyCategory(category_id)) { %>
+    	<%int i=0; %>
+       	<% for(Movie m : movie_dao.getMoviebyCategory(category_id)) { 
+       	%>
             <div class="popular-slider-card-item" style="margin-bottom: 2rem;">
                 <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
@@ -57,9 +72,12 @@
                         <div class="item-controller">
                             <ul>
                                 <li><a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>"><i class="fa fa-play"></i></a></li>
-                                <li><button class="movie-button" id="savebtn"><i class="fa fa-plus"></i></button></li>
-                                <li><button onclick="myFunction()" style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="likebtn"><i class="fa fa-thumbs-up"></i></button></li>
-                                <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="dislikebtn"><i class="fa fa-thumbs-down"></i></button></li>
+                                <li><a class="savebtn" id="<%=m.getMovieId() %>" data-id="<%=m.getMovieId() %>" <% for(ActivitiHistoryMovie AHM : AHDAO.getAVHbyAccountId((int)session.getAttribute("account_id"),m.getMovieId())) { 
+       	%> <%if(AHM.getSaved()==1){%> style="background-color:red" <%}%> <%} %> ><i class="fa fa-plus"></i></a></li>
+                                <li><a class="likebtn" id="<%=m.getMovieId() %>" data-id="<%=m.getMovieId() %>" <% for(ActivitiHistoryMovie AHM : AHDAO.getAVHbyAccountId((int)session.getAttribute("account_id"),m.getMovieId())) { 
+       	%> <%if(AHM.getLikebtn()==1){%> style="background-color:red" <%}%> <%} %>><i class="fa fa-thumbs-up"></i></a></li>
+                                <li><a class="dislikebtn" id="<%=m.getMovieId() %>" data-id="<%=m.getMovieId() %>" <% for(ActivitiHistoryMovie AHM : AHDAO.getAVHbyAccountId((int)session.getAttribute("account_id"),m.getMovieId())) { 
+       	%> <%if(AHM.getDislikebtn()==1){%> style="background-color:red" <%}%> <%} %>><i class="fa fa-thumbs-down"></i></a></li>
                             </ul>
                         </div>
                         <div class="item-info">
@@ -94,9 +112,9 @@
                             <div class="preview-controller-info">
                                 <ul>
                                     <li><a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>"><i class="fa fa-play"></i> Resume</a></li>
-                                    <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="savebtn"><i class="fa fa-plus"></i></button></li>
-                                <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="likebtn"><i class="fa fa-thumbs-up"></i></button></li>
-                                <li><button style="border: 1px solid gray; background-color: rgb(44, 42, 42); height: 43px; width: 43px; border-radius: 50%; line-height: 43px; color: white;" id="dislikebtn"><i class="fa fa-thumbs-down"></i></button></li>
+                                    <li class="savebtn"><a><i class="fa fa-plus"></i></a></li>
+                                    <li class="likebtn"><a><i class="fa fa-thumbs-up"></i></a></li>
+                                    <li class="dislikebtn"><a><i class="fa fa-thumbs-down"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -190,20 +208,78 @@
                 </div>
             </div>
 
-            <% } %>
+            <% i++;} %>
     </div>
 		</div>
 		</div>    
     <script src="../Inner-Website/lib/js/detail_category.js"></script>
-    
-    <<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
 $(document).ready(function(){
-  $("likebtn").click(function(){
-    $("p").toggle();
+  $(".savebtn").click(function(){
+    if($(this).css("background-color") == "rgb(255, 0, 0)"){
+    	$(this).css("background-color", "rgb(42, 42, 42)");
+    }else{
+    	$(this).css("background-color", "red");
+    }
   });
 });
 </script>
+    <script>
+$(document).ready(function(){
+	
+  $(".savebtn").click(function(){
+	  var accountId = $(".session_account").text();
+	    var movieId = $(this).data("id");
+    $.post("${root}/ToggleSaveController",
+    {
+      account_id : accountId,
+      movie_id : movieId
+    },
+    function(){
+      
+    });
+  });
+});
+</script>
+
+ <script>
+$(document).ready(function(){
+	
+  $(".likebtn").click(function(){
+	  var accountId = $(".session_account").text();
+	    var movieId = $(this).data("id");
+    $.post("${root}/ToggleLikeController",
+    {
+      account_id : accountId,
+      movie_id : movieId
+    },
+    function(){
+      
+    });
+  });
+});
+</script>
+
+<script>
+$(document).ready(function(){
+	
+  $(".dislikebtn").click(function(){
+	  var accountId = $(".session_account").text();
+	    var movieId = $(this).data("id");
+    $.post("${root}/ToggleDislikeController",
+    {
+      account_id : accountId,
+      movie_id : movieId
+    },
+    function(){
+      
+    });
+  });
+});
+</script>
+
+
     
 </body>
 

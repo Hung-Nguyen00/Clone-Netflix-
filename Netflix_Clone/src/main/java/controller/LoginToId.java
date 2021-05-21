@@ -20,7 +20,7 @@ public class LoginToId extends HttpServlet {
             throws ServletException, IOException {
     	request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-    	String account_id = request.getParameter("account_id");
+    	int account_id = Integer.parseInt(request.getParameter("account_id"));
     	HttpSession sessionId = request.getSession();
 		sessionId.setAttribute("account_id", account_id);
 		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp");

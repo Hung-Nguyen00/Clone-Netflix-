@@ -19,7 +19,7 @@
 	response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
 	response.setHeader("Pragma", "no-cache");
 	response.setHeader("Expires", "0");
-	if(session.getAttribute("email")==null){
+	if(session.getAttribute("account_id")==null){
 		response.sendRedirect("/Netflix_Clone/Inner-Website/firstHome.jsp");
 	}
 %>

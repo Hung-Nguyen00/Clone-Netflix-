@@ -17,7 +17,7 @@
 	 %>
 	<!-- Header start -->
     <header>
-        <a href="#" class="logo"><img src="https://truecostmovie.com/img/TTC/wp-content/uploads/2015/10/netflix_logo_digitalvideo-1.png" alt=""></a>
+        <a href="index.jsp" class="logo"><img src="https://truecostmovie.com/img/TTC/wp-content/uploads/2015/10/netflix_logo_digitalvideo-1.png" alt=""></a>
         <ul class="navigation">
             <li class="active"><a href="index.jsp?menu_id=0">Home</a></li>
             <li><a href="tvShow.jsp?menu_id=1">TV Shows</a></li>
