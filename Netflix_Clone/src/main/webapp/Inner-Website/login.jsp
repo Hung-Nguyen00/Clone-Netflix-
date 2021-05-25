@@ -79,7 +79,7 @@
                         </div>
                         <div class="des-signup mt-2 text-secondary">
                             New to Weflix?
-                            <a href="sigup.jsp"class=" text-light ">Sign up now.</a>
+                            <a href="signup.jsp"class=" text-light ">Sign up now.</a>
                         </div>
                         <div class="des-captcha mt-2 text-secondary ">
                             This page is protected by Google reCAPTCHA to ensure you're not a bot.

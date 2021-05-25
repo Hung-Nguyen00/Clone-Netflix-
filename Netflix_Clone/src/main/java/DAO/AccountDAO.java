@@ -66,6 +66,21 @@ public class AccountDAO {
 		}
 	return false;
 }
+
+	public boolean signUpAccount(String email, String password) throws SQLException {
+		try {
+		Connection connection = DBConnect1.getConnection();
+		String sql = "INSERT INTO `netflix`.`account` (`email`, `password_account`) VALUES ('"+email+"', '"+password+"')";
+
+		PreparedStatement ps = connection.prepareCall(sql);
+		
+		int temp = ps.executeUpdate();
+		return temp == 1;
+		} catch (Exception e) {
+		return false;
+		}
+	}
+	
 	public boolean insert(Account c) throws SQLException {
 		try {
 		Connection connection = DBConnect1.getConnection();
@@ -121,7 +136,9 @@ public class AccountDAO {
 //			}
 			
 //			System.out.println(dao.getAccount("abc@gmail.com").getPhone());
-		System.out.println(dao.checkEmail("vuhoanglong21@gmail.com","@Nightfury21"));
+//		System.out.println(dao.signUpAccount("vuhoanglong20@gmail.com","@Nightfury21"));
+		System.out.println(dao.checkEmail("vuhoanglong205@gmail.com","@Nightfury21"));
+		
 //			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
 //			System.out.println(dao.delete("abc3@gmail.com"));
 //			for (Account ds : dao.getListAccount()) {

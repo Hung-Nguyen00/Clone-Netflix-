@@ -27,7 +27,7 @@
                     <input type="text" name="" id="" />
                     <label for="">Email Address</label>
                 </div>
-                <button>Get started</button>
+                <button onclick="signup()">Get started</button>
             </div>
         </div>
     </header>
@@ -180,5 +180,14 @@
       </div>
     </footer>
     <script src="../Inner-Website/lib/js/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+function signup() {
+var email = $("input").val();
+location.replace("signup.jsp");
+}
+
+</script>
   </body>
 </html>

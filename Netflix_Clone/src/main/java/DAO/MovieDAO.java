@@ -60,11 +60,35 @@ public class MovieDAO {
 			 }
 			 return list;
 			 }
+	public ArrayList<Movie> getMoviebyMenuId(int menu_id) 
+			throws SQLException {
+			 Connection connection = DBConnect1.getConnection();
+			 String sql = "select * from (movie inner join detail_movie on movie.movie_id = detail_movie.movie_id) inner join category on detail_movie.category_id = category.category_id where menu_id='"+menu_id+"';";
+			 PreparedStatement ps = connection.prepareCall(sql);
+			 ResultSet rs = ps.executeQuery();
+			 ArrayList<Movie> list = new ArrayList<>();
+			 while (rs.next()) {
+				 Movie movie = new Movie();
+				 movie.setMovieId(rs.getInt("movie_id"));
+				 movie.setNameMovie(rs.getString("name_movie"));
+				 movie.setDescriptionMovie(rs.getString("description_movie"));
+				 movie.setImage(rs.getString("image"));
+				 movie.setTrailer(rs.getString("trailer"));
+				 movie.setVideo(rs.getString("video"));
+				 movie.setLo(rs.getString("lo"));
+				 movie.setMaturityRating(rs.getString("maturity_rating"));
+				 movie.setLastUpdate(rs.getDate("last_update"));
+				 movie.setDuration(rs.getString("duration"));
+				 movie.setTopHot(rs.getByte("top_hot"));
+				 list.add(movie);
+			 }
+			 return list;
+			 }
 	
 	public static void main(String[] args) throws SQLException  {
 		MovieDAO movie_dao = new MovieDAO();
-		int id =2;
-		 for(Movie md : movie_dao.getMoviebyCategory(id)){
+		int id =1;
+		 for(Movie md : movie_dao.getMoviebyMenuId(id)){
 			 System.out.println(md.getDescriptionMovie()+"-"+ md.getImage());
 		 }
 

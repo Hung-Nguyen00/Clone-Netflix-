@@ -111,11 +111,14 @@ response.setHeader("Expires", "0");
                             </h5>
                             <div class="preview-controller-info">
                                 <ul>
-                                    <li><a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>"><i class="fa fa-play"></i> Resume</a></li>
-                                    <li class="savebtn"><a><i class="fa fa-plus"></i></a></li>
-                                    <li class="likebtn"><a><i class="fa fa-thumbs-up"></i></a></li>
-                                    <li class="dislikebtn"><a><i class="fa fa-thumbs-down"></i></a></li>
-                                </ul>
+                                <li><a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>"><i class="fa fa-play"></i></a></li>
+                                <li><a class="savebtn" id="<%=m.getMovieId() %>" data-id="<%=m.getMovieId() %>" <% for(ActivitiHistoryMovie AHM : AHDAO.getAVHbyAccountId((int)session.getAttribute("account_id"),m.getMovieId())) { 
+       	%> <%if(AHM.getSaved()==1){%> style="background-color:red" <%}%> <%} %> ><i class="fa fa-plus"></i></a></li>
+                                <li><a class="likebtn" id="<%=m.getMovieId() %>" data-id="<%=m.getMovieId() %>" <% for(ActivitiHistoryMovie AHM : AHDAO.getAVHbyAccountId((int)session.getAttribute("account_id"),m.getMovieId())) { 
+       	%> <%if(AHM.getLikebtn()==1){%> style="background-color:red" <%}%> <%} %>><i class="fa fa-thumbs-up"></i></a></li>
+                                <li><a class="dislikebtn" id="<%=m.getMovieId() %>" data-id="<%=m.getMovieId() %>" <% for(ActivitiHistoryMovie AHM : AHDAO.getAVHbyAccountId((int)session.getAttribute("account_id"),m.getMovieId())) { 
+       	%> <%if(AHM.getDislikebtn()==1){%> style="background-color:red" <%}%> <%} %>><i class="fa fa-thumbs-down"></i></a></li>
+                            </ul>
                             </div>
                         </div>
                     </div>
