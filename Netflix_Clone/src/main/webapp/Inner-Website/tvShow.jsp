@@ -12,6 +12,7 @@
     <title>Netflix</title>
 </head>
 <body>
+	<h1 style="display:none"> <%=request.getParameter("menu_id")%></h1>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="sub_header.jsp"></jsp:include>
 	<jsp:include page="banner.jsp"></jsp:include>

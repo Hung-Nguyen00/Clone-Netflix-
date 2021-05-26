@@ -29,6 +29,23 @@ public class MenuDAO {
 		return Menu;
 	}
 	
+	public ArrayList<Menu> getListMenu(byte menu_id) 
+			throws SQLException {
+			 Connection connection = DBConnect1.getConnecttion();
+			 String sql = "SELECT * FROM menu WHERE menu_id = '" + menu_id + "'";
+			 PreparedStatement ps = connection.prepareCall(sql);
+			 ResultSet rs = ps.executeQuery();
+			 ArrayList<Menu> list = new ArrayList<>();
+			 while (rs.next()) {
+				 Menu menu = new Menu();
+				 menu.setMenuId(rs.getByte("menu_id"));
+				 menu.setNameMenu(rs.getString("name_menu"));
+				 menu.setMetaTitile(rs.getString("meta_titile"));
+				 list.add(menu);
+			 }
+			 return list;
+			 } 
+	
 	public Menu getMenuOfMovie(int movie_id) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
 		String sql = "select m.name_menu as name_menu, m.menu_id as menu_id from netflix.menu as m "

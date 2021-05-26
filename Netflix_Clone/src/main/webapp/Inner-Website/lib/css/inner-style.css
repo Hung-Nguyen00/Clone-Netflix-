@@ -587,6 +587,7 @@ header ul li {
     display: flex;
     flex: 0 0 100%;
     max-width: 100%;
+    flex-wrap: wrap;
     margin-left: 50px;
     transition: margin 1s ease;
 }
@@ -596,6 +597,7 @@ header ul li {
     flex: 0 0 20%;
     max-width: 20%;
     position: relative;
+    margin-bottom: 30px;
 }
 
 .popular-slider-card .popular-slider-details {
@@ -655,6 +657,18 @@ header ul li {
     line-height: 40px;
     color: white;
 }
+
+.movie-button {
+    border: 1px solid gray;
+    background-color: rgb(44, 42, 42);
+    height: 43px;
+    width: 43px;
+    border-radius: 50%;
+    line-height: 43px;
+    color: white;
+}
+
+
 
 .item-controller-info .item-info a:hover,
 .item-controller-info ul li a:hover {
@@ -874,7 +888,16 @@ header ul li {
     margin-right: 10px;
 }
 
-.preview .preview-controller-info li a {
+.preview .preview-controller-info li a{
+    height: 40px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    width: 40px;
+    border: 1px solid rgb(218, 213, 213, 0.5);
+    background-color: rgb(85, 84, 84, 0.2);
+}
+
+.preview .preview-controller-info li button{
     height: 40px;
     padding: 5px 10px;
     border-radius: 50%;
@@ -1230,6 +1253,7 @@ header ul li {
 .account-container:last-child:hover {
     border: 1px solid gray;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .account-avatar img:hover {
@@ -1239,6 +1263,8 @@ header ul li {
     border-radius: 5px;
     margin-top: -2px;
     margin-left: -2px;
+    cursor: pointer;
+
 }
 
 .browse-manage-button {
@@ -1375,23 +1401,16 @@ header ul li {
 .My-List-row-container {
     margin-bottom: 100px;
     position: relative;
-    width: 100%;
+    width: 100vw;
     display: flex;
     padding: 0 65px;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: end;
-    flex: 0 0 100%;
-    max-width: 100%;
 }
 
 .My-List-item {
-    flex: 0 0 10%;
-    max-width: 100%;
+    flex-basis: 15%;
     position: relative;
     transition: transform 2s;
-    padding: 5px;
-    margin-bottom: 10px;
 }
 
 .My-List-item img {

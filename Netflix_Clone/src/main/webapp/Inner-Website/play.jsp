@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="DAO.MenuDAO" %>
 <%@ page import="model.Menu" %>
+<%@ page import="DAO.MovieDAO"%>
+<%@ page import="model.Movie" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,20 +17,21 @@
  </head>
 
 <body>
+<h1 style="display:none"> <%=request.getParameter("video_id")%></h1>
 <%
-	response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Expires", "0");
-	if(session.getAttribute("account_id")==null){
-		response.sendRedirect("/Netflix_Clone/Inner-Website/firstHome.jsp");
-	}
-%>
-<h1 style="display:none">Hello ${account_id}</h1>
-<h1 style="display:none"> <%=request.getParameter("menu_id")%></h1>
-	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:include page="banner.jsp"></jsp:include>
-	<jsp:include page="content.jsp"></jsp:include>
-	<script src="/Inner-Website/lib/js/app.js"></script>
-	
+	MovieDAO movie_dao = new MovieDAO();
+		String video_id= null;
+		if(request.getParameter("video_id")!=null)
+		{
+			video_id= request.getParameter("video_id") ;
+		}
+	 %>
+<div class="play-film open">
+        <iframe src="https://www.youtube.com/embed/<%=video_id%>" frameborder="0" allowfullscreen></iframe>
+        <div class="close-movie">
+            <i class="fas fa-times"></i>
+            <h4 class="back-to-browse">Back to Browse</h4>
+        </div>
+    </div>
 </body>
 </html>

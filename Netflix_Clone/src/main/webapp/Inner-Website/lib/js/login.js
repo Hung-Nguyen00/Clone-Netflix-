@@ -5,7 +5,6 @@ function login() {
     let email = document.getElementById('input-username').value,
         pwd = document.getElementById('input-password').value
     if (validEmail(email) && validPassword(pwd) && validDatabase(email, pwd)) {
-        window.location.href = 'browse.jsp'
         return true
     } else {
         alert('An error occured, please recheck your email and password!')

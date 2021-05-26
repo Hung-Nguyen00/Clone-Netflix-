@@ -14,6 +14,7 @@ public class AccountChild implements java.io.Serializable {
 	private byte accountId;
 	private Account account;
 	private String nameAccount;
+	private String email;
 	private String avatar;
 	private Date createDate;
 	private Set activitiHistoryMovies = new HashSet(0);
@@ -27,13 +28,21 @@ public class AccountChild implements java.io.Serializable {
 	}
 
 	public AccountChild(byte accountId, Account account, String nameAccount, String avatar, Date createDate,
-			Set activitiHistoryMovies) {
+			Set activitiHistoryMovies, String email) {
 		this.accountId = accountId;
 		this.account = account;
 		this.nameAccount = nameAccount;
 		this.avatar = avatar;
 		this.createDate = createDate;
+		this.email = email;
 		this.activitiHistoryMovies = activitiHistoryMovies;
+	}
+	
+	public AccountChild(byte accountId, String nameAccount, String avatar,  String email) {
+		this.accountId = accountId;
+		this.nameAccount = nameAccount;
+		this.avatar = avatar;
+		this.email = email;
 	}
 
 	public byte getAccountId() {
@@ -66,6 +75,14 @@ public class AccountChild implements java.io.Serializable {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+	
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getCreateDate() {

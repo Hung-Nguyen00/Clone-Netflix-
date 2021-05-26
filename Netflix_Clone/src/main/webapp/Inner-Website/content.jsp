@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="DAO.MovieDAO" %>
+<%@ page import="model.Movie" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,37 +9,51 @@
 <title>Content</title>
 </head>
 <body>
-
+<%
+	MovieDAO movie_dao = new MovieDAO();
+	int menu_id= 0;
+	if(request.getParameter("menu_id")!=null)
+	{
+		menu_id= Integer.parseInt(request.getParameter("menu_id")) ;
+	}
+	
+	 %>
 	 <div class="preloader">
     </div>
+    <% for(Movie m : movie_dao.getListMovie(menu_id)) { %>
     <div class="trailer-film">
-        <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>>?autoplay=1&loop=1&mute=1&controls=0&playlist=<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
     </div>
+   
     <div></div>
     <div class="play-film">
-        <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
         <div class="close-movie">
             <i class="fas fa-times"></i>
             <h4 class="back-to-browse">Back to Browse</h4>
         </div>
     </div>
+     <% }%>
     <!-- banner end -->
     <!-- preview-model start -->
     <div class="preview">
+    
         <div class="preview-detail">
 
         </div>
     </div>
     <!--  preview-model end-->
     <!-- slider start-->
-    <div class="popular-slider">
+    <% for(Movie m : movie_dao.getListMovie(menu_id)) { %>
+    <div class="popular-slider" style=" display: flex; flex-wrap: wrap; width: 100%;">
+    
         <h2>Popular on Netflix</h2>
-        <div class="popular-slider-card">
+        <div class="popular-slider-card" style="flex-wrap: wrap;">
             <!-- slider-item-popular start-->
             <div class="popular-slider-card-item">
-                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                    <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                     <div class="item-controller-info">
                         <div class="item-controller">
                             <ul>
@@ -67,10 +83,10 @@
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
                             <iframe></iframe>
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                            <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                            <img src="<%=m.getLo()%>"
                                 alt="trailer">
                             <h5>
                                 <span></span>
@@ -133,7 +149,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -151,7 +167,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -169,7 +185,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -187,7 +203,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -205,7 +221,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -252,9 +268,9 @@
                 </div>
             </div>
             <div class="popular-slider-card-item">
-                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                    <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                     <div class="item-controller-info">
                         <div class="item-controller">
                             <ul>
@@ -284,10 +300,10 @@
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
                             <iframe></iframe>
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                            <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                            <img src="<%=m.getLo()%>"
                                 alt="trailer">
                             <h5>
                                 <span></span>
@@ -350,7 +366,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -368,7 +384,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -386,7 +402,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -404,7 +420,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -422,7 +438,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -469,9 +485,9 @@
                 </div>
             </div>
             <div class="popular-slider-card-item">
-                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                    <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                     <div class="item-controller-info">
                         <div class="item-controller">
                             <ul>
@@ -501,10 +517,10 @@
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
                             <iframe></iframe>
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                            <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                            <img src="<%=m.getLo()%>"
                                 alt="trailer">
                             <h5>
                                 <span></span>
@@ -567,7 +583,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -585,7 +601,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -603,7 +619,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -621,7 +637,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -639,7 +655,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -686,9 +702,9 @@
                 </div>
             </div>
             <div class="popular-slider-card-item">
-                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                    <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                     <div class="item-controller-info">
                         <div class="item-controller">
                             <ul>
@@ -718,10 +734,10 @@
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
                             <iframe></iframe>
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                            <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                            <img src="<%=m.getLo()%>"
                                 alt="trailer">
                             <h5>
                                 <span></span>
@@ -784,7 +800,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -802,7 +818,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -820,7 +836,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -838,7 +854,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -856,7 +872,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -903,9 +919,9 @@
                 </div>
             </div>
             <div class="popular-slider-card-item">
-                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                    <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                     <div class="item-controller-info">
                         <div class="item-controller">
                             <ul>
@@ -935,10 +951,10 @@
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
                             <iframe></iframe>
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                            <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                            <img src="<%=m.getLo()%>"
                                 alt="trailer">
                             <h5>
                                 <span></span>
@@ -1001,7 +1017,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1019,7 +1035,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1037,7 +1053,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1055,7 +1071,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1073,7 +1089,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1120,9 +1136,9 @@
                 </div>
             </div>
             <div class="popular-slider-card-item">
-                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                 <div class="popular-slider-card-item--hover">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                    <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                     <div class="item-controller-info">
                         <div class="item-controller">
                             <ul>
@@ -1152,10 +1168,10 @@
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
                             <iframe></iframe>
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                            <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">
-                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                            <img src="<%=m.getLo()%>"
                                 alt="trailer">
                             <h5>
                                 <span></span>
@@ -1218,7 +1234,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1236,7 +1252,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1254,7 +1270,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1272,7 +1288,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1290,7 +1306,7 @@
                             <div class="moreMovie-items--inner">
                                 <div class="preview-detail-moreMovie-item">
                                     <div class="moreMovie-item-img">
-                                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                        <img src="<%=m.getImage()%>" alt="">
                                     </div>
                                     <div class="moreMovie-item-content">
                                         <h4 class="info-movie-detail">
@@ -1350,9 +1366,9 @@
             <div class="popular-slider-card">
                 <!-- slider-item-popular start-->
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -1381,10 +1397,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -1447,7 +1463,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1465,7 +1481,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1483,7 +1499,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1501,7 +1517,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1519,7 +1535,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1566,9 +1582,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -1597,10 +1613,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -1663,7 +1679,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1681,7 +1697,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1699,7 +1715,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1717,7 +1733,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1735,7 +1751,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1782,9 +1798,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -1813,10 +1829,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -1879,7 +1895,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1897,7 +1913,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1915,7 +1931,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1933,7 +1949,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1951,7 +1967,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -1998,9 +2014,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -2029,10 +2045,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -2095,7 +2111,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2113,7 +2129,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2131,7 +2147,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2149,7 +2165,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2167,7 +2183,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2214,9 +2230,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -2245,10 +2261,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -2311,7 +2327,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2329,7 +2345,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2347,7 +2363,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2365,7 +2381,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2383,7 +2399,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2430,9 +2446,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -2461,10 +2477,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -2527,7 +2543,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2545,7 +2561,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2563,7 +2579,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2581,7 +2597,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2599,7 +2615,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2646,9 +2662,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -2677,10 +2693,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -2743,7 +2759,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2761,7 +2777,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2779,7 +2795,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2797,7 +2813,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2815,7 +2831,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2862,9 +2878,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -2893,10 +2909,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -2959,7 +2975,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2977,7 +2993,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -2995,7 +3011,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3013,7 +3029,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3031,7 +3047,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3078,9 +3094,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -3109,10 +3125,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -3175,7 +3191,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3193,7 +3209,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3211,7 +3227,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3229,7 +3245,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3247,7 +3263,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3305,9 +3321,9 @@
             <div class="popular-slider-card">
                 <!-- slider-item-popular start-->
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -3336,10 +3352,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -3402,7 +3418,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3420,7 +3436,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3438,7 +3454,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3456,7 +3472,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3474,7 +3490,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3521,9 +3537,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -3552,10 +3568,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -3618,7 +3634,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3636,7 +3652,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3654,7 +3670,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3672,7 +3688,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3690,7 +3706,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3737,9 +3753,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -3768,10 +3784,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -3834,7 +3850,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3852,7 +3868,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3870,7 +3886,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3888,7 +3904,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3906,7 +3922,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -3953,9 +3969,9 @@
                     </div>
                 </div>
                 <div class="popular-slider-card-item">
-                    <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABavRwYeWMygWEhjzdqKsAxUWdue-g8dgG8Oh_eieRIDCkoyu32OQopyQ43Kx7ezFUifJvxIkqg1S-3YtMBjer9D-xZw.webp?r=801" style="width: 245px; height: 140px;" alt="">
+                    <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
                     <div class="popular-slider-card-item--hover">
-                        <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABcQCPnWslGIZd2-s_klnS4nAeV-vjjTlZYKq4tl2Aame1FthlRiVAFUHWlPl85pSwUBGT-gnkeUNaISHK8x8KHxVc7lo3OJ9a97RexJM0Zx_M7IxWzM_b4dqWubx.jpg?r=efc" style="max-width: 400px;" alt="">
+                        <img src="<%=m.getImage()%>" style="max-width: 400px;" alt="">
                         <div class="item-controller-info">
                             <div class="item-controller">
                                 <ul>
@@ -3984,10 +4000,10 @@
                         <div class="preview-detail-trailer">
                             <div class="preview-detail-banner">
                                 <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe>
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABVRVKmQyNvY5YoKloq7FQK0thy7EMywP1ceaZUIcBU_nlMXlxcvlhU1bU0RvZk4pBLeiE-atpO86FuR1PGzj8MACLyVD.webp?r=db5" alt="banner">
+                                <img src="<%=m.getImage()%>" alt="banner">
                             </div>
                             <div class="preview-detail-trailer--controller">
-                                <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/LmEnxtiAuzezXBjYXPuDgfZ4zZQ/AAAABVspwpnSdtBJF45JqFzp5ZC57kFmslBPHHpBscUzN-y4SSkzbOU3kh-Qk51ciDJd8cJ9ze4kKGrryjJNxkC_CzD3TXamszRM2qXtoPtG7PwsdjeLqmFwQpgPRzvifQdnB4M9efui9aLLLTt9dlyRt6vUE6KFJGbgCLPObsrnk58fbg.webp?r=bab"
+                                <img src="<%=m.getLo()%>"
                                     alt="trailer">
                                 <h5>
                                     <span></span>
@@ -4050,7 +4066,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -4068,7 +4084,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -4086,7 +4102,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -4104,7 +4120,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -4122,7 +4138,7 @@
                                 <div class="moreMovie-items--inner">
                                     <div class="preview-detail-moreMovie-item">
                                         <div class="moreMovie-item-img">
-                                            <img src="https://occ-0-395-58.1.nflxso.net/dnm/api/v6/X194eJsgWBDE2aQbaNdmCXGUP-Y/AAAABd7Z8yskTokyldLhmOSkC9O3_gnq0KNYlKyOfxo6Euwm65XCLJUTqP3vMQDj_e0_wDkNmZqUZ1A3id6c4U5jQhmFyv4.webp?r=f7b" alt="">
+                                            <img src="<%=m.getImage()%>" alt="">
                                         </div>
                                         <div class="moreMovie-item-content">
                                             <h4 class="info-movie-detail">
@@ -4177,5 +4193,6 @@
             </div>
         </div>
     </div>
+    <% } %>
 </body>
 </html>

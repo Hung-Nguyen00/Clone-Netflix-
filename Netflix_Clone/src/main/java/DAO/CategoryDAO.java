@@ -49,6 +49,24 @@ public class CategoryDAO {
 		}
 		return false;
 	}
+	
+	public ArrayList<Category> getCategorybyMovieId(int category_id) 
+			throws SQLException {
+			 Connection connection = DBConnect1.getConnecttion();
+			 String sql = "SELECT * FROM category inner join detail_movie on category.category_id=detail_movie.category_id where movie_id = '" + category_id + "'";
+			 PreparedStatement ps = connection.prepareCall(sql);
+			 ResultSet rs = ps.executeQuery();
+			 ArrayList<Category> list = new ArrayList<>();
+			 while (rs.next()) {
+				 Category category = new Category();
+				 category.setCategoryId(rs.getInt("category_id"));
+				 category.setMenuId(rs.getInt("menu_id"));
+				 category.setNameCategory(rs.getString("name_category"));
+				 list.add(category);
+			 }
+			 return list;
+			 }
+	
 	public ArrayList<Category> getCategorybyCategoryId(int category_id) 
 			throws SQLException {
 			 Connection connection = DBConnect1.getConnecttion();
