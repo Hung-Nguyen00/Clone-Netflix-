@@ -20,7 +20,7 @@
 <body>
     <div class="container-fluid d-flex flex-column">
         <div class="header row pt-3 pl-5">
-            <img src="../Inner-Website/data/img/logo1.png" alt="Weflix" />
+            <a href="firstHome.jsp"><img src="../Inner-Website/data/img/logo1.png" alt="Weflix" /></a>
         </div>
         <div class="body row">
             <div class="px-2">
@@ -31,7 +31,7 @@
                     <form action="${root}/LoginClientServlet" method="post">
                     <div class="sign-in">
                         <div class="form-group input-group my-3">
-                            <input type="email" class="form-control bg-dark text-light w-100" name="email" id="input-username" aria-describedby="help-username" placeholder="Email or phone number" onfocus="showElement('usernameTip')" onblur="hideElement('usernameTip')" />
+                            <input type="email" class="form-control bg-dark text-light w-100" name="email" id="input-username" aria-describedby="help-username" value="<%=request.getParameter("emailPar")%>" onfocus="showElement('usernameTip')" onblur="hideElement('usernameTip')" />
                             <small id="usernameTip" class="text-warning" style="display: none;">
                   <i class="fa fa-info-circle" aria-hidden="true"></i>
                   Please enter a valid email.

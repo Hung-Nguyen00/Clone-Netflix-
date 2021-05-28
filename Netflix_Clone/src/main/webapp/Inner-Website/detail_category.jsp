@@ -243,7 +243,7 @@ $(document).ready(function(){
   });
 });
 </script>
-<script>
+	<script>
 $(document).ready(function(){
   $(".dislikebtn").click(function(){
     if($(this).css("background-color") == "rgb(255, 0, 0)"){
@@ -276,8 +276,7 @@ $(document).ready(function(){
   });
 });
 </script>
-
- <script>
+	<script>
 $(document).ready(function(){
 	
   $(".likebtn").click(function(){
@@ -294,8 +293,7 @@ $(document).ready(function(){
   });
 });
 </script>
-
-<script>
+	<script>
 $(document).ready(function(){
 	
   $(".dislikebtn").click(function(){

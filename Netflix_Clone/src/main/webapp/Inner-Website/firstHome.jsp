@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../Inner-Website/lib/css/first_style.css" />
+    <c:set var = "root" value="${pageContext.request.contextPath}"/>
     <title>Netflix Vietnam - Watch TV Shows Online, Watch Movies Online</title>
 </head>
 
@@ -22,13 +24,15 @@
             <h2>
                 Ready to watch? Enter your email to create or restart your membership.
             </h2>
+            <form action="${root}/CheckEmailFirstHome" method="post">
             <div class="email-form">
                 <div class="email-input-container">
-                    <input type="text" name="" id="" />
+                    <input type="text" name="email-input" id="" />
                     <label for="">Email Address</label>
                 </div>
-                <button onclick="signup()">Get started</button>
+                <button type="submit">Get started</button>
             </div>
+            </form>
         </div>
     </header>
     <div class="Enjoy description-tab">
@@ -141,13 +145,15 @@
       <p>
         Ready to watch? Enter your email to create or restart your membership.
       </p>
-      <div class="email-form">
-        <div class="email-input-container">
-          <input type="text" name="" id="" />
-          <label for="">Email Address</label>
-        </div>
-        <button>Get started ></button>
-      </div>
+      <form action="${root}/CheckEmailFirstHome" method="post">
+            <div class="email-form">
+                <div class="email-input-container">
+                    <input type="text" name="email-input" id="" />
+                    <label for="">Email Address</label>
+                </div>
+                <button type="submit">Get started</button>
+            </div>
+            </form>
     </div>
     <footer class="footer">
       <p>Questions? Call 1-866-579-7172</p>
@@ -184,8 +190,8 @@
     <script type="text/javascript">
 
 function signup() {
-var email = $("input").val();
-location.replace("signup.jsp");
+var emailPar = $("input").val();
+location.replace("signup.jsp?emailPar="+emailPar);
 }
 
 </script>
