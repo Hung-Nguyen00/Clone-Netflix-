@@ -104,7 +104,26 @@ public class Account_ChildDAO {
 		}
 	}		
 
-	
+	public ArrayList<AccountChild> getAccountChildsbyId(byte id) 
+			throws SQLException {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "SELECT * FROM account_child WHERE account_id= '" + id + "'";
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		int i=0;
+		ArrayList<AccountChild> list = new ArrayList<>();
+		while (rs.next()) {
+			i++;
+			AccountChild ac = new AccountChild();
+			ac.setAccountId(rs.getByte("account_id"));
+			ac.setNameAccount(rs.getString("name_account"));
+			ac.setCreateDate(rs.getDate("create_date"));
+			ac.setAvatar(rs.getString("avatar"));
+			ac.setEmail(rs.getString("email"));
+			list.add(ac);
+		}
+		return list;
+	}
 	
 	public static void main(String[] args) throws SQLException {
 			Account_ChildDAO dao = new Account_ChildDAO();
@@ -116,9 +135,8 @@ public class Account_ChildDAO {
 //		System.out.println(dao.getAccountChildsbyEmail("vuhoanglong21@gmail.com"));
 //			System.out.println(dao.update(new Account("abc@gmail.com", "0411200", null, "0411200")));
 //			System.out.println(dao.delete("abc3@gmail.com"));
-			int id = dao.getMaxId()+1;
-			System.out.println(dao.insert( new AccountChild((byte) id ,"Tung" , "../Inner-Website/data/img/gulogo-6.jpg", "gaiazeronos@gmail.com")));
-			for (AccountChild ds : dao.getAccountChildsbyEmail("gaiazeronos@gmail.com")) {
+		
+			for (AccountChild ds : dao.getAccountChildsbyId((byte)1)) {
 				System.out.println(ds.getEmail() + " - " + ds.getAccountId() + "-" + ds.getNameAccount());		
 				}
 	}

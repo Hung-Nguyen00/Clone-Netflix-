@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="DAO.MenuDAO" %>
 <%@ page import="model.Menu" %>
+<%@ page import="DAO.Account_ChildDAO" %>
+<%@ page import="model.AccountChild" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
@@ -14,6 +16,9 @@
 <c:set var = "root" value="${pageContext.request.contextPath}"/>
 <%
 	MenuDAO menu_dao = new MenuDAO();
+	Account_ChildDAO ac_dao = new Account_ChildDAO();
+	String email_session = session.getAttribute("email").toString();
+	int id_session = Integer.valueOf(session.getAttribute("account_id").toString());
 	 %>
 	<!-- Header start -->
     <header>
@@ -37,23 +42,16 @@
                 <a href="#"><i class="fa fa-bell"></i></a>
             </li>
             <li class="dropdown">
-                <img src="../Inner-Website/data/img/gulogo-6.jpg" style="max-width: 35px;" alt="">
+            	<%for(AccountChild ac : ac_dao.getAccountChildsbyId((byte)id_session)) { %>
+                <img src="<%=ac.getAvatar() %>" style="max-width: 35px;" alt="">
+                <%} %>
                 <ul class="dropdown-iconProfile">
+                	<%for(AccountChild ac : ac_dao.getAccountChildsbyEmail(email_session)) { %>
                     <li>
-                        <img class="
-                        img-border-radius" src="../Inner-Website/data/img/gulogo-6.jpg" alt="">
-                        <a href="#">Thanh Hung</a>
+                        <img class="img-border-radius" src="<%=ac.getAvatar()%>" alt="">
+                        <a href="${root}/logintoid?account_id=<%=ac.getAccountId() %>"><%=ac.getNameAccount() %></a>
                     </li>
-                    <li>
-                        <img class="
-                        img-border-radius" src="../Inner-Website/data/img/gulogo-6.jpg" alt="">
-                        <a href="#">Thanh Hung</a>
-                    </li>
-                    <li>
-                        <img class="
-                        img-border-radius" src="../Inner-Website/data/img/gulogo-6.jpg" alt="">
-                        <a href="#">Thanh Hung</a>
-                    </li>
+                    <%} %>
                     <li class="dropdown-manage"><a href="#">Manage Profiles</a></li>
                     <li class="dropdown-borderTop dropdown-manage"><a href="account.html">Account</a></li>
                     <li class="dropdown-manage"><a href="#">Help Center</a></li>

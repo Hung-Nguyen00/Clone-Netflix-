@@ -25,4 +25,13 @@ public class LoginToId extends HttpServlet {
 		sessionId.setAttribute("account_id", account_id);
 		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp");
         }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+    	request.setCharacterEncoding("utf-8");
+		response.setCharacterEncoding("utf-8");
+    	int account_id = Integer.parseInt(request.getParameter("account_id"));
+    	HttpSession sessionId = request.getSession();
+		sessionId.setAttribute("account_id", account_id);
+		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp");
+        }
     }

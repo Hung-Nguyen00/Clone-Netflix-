@@ -65,6 +65,19 @@ public class AccountDAO {
 			}
 		return false;
 	}
+	public boolean signUpAccount(String email, String password) throws SQLException {
+		try {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "INSERT INTO `netflix`.`account` (`email`, `password_account`) VALUES ('"+email+"', '"+password+"')";
+
+		PreparedStatement ps = connection.prepareCall(sql);
+		
+		int temp = ps.executeUpdate();
+		return temp == 1;
+		} catch (Exception e) {
+		return false;
+		}
+	}
 	public boolean valiEmail(String email) throws SQLException{
 		Connection connection = DBConnect1.getConnecttion();
 		String sql = "SELECT email FROM account WHERE email = '" + email + "'";

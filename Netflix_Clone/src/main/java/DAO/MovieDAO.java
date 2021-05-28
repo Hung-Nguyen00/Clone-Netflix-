@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import connect.DBConnect1;
+import model.AccountChild;
 import model.Movie;
 
 public class MovieDAO {
@@ -35,32 +36,62 @@ public class MovieDAO {
 		return list;
 	}
 	
+
+	
 	public ArrayList<Movie> getListMovieOfMenu(byte id_menu) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
-		String sql = "SELECT * FROM netflix.movie "
-				+ "where movie_id IN (SELECT d.movie_id FROM  netflix.category as c "
-				+ "INNER JOIN netflix.detail_movie as d ON d.category_id = c.category_id "
-				+ "where c.menu_id = '"+id_menu +"')";
-		PreparedStatement ps = connection.prepareCall(sql);
-		ResultSet rs = ps.executeQuery();
-		
-		ArrayList<Movie> list = new ArrayList<>();
-		while (rs.next()) {
-			Movie actor = new Movie();
-			actor.setMovieId(rs.getInt("movie_id"));
-			actor.setNameMovie(rs.getString("name_movie"));
-			actor.setDescriptionMovie(rs.getString("description_movie"));
-			actor.setImage(rs.getString("image"));
-			actor.setTrailer(rs.getString("trailer"));
-			actor.setVideo(rs.getString("video"));
-			actor.setLo(rs.getString("lo"));
-			actor.setMaturityRating(rs.getString("maturity_rating"));
-			actor.setLastUpdate(rs.getDate("last_update"));
-			actor.setDuration(rs.getString("duration"));
-			actor.setTopHot(rs.getByte("top_hot"));
-			list.add(actor);
+		if (id_menu != 0) {
+			String sql = "SELECT * FROM netflix.movie "
+					+ "where movie_id IN (SELECT d.movie_id FROM  netflix.category as c "
+					+ "INNER JOIN netflix.detail_movie as d ON d.category_id = c.category_id "
+					+ "where c.menu_id = '"+id_menu +"')";
+			String sql1 = "SELECT * FROM movie";
+			PreparedStatement ps = connection.prepareCall(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			ArrayList<Movie> list = new ArrayList<>();
+			while (rs.next()) {
+				Movie actor = new Movie();
+				actor.setMovieId(rs.getInt("movie_id"));
+				actor.setNameMovie(rs.getString("name_movie"));
+				actor.setDescriptionMovie(rs.getString("description_movie"));
+				actor.setImage(rs.getString("image"));
+				actor.setTrailer(rs.getString("trailer"));
+				actor.setVideo(rs.getString("video"));
+				actor.setLo(rs.getString("lo"));
+				actor.setMaturityRating(rs.getString("maturity_rating"));
+				actor.setLastUpdate(rs.getDate("last_update"));
+				actor.setDuration(rs.getString("duration"));
+				actor.setTopHot(rs.getByte("top_hot"));
+				list.add(actor);
+			}
+			return list;
+		}else {
+			String sql = "SELECT * FROM movie";
+			String sql1 = "SELECT * FROM movie";
+			PreparedStatement ps = connection.prepareCall(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			ArrayList<Movie> list = new ArrayList<>();
+			while (rs.next()) {
+				Movie actor = new Movie();
+				actor.setMovieId(rs.getInt("movie_id"));
+				actor.setNameMovie(rs.getString("name_movie"));
+				actor.setDescriptionMovie(rs.getString("description_movie"));
+				actor.setImage(rs.getString("image"));
+				actor.setTrailer(rs.getString("trailer"));
+				actor.setVideo(rs.getString("video"));
+				actor.setLo(rs.getString("lo"));
+				actor.setMaturityRating(rs.getString("maturity_rating"));
+				actor.setLastUpdate(rs.getDate("last_update"));
+				actor.setDuration(rs.getString("duration"));
+				actor.setTopHot(rs.getByte("top_hot"));
+				list.add(actor);
+			}
+			return list;
 		}
-		return list;
+		
+		
 	}
 
 	public ArrayList<Movie> getListMovie(int movie_id) throws SQLException {
@@ -221,7 +252,9 @@ public class MovieDAO {
 //			System.out.println(dao.update(new Movie(6,"Bird",null,null,null,null,null,null,null,Byte.parseByte("1"))));
 //			System.out.println(dao.delete(7));
 //			System.out.println(dao.getMaxId());
-			System.out.println(dao.delete(10));
+			for (Movie ds : dao.getListMovieOfMenu((byte)1)) {
+				System.out.println(ds.getMovieId() + " - " + ds.getNameMovie() + "-" + ds.getDescriptionMovie());		
+				}
 	}
 
 }
