@@ -108,6 +108,30 @@ public class MovieDAO {
 		return list;
 	}
 	
+	public ArrayList<Movie> getListMovieInSearch(String name_movie) throws SQLException {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "SELECT * FROM netflix.movie where name_movie like '%"+name_movie+"%'";
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		ArrayList<Movie> list = new ArrayList<>();
+		while (rs.next()) {
+			Movie actor = new Movie();
+			actor.setMovieId(rs.getInt("movie_id"));
+			actor.setNameMovie(rs.getString("name_movie"));
+			actor.setDescriptionMovie(rs.getString("description_movie"));
+			actor.setImage(rs.getString("image"));
+			actor.setTrailer(rs.getString("trailer"));
+			actor.setVideo(rs.getString("video"));
+			actor.setLo(rs.getString("lo"));
+			actor.setMaturityRating(rs.getString("maturity_rating"));
+			actor.setLastUpdate(rs.getDate("last_update"));
+			actor.setDuration(rs.getString("duration"));
+			actor.setTopHot(rs.getByte("top_hot"));
+			list.add(actor);
+		}
+		return list;
+	}
+	
 
 	
 	public ArrayList<Movie> getListMovieOfMenu(byte id_menu) throws SQLException {
@@ -323,7 +347,7 @@ public class MovieDAO {
 //			System.out.println(dao.update(new Movie(6,"Bird",null,null,null,null,null,null,null,Byte.parseByte("1"))));
 //			System.out.println(dao.delete(7));
 //			System.out.println(dao.getMaxId());
-			for (Movie ds : dao.getListMovieHasSameCategory((byte)0)) {
+			for (Movie ds : dao.getListMovieInSearch("long")) {
 				System.out.println(ds.getMovieId() + " - " + ds.getNameMovie() + "-" + ds.getDescriptionMovie());		
 				}
 	}

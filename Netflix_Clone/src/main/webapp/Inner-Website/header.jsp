@@ -32,8 +32,10 @@
         </ul>
         <ul class="search">
             <li>
-                <input class="search-input" type="text" placeholder="Search movies, genres">
+            <form action="${root}/SearchForMovie" method="post">
+                <input class="search-input" type="text" placeholder="Search movies, genres" name="searchInput">
                 <i class="fa fa-search" aria-hidden="true"></i>
+            </form>
             </li>
             <li>
                 <a href="#"><i class="fa fa-gift"></i></a>
