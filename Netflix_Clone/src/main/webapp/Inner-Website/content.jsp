@@ -22,7 +22,7 @@
 	MovieDAO movie_dao = new MovieDAO();
 	CategoryDAO category_dao = new CategoryDAO();
 	Activity_HistoryDAO AHDAO = new Activity_HistoryDAO();
-	int menu_id= 0;
+	int menu_id= -1;
 	if(request.getParameter("menu_id")!=null)
 	{
 		menu_id= Integer.parseInt(request.getParameter("menu_id")) ;
@@ -33,7 +33,7 @@
     </div>
     <% for(Movie m : movie_dao.getListMovie(menu_id)) { %>
     <div class="trailer-film">
-        <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>>?autoplay=1&loop=1&mute=1&controls=0&playlist=<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>?autoplay=1&loop=1&mute=1&controls=0&playlist=<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
     </div>
    
     <div></div>
@@ -97,7 +97,7 @@
                     <div class="preview-detail-trailer">
                         <div class="preview-detail-banner">
                             <!-- <iframe src="https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1&loop=1&mute=1&controls=0&playlist=1VIZ89FEjYI" frameborder="0" allowfullscreen></iframe> -->
-                            <iframe></iframe>
+                            <iframe src="https://www.youtube.com/embed/<%=m.getVideo()%>?autoplay=1&loop=1&mute=1&controls=0&playlist=<%=m.getVideo()%>" frameborder="0" allowfullscreen></iframe>
                             <img src="<%=m.getImage()%>" alt="banner">
                         </div>
                         <div class="preview-detail-trailer--controller">

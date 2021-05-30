@@ -12,6 +12,14 @@
     <title>Movies</title>
 </head>
 <body>
+<%
+response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setHeader("Expires", "0");
+	if(session.getAttribute("account_id")==null){
+		response.sendRedirect("/Netflix_Clone/Inner-Website/firstHome.jsp");
+	}
+%>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="sub_header.jsp"></jsp:include>
 	<jsp:include page="banner.jsp"></jsp:include>

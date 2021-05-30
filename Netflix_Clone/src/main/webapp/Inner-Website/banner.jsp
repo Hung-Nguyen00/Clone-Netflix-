@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<c:set var = "root" value="${pageContext.request.contextPath}"/>
 <title>Banner</title>
 <%@page import="model.Movie" %>
 <%@page import="DAO.MovieDAO" %>
@@ -31,7 +33,7 @@
                 <p>Mysterious events. Shadowy entities, A woman from the future. As a hidden world comes in view, so di it deadly secrets.</p>
             </h4>
             <div class="banner-controller">
-                <a href="#" class="btn banner-btn-play"><i class="fa fa-play "></i>Play</a>
+                <a href="${root}/Inner-Website/play.jsp?video_id=<%=m.getVideo() %>" class="btn banner-btn-play"><i class="fa fa-play "></i>Play</a>
                 <a href="#" class="btn banner-btn-info"><i class="fa fa-info"></i>More info</a>
             </div>
         </div>

@@ -49,7 +49,7 @@
                 	<%for(AccountChild ac : ac_dao.getAccountChildsbyEmail(email_session)) { %>
                     <li>
                         <img class="img-border-radius" src="<%=ac.getAvatar()%>" alt="">
-                        <a href="${root}/logintoid?account_id=<%=ac.getAccountId() %>"><%=ac.getNameAccount() %></a>
+                        <a href="${root}/logintoid?account_id=<%=ac.getAccountId()%>" <%if(ac.getAccountId()==id_session){%> style="font-weight:bold;font-size:1.1rem;text-decoration: underline" <%}%> ><%=ac.getNameAccount() %></a>
                     </li>
                     <%} %>
                     <li class="dropdown-manage"><a href="#">Manage Profiles</a></li>

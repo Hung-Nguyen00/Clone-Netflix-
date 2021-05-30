@@ -23,7 +23,7 @@ public class LoginToId extends HttpServlet {
     	int account_id = Integer.parseInt(request.getParameter("account_id"));
     	HttpSession sessionId = request.getSession();
 		sessionId.setAttribute("account_id", account_id);
-		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp");
+		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp?menu_id=0");
         }
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -32,6 +32,6 @@ public class LoginToId extends HttpServlet {
     	int account_id = Integer.parseInt(request.getParameter("account_id"));
     	HttpSession sessionId = request.getSession();
 		sessionId.setAttribute("account_id", account_id);
-		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp");
+		response.sendRedirect("/Netflix_Clone/Inner-Website/index.jsp?menu_id=0");
         }
     }

@@ -1,7 +1,11 @@
+
+<%@page import="org.apache.jasper.tagplugins.jstl.core.Import"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="DAO.MenuDAO" %>
 <%@ page import="model.Menu" %>
+<%@ page import="DAO.Account_ChildDAO" %>
+<%@ page import="model.AccountChild" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +20,16 @@
 
 <body>
 <%
-	response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Expires", "0");
-	if(session.getAttribute("account_id")==null){
-		response.sendRedirect("/Netflix_Clone/Inner-Website/firstHome.jsp");
+response.setHeader("Cache-Control","no-cahe, no-store, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setHeader("Expires", "0");
+Object account_session = session.getAttribute("account_id");
+	if(String.valueOf(account_session)=="null"){
+		response.sendRedirect("/Netflix_Clone/Inner-Website/login.jsp");
 	}
 %>
-<h1 style="display:none">Hello ${account_id}</h1>
-<h1 style="display:none"> <%=request.getParameter("menu_id")%></h1>
+
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:include page="banner.jsp"></jsp:include>
 	<jsp:include page="content.jsp"></jsp:include>
