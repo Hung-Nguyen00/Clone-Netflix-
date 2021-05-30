@@ -55,7 +55,7 @@ response.setHeader("Expires", "0");
        <div class="popular-slider">
     	<div class="popular-slider-card" style="display: flex; flex-wrap: wrap; margin-bottom: 2rem;">
     	<%int i=0; %>
-       	<% for(Movie m : movie_dao.getListMovie()) { 
+       	<% for(Movie m : movie_dao.getListMovieLastest()) { 
        	%>
             <div class="popular-slider-card-item" style="margin-bottom: 2rem;">
                 <img src="<%=m.getImage()%>" style="width: 245px; height: 140px;" alt="">
