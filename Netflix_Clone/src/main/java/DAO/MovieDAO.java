@@ -139,7 +139,7 @@ public class MovieDAO {
 			}
 			return list;
 		}else {
-			String sql = "SELECT * FROM movie";
+			String sql = "SELECT * FROM netflix.movie order by top_hot asc;";
 			PreparedStatement ps = connection.prepareCall(sql);
 			ResultSet rs = ps.executeQuery();
 			
