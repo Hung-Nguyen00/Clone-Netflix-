@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="DAO.AccountDAO" %>
+<%@ page import="model.Account" %>
+<%@ page import="DAO.MovieDAO" %>
+<%@ page import="model.Movie" %>
+<%@ page import="DAO.Account_ChildDAO" %>
+<%@ page import="model.AccountChild" %>
+<%@ page import="DAO.Activity_HistoryDAO" %>
+<%@ page import="model.ActivitiHistoryMovie" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../Inner-Website/lib/css/account.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <c:set var = "root" value="${pageContext.request.contextPath}"/>
     <title>Activity</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
@@ -14,10 +24,22 @@
 </head>
 
 <body>
+<%
+	Account_ChildDAO AC_dao = new Account_ChildDAO();
+	AccountDAO account_dao = new AccountDAO();
+	Activity_HistoryDAO AH_dao = new Activity_HistoryDAO();
+	MovieDAO movie_dao = new MovieDAO();
+	int account_id= -1;
+	if(request.getParameter("account_id")!=null){
+		account_id = Integer.valueOf(request.getParameter("account_id"));
+	}
+	 %>
     <div class="container">
 		<jsp:include page="headerAccount.jsp"></jsp:include>
         <div class="row mt-4 align-items-end">
-            <div class="h1 col-4">Activity for <span id="user">User 1</span></div>
+        	<%for(AccountChild ac : AC_dao.getAccountChildsbyId((byte)account_id)){ %>
+            <div class="h1 col-4">Activity of <span id="user"><%=ac.getNameAccount()%></span></div>
+            <%}%>
             <!-- TODO: Thêm ngăn cách -->
             <ul class="nav nav-tabs col-6 justify-content-end" id="activityTabs" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -40,34 +62,20 @@
             <div class="tab-content mt-4 py-4" id="activityTabsContent">
                 <div class="tab-pane fade show active" id="watching" role="tabpanel" aria-labelledby="watching-tab">
                     <div class="container-fluid">
+                        <%for(Movie m : movie_dao.getListMovieOfId(account_id)){ %>
                         <div class="row">
-                            <div class="col-1">03/08/21</div>
-                            <div class="col-8"><a href="#">Movie Name</a></div>
+                            <div class="col-1">Saved</div>
+                            <div class="col-8"><%=m.getNameMovie()%></div>
                             <div class="col-3">
-                                <a href="#" class="text-dark px-3">Report a problem</a>
+                                <a href="#" class="text-dark px-3"></a>
                                 <a href="#" class="text-dark"><i class="fa fa-ban" aria-hidden="true"></i></a>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-1">03/08/21</div>
-                            <div class="col-8"><a href="#">Movie 2 Name</a></div>
-                            <div class="col-3">
-                                <a href="#" class="text-dark px-3">Report a problem</a>
-                                <a href="#" class="text-dark"><i class="fa fa-ban" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-1">03/07/21</div>
-                            <div class="col-8"><a href="#">Movie 3 Name</a></div>
-                            <div class="col-3">
-                                <a href="#" class="text-dark px-3">Report a problem</a>
-                                <a href="#" class="text-dark"><i class="fa fa-ban" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
+                        <%}%>
                         <div class="row">
                             <div>
                                 <a href="#" class="btn btn-primary disabled">Show More</a>
-                                <a href="./account.html" class="btn btn-light">Back to Account</a>
+                                <a href="account.jsp" class="btn btn-light">Back to Account</a>
                 </div>
               </div>
             </div>

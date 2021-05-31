@@ -5,8 +5,6 @@ import java.io.IOException;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import model.AccountChild;
-import DAO.Account_ChildDAO;
  
 @WebServlet("/SearchForMovie")
 public class SearchForMovieController extends HttpServlet {

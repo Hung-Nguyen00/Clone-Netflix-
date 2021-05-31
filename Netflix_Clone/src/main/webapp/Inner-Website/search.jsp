@@ -52,7 +52,7 @@ response.setHeader("Expires", "0");
     </div>
  	
     <div class="My-List-label">
-        <h1>Search for</h1>
+        <h1>Search for <%=movie_name %></h1>
     </div>
     
     <div class="detail-movie" style="position: absolute; top: 28%; left: 0; display: flex; flex-wrap: wrap; width: 100%;">

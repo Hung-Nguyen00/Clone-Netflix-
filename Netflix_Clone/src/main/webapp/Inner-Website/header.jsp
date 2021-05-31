@@ -54,8 +54,8 @@
                         <a href="${root}/logintoid?account_id=<%=ac.getAccountId()%>" <%if(ac.getAccountId()==id_session){%> style="font-weight:bold;font-size:1.1rem;text-decoration: underline" <%}%> ><%=ac.getNameAccount() %></a>
                     </li>
                     <%} %>
-                    <li class="dropdown-manage"><a href="#">Manage Profiles</a></li>
-                    <li class="dropdown-borderTop dropdown-manage"><a href="account.html">Account</a></li>
+                    <li class="dropdown-manage"><a href="browse.jsp">Manage Profiles</a></li>
+                    <li class="dropdown-borderTop dropdown-manage"><a href="account.jsp">Account</a></li>
                     <li class="dropdown-manage"><a href="#">Help Center</a></li>
                     <li class="dropdown-manage">
                     	<a href="${root}/logout">Sign out of Netflix</a>

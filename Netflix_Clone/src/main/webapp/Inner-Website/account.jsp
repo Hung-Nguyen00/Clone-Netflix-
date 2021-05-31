@@ -1,5 +1,13 @@
+<%@page import="DAO.AccountDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="DAO.AccountDAO" %>
+<%@ page import="model.Account" %>
+<%@ page import="DAO.Account_ChildDAO" %>
+<%@ page import="model.AccountChild" %>
+<%@ page import="DAO.Activity_HistoryDAO" %>
+<%@ page import="model.ActivitiHistoryMovie" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../Inner-Website/lib/css/account.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <c:set var = "root" value="${pageContext.request.contextPath}"/>
     <title>Accounts</title>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
@@ -18,6 +27,15 @@
 </head>
 
 <body>
+<%
+	Account_ChildDAO AC_dao = new Account_ChildDAO();
+	AccountDAO account_dao = new AccountDAO();
+	Activity_HistoryDAO AH_dao = new Activity_HistoryDAO();
+	String email= "";
+	if(session.getAttribute("email")!=null){
+		email = String.valueOf(session.getAttribute("email"));
+	}
+	 %>
     <div class="container">
 			<jsp:include page="headerAccount.jsp"></jsp:include>
         <div class="row">
@@ -28,11 +46,13 @@
                 <div class="h2 text-uppercase">membership</div>
                 <a href="#" class="btn btn-light">Cancel Membership</a>
             </div>
+            <%for(Account a : account_dao.getListAccount(email)){ %>
             <div id="membership-info" class="col-12 col-md-8">
-                <div id="email">abc@xyz.com</div>
-                <div id="pwd">password:****</div>
-                <div id="phone">phone:0123456789</div>
+                <div id="email"><%=a.getEmail()%></div>
+                <div id="pwd">password: <%=a.getPasswordAccount()%></div>
+                <div id="phone">phone: <%=a.getPhone()%></div>
             </div>
+            <%} %>
             <div id="change-options" class="col-12 col-md-2">
                 <a href="./change-password.html">Change password</a></br>
                 <a href="#">Change account email</a></br>
@@ -57,13 +77,14 @@
                 <div class="h2 text-uppercase">profile</div>
             </div>
             <div id="profile-options" class="col-12 col-md-10" role="tablist" aria-multiselectable="true">
+                <%for(AccountChild ac:AC_dao.getAccountChildsbyEmail(email)){ %>
                 <div class="card">
                     <div class="card-header" role="tab" id="profileHeader1">
                         <h5 class="mb-0">
                             <a class="dropdown row" data-toggle="collapse" data-parent="#profile-options" href="#profileUser1" aria-expanded="true" aria-controls="profileUser1">
-                                <img src="https://occ-0-395-64.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABUqy-FKaqC_UTCHKRnqVxEoax4Bl_EHRvEYR0PdDDecAIlJQDQaQck8fFN2P6p7J5PL8EGKpusCFm7mCtLaI7iA.png?r=f08" alt="avt1" class="col-2">
+                                <img src="<%=ac.getAvatar()%>" alt="avt1" class="col-2">
                                 <div class="profile-info col-8">
-                                    <div class="profile-header">User 1</div>
+                                    <div class="profile-header"><%=ac.getNameAccount()%></div>
                                 </div>
                                 <div class="profile-dropdown col-2">
                                     <i class="fa fa-caret-down" aria-hidden="true"></i>
@@ -80,7 +101,7 @@
                                         <div class="profile-header">Viewing Activity</div>
                                     </div>
                                     <div class="col-2 justify-content-center align-items-center">
-                                        <a href="./activity.html#watching">View</a>
+                                        <a href="activity.jsp?account_id=<%=ac.getAccountId()%>">View</a>
                                     </div>
                                 </div>
                                 <div class="profile-option row">
@@ -88,54 +109,14 @@
                                         <div class="profile-header">Ratings</div>
                                     </div>
                                     <div class="col-2 justify-content-center align-items-center">
-                                        <a href="./activity.html#rating">View</a>
+                                        <a href="activity.jsp">View</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card-header" role="tab" id="profileHeader2">
-                        <h5 class="mb-0">
-                            <a class="dropdown row" data-toggle="collapse" data-parent="#profile-options" href="#profileUser2" aria-expanded="true" aria-controls="profileUser2">
-                                <img src="https://occ-0-395-64.1.nflxso.net/dnm/api/v6/K6hjPJd6cR6FpVELC5Pd6ovHRSk/AAAABUqy-FKaqC_UTCHKRnqVxEoax4Bl_EHRvEYR0PdDDecAIlJQDQaQck8fFN2P6p7J5PL8EGKpusCFm7mCtLaI7iA.png?r=f08s" alt="avt2" class="col-2" />
-                                <div class="profile-info col-8">
-                                    <div class="profile-header">User 2</div>
-                                </div>
-                                <div class="profile-dropdown col-2">
-                                    <i class="fa fa-caret-down" aria-hidden="true"></i>
-                                </div>
-                            </a>
-
-                        </h5>
-                    </div>
-                    <div id="profileUser2" class="collapse in row" role="tabpanel" aria-labelledby="profileHeader2">
-                        <div class="card-body">
-                            <div class="col-2"></div>
-                            <div class="col-10 container-fluid">
-                                <div class="profile-option row">
-                                    <div class="col-10">
-                                        <div class="profile-header">Viewing Activity</div>
-                                    </div>
-                                    <div class="col-2 justify-content-center align-items-center">
-                                        <a href="./activity.html#watching">View</a>
-                                    </div>
-                                </div>
-                                <div class="profile-option row">
-                                    <div class="col-10">
-                                        <div class="profile-header">Ratings</div>
-                                    </div>
-                                    <div class="col-2 justify-content-center align-items-center">
-                                        <a href="./activity.html#rating">View</a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
+				<%}%>
             </div>
         </div>
     </div>

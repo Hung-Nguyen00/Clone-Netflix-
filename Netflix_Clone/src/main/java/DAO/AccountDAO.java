@@ -33,6 +33,26 @@ public class AccountDAO {
 		}
 		return list;
 	}
+	
+	public ArrayList<Account> getListAccount(String email) throws SQLException {
+		Connection connection = DBConnect1.getConnecttion();
+		String sql = "SELECT *, DATE_FORMAT(expiration_date, '%Y-%m-%d') format_expiration_date FROM account WHERE email = '" + email + "'";
+		PreparedStatement ps = connection.prepareCall(sql);
+		ResultSet rs = ps.executeQuery();
+		int i=0;
+		ArrayList<Account> list = new ArrayList<>();
+		while (rs.next()) {
+			i++;
+			Account account = new Account();
+			account.setEmail(rs.getString("email"));
+			account.setPasswordAccount(rs.getString("password_account"));
+			account.setExpiration_date(rs.getString("format_expiration_date"));
+			account.setPhone(rs.getString("phone"));
+			account.setStt(i);
+			list.add(account);
+		}
+		return list;
+	}
 
 	public Account getAccount(String email) throws SQLException {
 		Connection connection = DBConnect1.getConnecttion();
@@ -49,6 +69,8 @@ public class AccountDAO {
 		}
 		return account;
 	}
+	
+	
 	public boolean checkEmail(String email, String password) throws SQLException{
 			Connection connection = DBConnect1.getConnecttion();
 			String sql = "SELECT email FROM account WHERE email = '" + email + "' and password_account = '"+ password+"'";
